@@ -4,8 +4,8 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import ActionTypes from './actions';
-import reducers from './reducers';
+import ActionTypes from './state/actions';
+import reducers from './state/reducers';
 import { authTokenName } from './constants';
 
 import App from './components/app';

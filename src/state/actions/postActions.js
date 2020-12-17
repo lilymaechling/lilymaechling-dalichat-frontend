@@ -1,7 +1,7 @@
 import ActionTypes, {
   getBearerTokenHeader, createAsyncActionCreator,
 } from '.';
-import { ROOT_URL } from '../constants';
+import { ROOT_URL } from '../../constants';
 
 /**
  * A function for fetching all posts loaded into backend (or a given number based on backend parameters)

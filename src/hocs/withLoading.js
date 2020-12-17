@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import WithLoadingLoader from './withLoadingLoader';
-import { createLoadingSelector } from '../actions/requestActions';
+import { createLoadingSelector } from '../state/actions/requestActions';
 
 // Reference: https://levelup.gitconnected.com/how-to-connect-hoc-with-react-and-redux-2b3bce6a7dbf
 

@@ -5,14 +5,14 @@ import { NavLink } from 'react-router-dom';
 
 import { generateFrontendErrorMessage } from '../../constants';
 
-import ActionTypes from '../../actions';
-import { createErrorSelector, createLoadingSelector } from '../../actions/requestActions';
+import ActionTypes from '../../state/actions';
+import { createErrorSelector, createLoadingSelector } from '../../state/actions/requestActions';
 import {
   fetchPosts, createPost, fetchPostByID, updatePostByID, deletePostByID,
-} from '../../actions/postActions';
+} from '../../state/actions/postActions';
 import {
   fetchUsers, createUser, fetchUserByID, updateUserByID, deleteUserByID,
-} from '../../actions/userActions';
+} from '../../state/actions/userActions';
 
 import SearchItem from '../../components/SearchItem';
 

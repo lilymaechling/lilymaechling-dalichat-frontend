@@ -1,7 +1,7 @@
 import ActionTypes, {
   getBearerTokenHeader, createAsyncActionCreator,
 } from '.';
-import { ROOT_URL } from '../constants';
+import { ROOT_URL } from '../../constants';
 
 // Get all users (AUTH)
 export function fetchUsers() {

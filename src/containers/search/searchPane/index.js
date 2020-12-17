@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 
 import withLoading from '../../../hocs/withLoading';
 
-import ActionTypes from '../../../actions';
-import { fetchPosts, updatePostByID } from '../../../actions/postActions';
-import { createErrorSelector } from '../../../actions/requestActions';
+import ActionTypes from '../../../state/actions';
+import { fetchPosts, updatePostByID } from '../../../state/actions/postActions';
+import { createErrorSelector } from '../../../state/actions/requestActions';
 
 import SearchItem from '../../../components/searchItem';
 

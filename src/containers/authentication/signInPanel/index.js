@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../actions';
-import { signInUser } from '../../../actions/authActions';
+import ActionTypes from '../../../state/actions';
+import { signInUser } from '../../../state/actions/authActions';
 import {
   createErrorSelector, setError, clearError, createLoadingSelector,
-} from '../../../actions/requestActions';
+} from '../../../state/actions/requestActions';
 
 class SignInPanel extends React.Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import ActionTypes, { createAsyncActionCreator } from '.';
-import { ROOT_URL } from '../constants';
+import { ROOT_URL } from '../../constants';
 
 /**
  * A function that fetches data from server and stores it in redux

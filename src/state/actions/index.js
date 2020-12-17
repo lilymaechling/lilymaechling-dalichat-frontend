@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { authTokenName, requestTimeout } from '../constants';
+import { authTokenName, requestTimeout } from '../../constants';
 
 /**
  * All necessary action types for updating redux state with CRUD actions

@@ -1,7 +1,7 @@
 import ActionTypes, {
   requestStates, createAsyncActionCreator, setBearerToken,
 } from '.';
-import { requestTimeout, ROOT_URL } from '../constants';
+import { requestTimeout, ROOT_URL } from '../../constants';
 
 /**
  * Sign up a user and return a user object and a bearer token

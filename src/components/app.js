@@ -4,8 +4,8 @@ import {
   BrowserRouter as Router, Route, NavLink, Switch,
 } from 'react-router-dom';
 
-import { signInUser, signOutUser } from '../actions/authActions';
-import { search } from '../actions/searchActions';
+import { signInUser, signOutUser } from '../state/actions/authActions';
+import { search } from '../state/actions/searchActions';
 
 // import requireAuth from '../hocs/requireAuth';
 
