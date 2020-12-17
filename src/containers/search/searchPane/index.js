@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import withLoading from '../../../hocs/withLoading';
 
 import ActionTypes from '../../../actions';
-import { fetchResources, updateResourceByID } from '../../../actions/resourceActions';
+import { fetchPosts, updatePostByID } from '../../../actions/postActions';
 import { createErrorSelector } from '../../../actions/requestActions';
 
 import SearchItem from '../../../components/searchItem';
@@ -24,7 +24,7 @@ class SearchPane extends React.Component {
           || (
           <>
             {/* Number of results available for given query and filter options */}
-            {/* Check if there have been results loaded or if there is an array of resources in redux */}
+            {/* Check if there have been results loaded or if there is an array of posts in redux */}
             <p>{this.props.numResults || (this.props.results && this.props.results.length) ? this.props.numResults || this.props.results.length : 0} results</p>
 
             {/* Go through passed data array and break into SearchItem elements */}
@@ -40,15 +40,15 @@ class SearchPane extends React.Component {
 }
 
 // Import loading state and error messages of specified actions from redux state
-const errorSelector = createErrorSelector([ActionTypes.SEARCH, ActionTypes.FETCH_RESOURCES]);
+const errorSelector = createErrorSelector([ActionTypes.SEARCH, ActionTypes.FETCH_POSTS]);
 
 const mapStateToProps = (state) => ({
-  results: state.resource.results,
-  numResults: state.resource.numResults,
+  results: state.post.results,
+  numResults: state.post.numResults,
   errorMessage: errorSelector(state),
 });
 
-// Waits for fetchResources action to resolve or reject
-const LoadingSearchPane = withLoading(SearchPane, [ActionTypes.FETCH_RESOURCES, ActionTypes.SEARCH]);
+// Waits for fetchPosts action to resolve or reject
+const LoadingSearchPane = withLoading(SearchPane, [ActionTypes.FETCH_POSTS, ActionTypes.SEARCH]);
 
-export default connect(mapStateToProps, { fetchResources, updateResourceByID })(LoadingSearchPane);
+export default connect(mapStateToProps, { fetchPosts, updatePostByID })(LoadingSearchPane);

@@ -10,14 +10,14 @@ import { requestTimeout, ROOT_URL } from '../constants';
  * @param {*} firstName
  * @param {*} lastName
  */
-export function signUpUser(email, password, firstName, lastName) {
+export function signUpUser(email, username, password, firstName, lastName) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.AUTH_USER,
     {
       method: 'post',
       url: `${ROOT_URL}/auth/signup`,
       data: {
-        email, password, firstName, lastName,
+        email, username, password, firstName, lastName,
       },
     },
     {
@@ -30,16 +30,16 @@ export function signUpUser(email, password, firstName, lastName) {
 /**
  * A function that takes a username and a password and sends them to the backend server for authentication
  * If authentication succeeds, the provided token will be placed locally and the user's authentication status will be updated
- * @param {*} username
+ * @param {*} identifier - Email OR username, either will be accepted by the server
  * @param {*} password
  */
-export function signInUser(email, password) {
+export function signInUser(username, password) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.AUTH_USER,
     {
       method: 'post',
       url: `${ROOT_URL}/auth/signin`,
-      data: { email, password },
+      data: { username, password },
       timeout: requestTimeout,
     },
     {

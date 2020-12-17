@@ -14,9 +14,9 @@ const ActionTypes = {
   DEAUTH_USER: 'DEAUTH_USER',
   SEARCH: 'SEARCH',
 
-  FETCH_RESOURCE: 'FETCH_RESOURCE',
-  FETCH_RESOURCES: 'FETCH_RESOURCES',
-  DELETE_RESOURCE: 'DELETE_RESOURCE',
+  FETCH_POST: 'FETCH_POST',
+  FETCH_POSTS: 'FETCH_POSTS',
+  DELETE_POST: 'DELETE_POST',
 
   FETCH_USER: 'FETCH_USER',
   FETCH_USERS: 'FETCH_USERS',
@@ -70,7 +70,7 @@ export function generateFailurePayload(error, customParams = {}) {
  * Optional `config` fields:
  * * `successCallback` - Function called on success of request (passed request object)
  * * `failureCallback` - Function called on failure of request (passed error object)
- * * `additionalPayloadFields` - Additional fields to include on top level of success action payload (e.g. object id for deleting resource)
+ * * `additionalPayloadFields` - Additional fields to include on top level of success action payload (e.g. object id for deleting user)
  * * `responseSubfield` - Loads `response.data[subfield]` into success payload instead of `response.data`
  */
 export async function createAsyncActionCreator(dispatch, actionName, axiosConfig, config = {}) {

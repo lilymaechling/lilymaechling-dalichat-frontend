@@ -4,25 +4,25 @@ import ActionTypes, {
 import { ROOT_URL } from '../constants';
 
 /**
- * A function for fetching all resources loaded into backend (or a given number based on backend parameters)
+ * A function for fetching all posts loaded into backend (or a given number based on backend parameters)
  */
-export function fetchResources() {
+export function fetchPosts() {
   return (dispatch) => createAsyncActionCreator(
-    dispatch, ActionTypes.FETCH_RESOURCES,
+    dispatch, ActionTypes.FETCH_POSTS,
     {
       method: 'get',
-      url: `${ROOT_URL}/resources`,
+      url: `${ROOT_URL}/posts`,
     },
   );
 }
 
-// New resource (AUTH)
-export function createResource(title, description, value) {
+// New post (AUTH)
+export function createPost(title, description, value) {
   return (dispatch) => createAsyncActionCreator(
-    dispatch, ActionTypes.FETCH_RESOURCE,
+    dispatch, ActionTypes.FETCH_POST,
     {
       method: 'post',
-      url: `${ROOT_URL}/resources`,
+      url: `${ROOT_URL}/posts`,
       data: { title, description, value },
       headers: getBearerTokenHeader(),
     },
@@ -30,10 +30,10 @@ export function createResource(title, description, value) {
 }
 
 // // TODO: Add additional auth to call this
-// // Delete all resources (AUTH)
-// export function deleteAllResources() {
+// // Delete all posts (AUTH)
+// export function deleteAllPosts() {
 //   return dispatch => new Promise((resolve, reject) => {
-//     axios.delete(`${ROOT_URL}/resources`, { timeout: requestTimeout }).then((response) => {
+//     axios.delete(`${ROOT_URL}/posts`, { timeout: requestTimeout }).then((response) => {
 //       resolve();
 //     }).catch((error) => {
 //       reject();
@@ -44,23 +44,23 @@ export function createResource(title, description, value) {
 // :id
 
 // Get
-export function fetchResourceByID(id) {
+export function fetchPostByID(id) {
   return (dispatch) => createAsyncActionCreator(
-    dispatch, ActionTypes.FETCH_RESOURCE,
+    dispatch, ActionTypes.FETCH_POST,
     {
       method: 'get',
-      url: `${ROOT_URL}/resources/${id}`,
+      url: `${ROOT_URL}/posts/${id}`,
     },
   );
 }
 
 // Update (AUTH)
-export function updateResourceByID(id, update) {
+export function updatePostByID(id, update) {
   return (dispatch) => createAsyncActionCreator(
-    dispatch, ActionTypes.FETCH_RESOURCE,
+    dispatch, ActionTypes.FETCH_POST,
     {
       method: 'put',
-      url: `${ROOT_URL}/resources/${id}`,
+      url: `${ROOT_URL}/posts/${id}`,
       data: update,
       headers: getBearerTokenHeader(),
     },
@@ -68,12 +68,12 @@ export function updateResourceByID(id, update) {
 }
 
 // Delete (AUTH)
-export function deleteResourceByID(id) {
+export function deletePostByID(id) {
   return (dispatch) => createAsyncActionCreator(
-    dispatch, ActionTypes.DELETE_RESOURCE,
+    dispatch, ActionTypes.DELETE_POST,
     {
       method: 'delete',
-      url: `${ROOT_URL}/resources/${id}`,
+      url: `${ROOT_URL}/posts/${id}`,
       headers: getBearerTokenHeader(),
     },
     {

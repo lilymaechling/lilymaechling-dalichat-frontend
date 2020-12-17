@@ -11,11 +11,11 @@ class SignInPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
+      username: '',
       password: '',
     };
 
-    this.handleEmailUpdate = this.handleEmailUpdate.bind(this);
+    this.handleUsernameUpdate = this.handleUsernameUpdate.bind(this);
     this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,8 +27,8 @@ class SignInPanel extends React.Component {
     }
   }
 
-  handleEmailUpdate(e) {
-    this.setState({ email: e.target.value });
+  handleUsernameUpdate(e) {
+    this.setState({ username: e.target.value });
   }
 
   handlePasswordUpdate(e) {
@@ -39,13 +39,13 @@ class SignInPanel extends React.Component {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!this.state.email) {
-      this.props.setError([ActionTypes.AUTH_USER], 'Please enter an email address!');
+    if (!this.state.username) {
+      this.props.setError([ActionTypes.AUTH_USER], 'Please enter a username!');
     } else if (!this.state.password) {
       this.props.setError([ActionTypes.AUTH_USER], 'Please enter a password!');
     } else {
       // Send only if all fields filled in
-      await this.props.signInUser(this.state.email, this.state.password);
+      await this.props.signInUser(this.state.username, this.state.password);
       this.props.history.push('/admin');
     }
   }
@@ -54,7 +54,7 @@ class SignInPanel extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailUpdate} />
+          <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsernameUpdate} />
           <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordUpdate} />
           <input type="submit" value="Sign In" />
         </form>
