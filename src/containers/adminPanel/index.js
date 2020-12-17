@@ -14,7 +14,7 @@ import {
   fetchUsers, createUser, fetchUserByID, updateUserByID, deleteUserByID,
 } from '../../state/actions/userActions';
 
-import SearchItem from '../../components/SearchItem';
+import Post from '../../components/Post';
 
 // TODO: Update this panel to support new fields
 class AdminPanel extends React.Component {
@@ -190,7 +190,15 @@ class AdminPanel extends React.Component {
             <p><b>Posts:</b></p>
             <div>{this.props.postIsLoading ? 'Loading data...'
               : (generateFrontendErrorMessage(this.props.postErrorMessage)
-              || Object.values(this.props.posts).map((element) => <SearchItem key={element.id || element._id} displayObject={element} />))}
+              || Object.values(this.props.posts).map((element) => (
+                <Post
+                  key={element.id || element._id}
+                  title={element.title}
+                  content={element.content}
+                  likes={element.likes}
+                  postDate={element.postDate}
+                />
+              )))}
             </div>
           </div>
 
@@ -251,7 +259,15 @@ class AdminPanel extends React.Component {
             <div>
               {this.props.userIsLoading ? 'Loading data...'
                 : (generateFrontendErrorMessage(this.props.userErrorMessage)
-                || Object.values(this.props.users).map((element) => <SearchItem key={element.id || element._id} displayObject={element} />))}
+                || Object.values(this.props.users).map((element) => (
+                  <Post
+                    key={element.id || element._id}
+                    title={element.title}
+                    content={element.content}
+                    likes={element.likes}
+                    postDate={element.postDate}
+                  />
+                )))}
             </div>
           </div>
         </div>

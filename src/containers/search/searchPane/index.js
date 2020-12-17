@@ -7,7 +7,7 @@ import ActionTypes from '../../../state/actions';
 import { fetchPosts, updatePostByID } from '../../../state/actions/postActions';
 import { createErrorSelector } from '../../../state/actions/requestActions';
 
-import SearchItem from '../../../components/searchItem';
+import Post from '../../../components/Post';
 
 class SearchPane extends React.Component {
   constructor(props) {
@@ -29,7 +29,15 @@ class SearchPane extends React.Component {
 
             {/* Go through passed data array and break into SearchItem elements */}
             {this.props.results && this.props.results.length ? this.props.results.map((element) => {
-              return <SearchItem key={element.id || element._id} displayObject={element} />;
+              return (
+                <Post
+                  key={element.id || element._id}
+                  // title={element.title}
+                  // content={element.content}
+                  // likes={element.likes}
+                  // postDate={element.postDate}
+                />
+              );
             }) : null}
           </>
           )
