@@ -1,34 +1,30 @@
 import React from 'react';
-
-import HeartFilled from '../../../public/icons/heart_filled.svg';
-import HeartEmpty from '../../../public/icons/heart_empty.svg';
-
-import VerifiedUser from '../../../public/icons/verified_user.svg';
-
+import PostContent from '../PostContent';
+import ProfileIcon from '../ProfileIcon';
 import './Post.scss';
 
-function Post({
-  fullName, isVerified, username, likes, userHasLiked, content,
-  onLikeClick, onNameClick,
-}) {
+const Post = ({ postContent, onLikeClick, onProfileClick }) => {
   return (
     <div className="post-container">
-      <div className="post-header-container">
-        <div className="post-header-left-container">
-          <div className="post-name-container">{fullName}</div>
-          {isVerified ? <VerifiedUser /> : null}
-          <p className="post-username">@{username}</p>
-        </div>
+      <ProfileIcon
+        imgUrl={postContent?.owner?.profileUrl}
+        username={postContent?.owner?.username}
+        onClick={onProfileClick}
+        className="post-owner-profile"
+      />
 
-        <button type="button" onClick={onLikeClick} className="post-likes-container">
-          {userHasLiked ? <HeartFilled /> : <HeartEmpty />}
-          <p>{likes}</p>
-        </button>
-      </div>
-
-      <p className="post-content">{content}</p>
+      <PostContent
+        fullName={postContent.owner.fullName}
+        isVerified={postContent.owner.isVerified}
+        username={postContent.owner.username}
+        likes={postContent.likes}
+        userHasLiked={false}
+        content={postContent.content}
+        onLikeClick={onLikeClick}
+        onNameClick={onProfileClick}
+      />
     </div>
   );
-}
+};
 
 export default Post;
