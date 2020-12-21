@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { search } from '../../../state/actions/searchActions';
+import { postSearch } from '../../../state/actions/searchActions';
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
       // filters: [], // UNIMPLEMENTED
       sort: 'd',
       page: 1,
-      numPerPage: 100,
+      numPerPage: 5,
     };
 
     this.handleQueryUpdate = this.handleQueryUpdate.bind(this);
@@ -45,10 +45,14 @@ class SearchBar extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   handleSubmit(e) {
-    this.props.search(this.state.query, this.state.filters, this.state.sort, this.state.page, this.state.numPerPage).then().catch((error) => {
-      // Handle error
-    });
     e.preventDefault(); // Pres reloading on form submit
+    this.props.postSearch({
+      query: this.state.query,
+      filters: this.state.filters,
+      sort: this.state.sort,
+      page: this.state.page,
+      numPerPage: this.state.numPerPage,
+    });
   }
 
   render() {
@@ -92,4 +96,4 @@ class SearchBar extends React.Component {
   }
 }
 
-export default connect(null, { search })(SearchBar);
+export default connect(null, { postSearch })(SearchBar);

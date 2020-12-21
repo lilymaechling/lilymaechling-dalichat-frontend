@@ -4,7 +4,7 @@ import ActionTypes, {
 import { ROOT_URL } from '../../constants';
 
 // Get all users (AUTH)
-export function fetchUsers() {
+export function fetchUsers(additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_USERS,
     {
@@ -12,11 +12,12 @@ export function fetchUsers() {
       url: `${ROOT_URL}/users`,
       headers: getBearerTokenHeader(),
     },
+    { ...additionalConfig },
   );
 }
 
 // New user (AUTH)
-export function createUser(firstName, lastName, email, password) {
+export function createUser(firstName, lastName, email, password, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_USER,
     {
@@ -27,6 +28,7 @@ export function createUser(firstName, lastName, email, password) {
       },
       headers: getBearerTokenHeader(),
     },
+    { ...additionalConfig },
   );
 }
 
@@ -40,7 +42,7 @@ export function createUser(firstName, lastName, email, password) {
 // }
 
 // Get user by id (AUTH)
-export function fetchUserByID(id) {
+export function fetchUserByID(id, additionalConfig = {}) {
   return (dispatch) => {
     if (!id) {
       return dispatch({ type: `${ActionTypes.FETCH_USER}_SUCCESS`, payload: {} });
@@ -52,13 +54,14 @@ export function fetchUserByID(id) {
           url: `${ROOT_URL}/users/${id}`,
           headers: getBearerTokenHeader(),
         },
+        { ...additionalConfig },
       );
     }
   };
 }
 
 // Update by id (AUTH)
-export function updateUserByID(id, update) {
+export function updateUserByID(id, update = {}, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_USER,
     {
@@ -67,11 +70,12 @@ export function updateUserByID(id, update) {
       data: update,
       headers: getBearerTokenHeader(),
     },
+    { ...additionalConfig },
   );
 }
 
 // Delete by id (AUTH)
-export function deleteUserByID(id) {
+export function deleteUserByID(id, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.DELETE_USER,
     {
@@ -81,6 +85,7 @@ export function deleteUserByID(id) {
     },
     {
       additionalPayloadFields: { id },
+      ...additionalConfig,
     },
   );
 }

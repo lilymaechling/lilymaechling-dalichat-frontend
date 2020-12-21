@@ -14,7 +14,7 @@ import {
   fetchUsers, createUser, fetchUserByID, updateUserByID, deleteUserByID,
 } from '../../state/actions/userActions';
 
-import Post from '../../components/Post';
+import Post from '../Post';
 
 // TODO: Update this panel to support new fields
 class AdminPanel extends React.Component {
@@ -195,7 +195,7 @@ class AdminPanel extends React.Component {
                   key={element.id || element._id}
                   title={element.title}
                   content={element.content}
-                  likes={element.likes}
+                  likes={element.numLikes}
                   postDate={element.postDate}
                 />
               )))}
@@ -264,7 +264,7 @@ class AdminPanel extends React.Component {
                     key={element.id || element._id}
                     title={element.title}
                     content={element.content}
-                    likes={element.likes}
+                    likes={element.numLikes}
                     postDate={element.postDate}
                   />
                 )))}

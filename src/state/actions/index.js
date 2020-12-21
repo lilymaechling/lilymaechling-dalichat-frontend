@@ -12,7 +12,9 @@ import { authTokenName, requestTimeout } from '../../constants';
 const ActionTypes = {
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
-  SEARCH: 'SEARCH',
+
+  POST_SEARCH: 'POST_SEARCH',
+  USER_SEARCH: 'USER_SEARCH',
 
   FETCH_POST: 'FETCH_POST',
   FETCH_POSTS: 'FETCH_POSTS',

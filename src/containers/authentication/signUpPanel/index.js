@@ -70,7 +70,7 @@ class SignUpPanel extends React.Component {
     } else {
       // Send only if all fields filled in
       this.props.signUpUser(this.state.email, this.state.username, this.state.password, this.state.firstName, this.state.lastName).then((response) => {
-        this.props.history.push('/admin');
+        this.props.history.push('/');
       }).catch((error) => {
         // Add error-handling logic here
       });
@@ -81,11 +81,11 @@ class SignUpPanel extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="First Name" value={this.state.firstName} onChange={this.handleFirstNameUpdate} />
-          <input type="text" placeholder="Last Name" value={this.state.lastName} onChange={this.handleLastNameUpdate} />
-          <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailUpdate} />
-          <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsernameUpdate} />
-          <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordUpdate} />
+          <input type="text" placeholder="First Name" value={this.state.firstName} onChange={this.handleFirstNameUpdate} required />
+          <input type="text" placeholder="Last Name" value={this.state.lastName} onChange={this.handleLastNameUpdate} required />
+          <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailUpdate} required />
+          <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsernameUpdate} required />
+          <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordUpdate} required />
           <input type="submit" value="Sign Up" />
         </form>
         {this.props.isLoading ? <div>Authenticating...</div> : this.props.errorMessage}

@@ -1,9 +1,12 @@
 // Reference:
 // https://medium.com/stashaway-engineering/react-redux-tips-better-way-to-handle-loading-flags-in-your-reducers-afda42a804c6
 
-import { requestStates } from '../actions';
+import ActionTypes, { requestStates } from '../actions';
 
-const reducer = (state = {}, action) => {
+// Initialize state to hold all successes (so state doesn't need to be "seeded" to reference request key type)
+const initialState = Object.values(ActionTypes).reduce((accum, type) => ({ ...accum, [type]: { loading: false, message: '', code: 200 } }), {});
+
+const reducer = (state = initialState, action) => {
   /**
    * Check if the action name ends in "REQUEST", "SUCCESS", "FAILURE", or "CLEAR_ERR"
    */

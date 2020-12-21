@@ -1,0 +1,24 @@
+@import '../../../constants/variables.scss';
+
+#home-container {
+  display: flex;
+  flex-direction: row;
+  max-width: $page-width;
+  margin: auto auto 48px;
+
+  #home-left-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: auto;
+    padding-right: 24px;
+
+    .home-profile-container {
+      margin-bottom: 24px;
+    }
+  }
+}
+
+.home-post {
+  margin-bottom: $post-margin;
+  &:last-child { margin-bottom: 0px; }
+}

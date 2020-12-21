@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -6,6 +7,8 @@ const env = process.env.NODE_ENV || 'development';
 
 const finalCSSLoader = (env === 'production') ? MiniCssExtractPlugin.loader : { loader: 'style-loader' };
 const autoprefixer = require('autoprefixer');
+
+// ! Will be replaced by https://github.com/pmmmwh/react-refresh-webpack-plugin/
 
 module.exports = {
   mode: env,
@@ -80,10 +83,15 @@ module.exports = {
       template: './public/index.html',
       filename: './200.html',
     }),
+    new webpack.HotModuleReplacementPlugin({}),
     autoprefixer,
   ],
+  // https://github.com/webpack/webpack-dev-server/issues/2759#issuecomment-706753844
   devServer: {
     hot: true,
+    port: 8080,
     historyApiFallback: true,
+    progress: true,
+    inline: true,
   },
 };

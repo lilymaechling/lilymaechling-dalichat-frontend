@@ -7,8 +7,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import ActionTypes from './state/actions';
 import reducers from './state/reducers';
 import { authTokenName } from './constants';
+import { validateUserToken } from './state/actions/authActions';
 
-import App from './components/app';
+import App from './components/App';
 import './style.scss';
 
 // this creates the store with the reducers, and does some other stuff to initialize devtools
@@ -19,15 +20,13 @@ const store = createStore(reducers, {}, compose(
 ));
 
 // Check if auth token is present in browser
-const getTokenFromLocalStorage = () => {
-  return new Promise((resolve) => {
-    resolve(localStorage.getItem(authTokenName));
-  });
+const getTokenFromLocalStorage = async () => {
+  return localStorage.getItem(authTokenName);
 };
 
-getTokenFromLocalStorage().then((authToken) => {
+getTokenFromLocalStorage().then(async (authToken) => {
   if (authToken) { // User has previous authentication token
-    store.dispatch({ type: `${ActionTypes.AUTH_USER}_SUCCESS`, payload: {} });
+    store.dispatch(validateUserToken());
   } else { // No authorization
     store.dispatch({ type: `${ActionTypes.DEAUTH_USER}_SUCCESS` });
   }

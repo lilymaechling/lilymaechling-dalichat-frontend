@@ -1,0 +1,69 @@
+@import '../../constants/variables.scss';
+
+#header-bar-container {
+  width: 100%;
+  font-family: $open-sans;
+  margin-bottom: -63px;
+  
+  header {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+  
+    form {
+      display: flex;
+      flex-direction: row;
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, 0%);
+      margin: 16px 0px;
+  
+      svg {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translate(0%, -50%);
+      }
+      
+      input {
+        width: 540px;
+        margin: auto 0;
+        padding: 12px 24px 12px 54px;
+        
+        color: $dark-gray;
+        font-weight: 400;
+        font-size: 12px;
+        
+        background: $light-gray;
+        border-radius: 8px;
+        border: none;
+        
+        &::placeholder {
+          font-family: $open-sans;
+          color: $mid-gray;
+        }
+      }
+    }
+  
+    #header-bar-profile-container {
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      margin: auto 30px auto auto;
+  
+      p {
+        margin: auto 24px auto 0px;
+        color: $dark-gray;
+        font-weight: 400;
+        font-size: 12px;
+      }
+    }
+  }
+  
+  #header-bar-banner {
+    width: 100%;
+    object-fit: cover;
+    max-height: 227px;
+  }
+}

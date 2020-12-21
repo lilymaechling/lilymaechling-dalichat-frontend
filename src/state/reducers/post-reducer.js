@@ -9,7 +9,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case `${ActionTypes.SEARCH}_SUCCESS`: // Saves results and total number of results available (before pagination, from server)
+    case `${ActionTypes.POST_SEARCH}_SUCCESS`: // Saves results and total number of results available (before pagination, from server)
       return { ...state, results: action.payload.data.results, numResults: action.payload.data.numResults };
     case `${ActionTypes.FETCH_POST}_SUCCESS`: // Load post into { id: element } mapping
       return { ...state, posts: { ...state.posts, [action.payload.data._id]: action.payload.data } };

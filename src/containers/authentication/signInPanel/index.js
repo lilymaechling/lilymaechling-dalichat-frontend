@@ -45,8 +45,11 @@ class SignInPanel extends React.Component {
       this.props.setError([ActionTypes.AUTH_USER], 'Please enter a password!');
     } else {
       // Send only if all fields filled in
-      await this.props.signInUser(this.state.username, this.state.password);
-      this.props.history.push('/admin');
+      await this.props.signInUser(this.state.username, this.state.password).then((response) => {
+        this.props.history.push('/');
+      }).catch((error) => {
+        // Add error-handling logic here
+      });
     }
   }
 
@@ -54,8 +57,8 @@ class SignInPanel extends React.Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsernameUpdate} />
-          <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordUpdate} />
+          <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsernameUpdate} required />
+          <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordUpdate} required />
           <input type="submit" value="Sign In" />
         </form>
         {this.props.isLoading ? <div>Authenticating...</div> : this.props.errorMessage}

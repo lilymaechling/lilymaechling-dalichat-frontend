@@ -8,10 +8,10 @@ import VerifiedUser from '../../../public/icons/verified_user.svg';
 import './PostContent.scss';
 
 const PostContent = ({
-  fullName, isVerified, username, likes, userHasLiked, content,
-  onLikeClick, onNameClick,
+  fullName, isVerified, username, numLikes, userHasLiked, content,
+  onLikeClick, onNameClick, className = '',
 }) => (
-  <div className="post-content-container">
+  <div className={`post-content-container ${className}`}>
     <div className="post-header-container">
       <div className="post-header-left-container">
         <div className="post-name-container">{fullName}</div>
@@ -21,7 +21,7 @@ const PostContent = ({
 
       <button type="button" onClick={onLikeClick} className="post-likes-container">
         {userHasLiked ? <HeartFilled /> : <HeartEmpty />}
-        <p>{likes}</p>
+        <p>{numLikes}</p>
       </button>
     </div>
 

@@ -5,7 +5,7 @@ export const ROOT_URL = 'http://localhost:9090';
 export const authTokenName = 'authToken';
 
 // Number of ms before an axios request times out
-export const requestTimeout = 1000;
+export const requestTimeout = 5000;
 
 /**
  * Middleware function to generate standard user-facing error message

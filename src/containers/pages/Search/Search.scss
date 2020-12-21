@@ -1,0 +1,13 @@
+@import '../../../constants/variables.scss';
+
+#search-container {
+  display: flex;
+  flex-direction: column;
+  max-width: $page-width;
+  margin: auto auto 48px;
+}
+
+.search-post {
+  margin-bottom: $post-margin;
+  &:last-child { margin-bottom: 0px; }
+}

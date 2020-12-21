@@ -1,5 +1,5 @@
 import ActionTypes, {
-  requestStates, createAsyncActionCreator, setBearerToken,
+  requestStates, createAsyncActionCreator, getBearerTokenHeader, setBearerToken,
 } from '.';
 import { requestTimeout, ROOT_URL } from '../../constants';
 
@@ -59,4 +59,19 @@ export function signOutUser() {
     // Run any additional deauth processes here (dispatch DEAUTH_USER_REQUEST if async)
     dispatch({ type: `${ActionTypes.DEAUTH_USER}_${requestStates.SUCCESS}` });
   };
+}
+
+export function validateUserToken() {
+  return (dispatch) => createAsyncActionCreator(
+    dispatch, ActionTypes.AUTH_USER,
+    {
+      method: 'post',
+      url: `${ROOT_URL}/auth/validate`,
+      data: {},
+      timeout: requestTimeout,
+      headers: getBearerTokenHeader(),
+    }, {
+      responseSubfield: 'user',
+    },
+  );
 }
