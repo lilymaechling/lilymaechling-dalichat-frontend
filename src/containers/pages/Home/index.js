@@ -109,7 +109,10 @@ const errorSelector = createErrorSelector(loadActions);
 const mapStateToProps = (state) => ({
   userId: state.auth.userId,
   user: state.auth.users?.[state.auth.userId] || {},
-  postResults: state.post.results || [],
+
+  // TODO: Make this id population into a helper function
+  postResults: state.post.results?.reduce((accum, id) => [...accum, state.post.posts?.[id]], []) || [],
+
   isLoading: loadingSelector(state),
   errorMessage: errorSelector(state),
 });

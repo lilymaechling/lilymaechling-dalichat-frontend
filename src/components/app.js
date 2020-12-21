@@ -18,8 +18,6 @@ import Explore from '../containers/pages/Explore';
 import Settings from '../containers/pages/Settings';
 
 // import AdminPanel from '../containers/adminPanel';
-import SearchBar from '../containers/search/searchBar';
-import SearchPane from '../containers/search/searchPane';
 
 import SignUpPanel from '../containers/authentication/signUpPanel';
 import SignInPanel from '../containers/authentication/signInPanel';
@@ -47,8 +45,6 @@ const Welcome = () => {
     <div>
       <NavLink to="/signin">Sign In</NavLink><br />
       <NavLink to="/signup">Sign Up</NavLink><br />
-      <SearchBar />
-      <SearchPane />
     </div>
   );
 };
