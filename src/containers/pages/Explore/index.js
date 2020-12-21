@@ -65,7 +65,7 @@ const errorSelector = createErrorSelector(watchActions);
 
 const mapStateToProps = (state) => ({
   userId: state.auth.userId,
-  postResults: state.post.results,
+  postResults: state.post.results?.reduce((accum, id) => [...accum, state.post.posts?.[id]], []) || [],
   isLoading: loadingSelector(state),
   errorMessage: errorSelector(state),
 });

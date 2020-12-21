@@ -1,15 +1,17 @@
 import omit from 'lodash.omit';
 import ActionTypes from '../actions';
+import { getCaseSelector } from './helpers';
 
 const initialState = {
   posts: {},
-  results: [], // Holds ids for one source of truth
+  results: [], // Holds ids for one source of truth in "posts" map
   numResults: 0,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case `${ActionTypes.POST_SEARCH}_SUCCESS`: // Saves results and total number of results available (before pagination, from server)
+    // Saves results and total number of results available (before pagination, from server)
+    case getCaseSelector(ActionTypes.POST_SEARCH):
       return {
         ...state,
         results: action.payload.data.resultIds,
@@ -19,8 +21,19 @@ const reducer = (state = initialState, action) => {
           ...action.payload.data.results.reduce((accum, r) => ({ ...accum, [r._id]: r }), {}),
         },
       };
-    case `${ActionTypes.FETCH_POST}_SUCCESS`: // Load post into { id: element } mapping
-      console.log('fetch post', action.payload);
+
+    // Loads posts from user search request into post state
+    case getCaseSelector(ActionTypes.USER_SEARCH):
+      return {
+        ...state,
+        posts: {
+          ...state.posts,
+          ...action.payload.data.postResults.reduce((accum, r) => ({ ...accum, [r._id]: r }), {}),
+        },
+      };
+
+    // Load post into { id: element } mapping
+    case getCaseSelector(ActionTypes.FETCH_POST):
       return {
         ...state,
         posts: {
@@ -28,7 +41,9 @@ const reducer = (state = initialState, action) => {
           [action.payload.data._id]: action.payload.data,
         },
       };
-    case `${ActionTypes.FETCH_POSTS}_SUCCESS`: // Load post into { id: element } mapping
+
+    // Load post into { id: element } mapping
+    case getCaseSelector(ActionTypes.FETCH_POSTS):
       return {
         ...state,
         posts: {
@@ -36,11 +51,18 @@ const reducer = (state = initialState, action) => {
           ...action.payload.data.reduce((accum, e) => ({ ...accum, [e._id]: e }), {}),
         },
       };
-    case `${ActionTypes.DELETE_POST}_SUCCESS`: // Delete post from state
+
+    // Delete post from state
+    case getCaseSelector(ActionTypes.DELETE_POST):
       return {
         ...state,
         posts: omit(state.posts, action.payload.id),
       };
+
+    case getCaseSelector(ActionTypes.DEAUTH_USER):
+      return initialState;
+
+    // Do not handle
     default:
       return state;
   }

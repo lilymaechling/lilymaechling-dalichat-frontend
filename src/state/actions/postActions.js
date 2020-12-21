@@ -99,8 +99,7 @@ export function fetchUserPosts(uid, additionalConfig = {}) {
   );
 }
 
-export function likePost(postId, uid, additionalConfig = {}) {
-  console.log('like');
+export function likePost(postId, uid = '', additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_POST,
     {

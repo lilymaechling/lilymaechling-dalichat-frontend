@@ -50,7 +50,7 @@ const Settings = ({
         props.updateUserByID(user._id, {
           firstName, lastName, profileUrl, backgroundUrl, portfolioUrl, blurb,
         },
-        { successCallback: () => { console.log('reload'); window.location.reload(); } });
+        { successCallback: () => { window.location.reload(); } });
         break;
       case tabs.authentication:
         if (isUpdatingPassword && missingPasswordUpdateField) {

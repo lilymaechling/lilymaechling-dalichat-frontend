@@ -37,7 +37,6 @@ import './App.scss';
  * TODO: Add post deletion
  * TODO: Add change email functionality
  * TODO: Add error messages to all action creator instances
- * TODO: Add like update support
  */
 
 const Welcome = () => {

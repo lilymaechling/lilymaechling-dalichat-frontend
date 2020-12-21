@@ -15,7 +15,8 @@ import Post from '../../Post';
 import './Search.scss';
 
 const Search = ({
-  userId, postResults, userResults, isLoading, errorMessage, ...props
+  userId, users, posts, postResults, userResults,
+  isLoading, errorMessage, ...props
 }) => {
   const [activeTab, setActiveTab] = React.useState('Recent Posts');
 
@@ -38,16 +39,19 @@ const Search = ({
                   user={user}
                   activeTab={activeTab}
                   setActiveTab={setActiveTab}
+                  key={user._id}
                 >
                   <div label="Recent Posts">
-                    {user.posts.map((post) => (
-                      <Post
-                        postContent={post}
-                        onProfileClick={() => {}}
-                        className="search-post"
-                        key={post._id}
-                      />
-                    ))}
+                    {user.posts.map((postId) => {
+                      return (
+                        <Post
+                          postContent={posts?.[postId] || {}}
+                          onProfileClick={() => {}}
+                          className="search-post"
+                          key={postId}
+                        />
+                      );
+                    })}
                   </div>
 
                   {/* <div label="Popular Posts">
@@ -87,8 +91,12 @@ const errorSelector = createErrorSelector(loadActions);
 
 const mapStateToProps = (state) => ({
   userId: state.auth.userId,
-  postResults: state.post.results,
-  userResults: state.auth.results,
+  posts: state.post.posts,
+  users: state.auth.users,
+
+  postResults: state.post.results?.reduce((accum, id) => [...accum, state.post.posts?.[id]], []) || [],
+  userResults: state.auth.results?.reduce((accum, id) => [...accum, state.auth.users?.[id]], []) || [],
+
   numResults: state.post.numResults,
   isLoading: loadingSelector(state),
   errorMessage: errorSelector(state),
