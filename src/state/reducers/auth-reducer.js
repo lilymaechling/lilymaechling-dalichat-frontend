@@ -1,5 +1,6 @@
 import omit from 'lodash.omit';
 import ActionTypes from '../actions';
+import { getCaseSelector } from './helpers';
 
 const initialState = {
   authenticated: false,
@@ -10,7 +11,8 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case `${ActionTypes.USER_SEARCH}_SUCCESS`: // Saves results and total number of results available (before pagination, from server)
+    // Saves results and total number of results available (before pagination, from server)
+    case getCaseSelector(ActionTypes.USER_SEARCH):
       return {
         ...state,
         results: action.payload.data.resultIds,
@@ -20,35 +22,51 @@ const reducer = (state = initialState, action) => {
           ...action.payload.data.results.reduce((accum, r) => ({ ...accum, [r._id]: r }), {}),
         },
       };
-    case `${ActionTypes.FETCH_USER}_SUCCESS`: // Load user into { id: element } mapping
+
+    // Load user into { id: element } mapping
+    case getCaseSelector(ActionTypes.FETCH_USER):
       return {
         ...state,
-        users: { ...state.users, [action.payload.data._id]: action.payload.data },
+        users: {
+          ...state.users,
+          [action.payload.data._id]: action.payload.data,
+        },
       };
-    case `${ActionTypes.FETCH_USERS}_SUCCESS`: // Load users into { id: element } mapping
+
+    // Load users into { id: element } mapping
+    case getCaseSelector(ActionTypes.FETCH_USERS):
       return {
         ...state,
-        users: { ...state.users, ...action.payload.data.reduce((accum, e) => ({ ...accum, [e._id]: e }), {}) },
+        users: {
+          ...state.users,
+          ...action.payload.data.reduce((accum, e) => ({ ...accum, [e._id]: e }), {}),
+        },
       };
-    case `${ActionTypes.DELETE_USER}_SUCCESS`: // Delete user from state
+
+    // Delete user from state
+    case getCaseSelector(ActionTypes.DELETE_USER):
       return {
         ...state,
         users: omit(state.users, action.payload.id),
       };
-    case `${ActionTypes.AUTH_USER}_SUCCESS`: // Update users if action provides user data
+
+    // Update users if action provides user data
+    case getCaseSelector(ActionTypes.AUTH_USER):
       return {
         ...state,
         authenticated: true,
         userId: action.payload.data?._id,
-        users: action.payload.data ? { ...state.users, [action.payload.data._id]: action.payload.data } : state.users,
+        users: action.payload.data ? {
+          ...state.users,
+          [action.payload.data._id]: action.payload.data,
+        } : state.users,
       };
-    case `${ActionTypes.DEAUTH_USER}_SUCCESS`:
-      return {
-        ...state,
-        authenticated: false,
-        users: {},
-        userId: '',
-      };
+
+    // Remove all personalized information from store
+    case getCaseSelector(ActionTypes.DEAUTH_USER):
+      return initialState;
+
+    // Do not handle
     default:
       return state;
   }
