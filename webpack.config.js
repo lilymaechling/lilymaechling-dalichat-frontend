@@ -77,10 +77,12 @@ module.exports = {
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      favicon: './public/favicon.png',
       filename: './index.html',
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      favicon: './public/favicon.png',
       filename: './200.html',
     }),
     new webpack.HotModuleReplacementPlugin({}),
