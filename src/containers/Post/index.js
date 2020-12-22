@@ -11,7 +11,7 @@ import './Post.scss';
 import LoadingIcon from '../../components/LoadingIcon';
 
 const Post = ({
-  postContent = {}, onProfileClick, userId,
+  postContent = {}, userId,
   isLoading, className = '', ...props
 }) => {
   return (
@@ -22,7 +22,7 @@ const Post = ({
           <ProfileIcon
             imgUrl={postContent.owner?.profileUrl}
             username={postContent.owner?.username}
-            onClick={onProfileClick}
+            uid={postContent.owner?._id || ''}
             className="post-owner-profile"
           />
 
@@ -34,7 +34,7 @@ const Post = ({
             userHasLiked={postContent.likes?.includes(userId)}
             content={postContent.content}
             onLikeClick={() => props.likePost(postContent._id, userId)}
-            onNameClick={onProfileClick}
+            uid={postContent.owner?._id || ''}
             className="post-content-container"
           />
         </div>

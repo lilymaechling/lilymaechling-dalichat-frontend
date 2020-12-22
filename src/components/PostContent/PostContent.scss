@@ -24,12 +24,16 @@
       }
 
       .post-name-container {
+        text-decoration: none;
+
         color: $dark-gray;
         font-weight: 600;
         font-size: 12px;
       }
 
       .post-username {
+        text-decoration: none;
+        
         color: $mid-gray;
         font-weight: 400;
         font-size: 12px;

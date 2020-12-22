@@ -7,7 +7,7 @@ const TabGroup = ({
   activeTab, setActiveTab, user, children, className = '',
 }) => {
   const {
-    fullName, profileUrl, username, blurb, portfolioUrl, numPosts,
+    fullName, profileUrl, username, blurb, portfolioUrl, numPosts, _id,
   } = user;
 
   return (
@@ -19,6 +19,7 @@ const TabGroup = ({
         blurb={blurb}
         portfolioUrl={portfolioUrl}
         numPosts={numPosts}
+        uid={_id}
         className="tabgroup-profile-card"
       />
 

@@ -36,7 +36,6 @@ const Explore = ({
               {postResults.map((post) => (
                 <Post
                   postContent={post}
-                  onProfileClick={() => {}}
                   className="explore-post"
                   key={post._id}
                 />
@@ -47,7 +46,6 @@ const Explore = ({
               {postResults.map((post) => (
                 <Post
                   postContent={post}
-                  onProfileClick={() => {}}
                   className="explore-post"
                   key={post._id}
                 />

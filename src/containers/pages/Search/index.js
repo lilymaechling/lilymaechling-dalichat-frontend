@@ -46,9 +46,8 @@ const Search = ({
                       return (
                         <Post
                           postContent={posts?.[postId] || {}}
-                          onProfileClick={() => {}}
-                          className="search-post"
                           key={postId}
+                          className="search-post"
                         />
                       );
                     })}
@@ -60,7 +59,6 @@ const Search = ({
                         : userResults.map((post) => (
                           <Post
                             postContent={post}
-                            onProfileClick={() => {}}
                             className="search-post"
                             key={post._id}
                           />
@@ -73,7 +71,6 @@ const Search = ({
               {postResults.map((post) => (
                 <Post
                   postContent={post}
-                  onProfileClick={() => {}}
                   className="search-post"
                   key={post._id}
                 />

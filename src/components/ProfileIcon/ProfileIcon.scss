@@ -1,10 +1,15 @@
 @import '../../constants/variables.scss';
 
-.profile-icon {
+.profile-icon-container {
   width: 40px;
   height: 40px;
-  object-fit: cover;
   
-  border-radius: 50%;
-  border: 2px solid $light-gray;
+  .profile-icon {
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid $light-gray;
+  }
 }

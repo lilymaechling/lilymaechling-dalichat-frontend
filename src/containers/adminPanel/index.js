@@ -192,11 +192,8 @@ class AdminPanel extends React.Component {
               : (generateFrontendErrorMessage(this.props.postErrorMessage)
               || Object.values(this.props.posts).map((element) => (
                 <Post
-                  key={element.id || element._id}
-                  title={element.title}
-                  content={element.content}
-                  likes={element.numLikes}
-                  postDate={element.postDate}
+                  postContent={element}
+                  key={element._id}
                 />
               )))}
             </div>
@@ -261,11 +258,8 @@ class AdminPanel extends React.Component {
                 : (generateFrontendErrorMessage(this.props.userErrorMessage)
                 || Object.values(this.props.users).map((element) => (
                   <Post
-                    key={element.id || element._id}
-                    title={element.title}
-                    content={element.content}
-                    likes={element.numLikes}
-                    postDate={element.postDate}
+                    postContent={element}
+                    key={element._id}
                   />
                 )))}
             </div>

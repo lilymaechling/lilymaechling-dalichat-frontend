@@ -58,6 +58,7 @@ const Home = ({
                 blurb={blurb}
                 portfolioUrl={portfolioUrl}
                 numPosts={numPosts}
+                uid={userId}
                 className="home-profile-container"
               />
 
@@ -79,7 +80,6 @@ const Home = ({
                   <div className="home-post-container">
                     <Post
                       postContent={post}
-                      onProfileClick={() => {}}
                       className="home-post"
                       key={post?._id || ''}
                     />
@@ -101,7 +101,6 @@ const Home = ({
                   : postResults.map((post) => (
                     <Post
                       postContent={post}
-                      onProfileClick={() => {}}
                       className="home-post"
                       key={post?._id || ''}
                     />

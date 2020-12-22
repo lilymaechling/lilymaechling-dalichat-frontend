@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import HeartFilled from '../../../public/icons/heart_filled.svg';
 import HeartEmpty from '../../../public/icons/heart_empty.svg';
@@ -8,15 +9,15 @@ import VerifiedUser from '../../../public/icons/verified_user.svg';
 import './PostContent.scss';
 
 const PostContent = ({
-  fullName, isVerified, username, numLikes, userHasLiked, content,
-  onLikeClick, onNameClick, className = '',
+  fullName, isVerified, username, numLikes, userHasLiked, content, uid,
+  onLikeClick, className = '',
 }) => (
   <div className={`post-content-container ${className}`}>
     <div className="post-header-container">
       <div className="post-header-left-container">
-        <div className="post-name-container">{fullName}</div>
+        <Link to={`/user/${uid}`} className="post-name-container">{fullName}</Link>
         {isVerified ? <VerifiedUser /> : null}
-        <p className="post-username">@{username}</p>
+        <Link to={`/user/${uid}`} className="post-username">@{username}</Link>
       </div>
 
       <button type="button" onClick={onLikeClick} className="post-likes-container">

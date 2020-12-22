@@ -39,6 +39,7 @@ const HeaderBar = ({
           <ProfileIcon
             imgUrl={user?.profileUrl || ''}
             username={user?.username || ''}
+            uid={user._id}
           />
         </div>
       </header>

@@ -25,16 +25,21 @@
   }
 
   .portfolio-card-name {
-    margin-bottom: 3px;
-    text-align: center;
+    margin: 0px 0px 3px;
+    text-decoration: none;
+    
     color: $dark-gray;
+    text-align: center;
     font-weight: 600;
     font-size: 15px;
   }
 
   .portfolio-card-username {
-    text-align: center;
+    margin: 0px;
+    text-decoration: none;
+
     color: $mid-gray;
+    text-align: center;
     font-weight: 400;
     font-size: 12px;
   }

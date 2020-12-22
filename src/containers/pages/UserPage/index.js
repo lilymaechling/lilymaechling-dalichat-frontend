@@ -14,21 +14,19 @@ import './UserPage.scss';
 
 const UserPage = ({
   match, location, history,
-  user, userPosts, isLoading, ...props
+  user, userPosts, userIsLoading, postsAreLoading, ...props
 }) => {
   const { id } = match.params;
   const [activeTab, setActiveTab] = React.useState('Featured Posts');
 
   React.useEffect(() => {
-    if (!user) {
-      props.fetchUserById(id);
-      props.fetchUserPosts(id);
-    }
-  }, []);
+    if (!user) { props.fetchUserById(id); }
+    props.fetchUserPosts(id);
+  }, [id]);
 
   return (
     <div id="user-page-container">
-      { isLoading
+      { userIsLoading
         ? <LoadingIcon />
         : (
           <TabGroup
@@ -37,12 +35,11 @@ const UserPage = ({
             user={user || {}}
           >
             <div label="Featured Posts">
-              {isLoading
+              {postsAreLoading
                 ? <LoadingIcon />
                 : userPosts.map((post) => (
                   <Post
                     postContent={post}
-                    onProfileClick={() => {}}
                     className="user-page-post"
                     key={post?._id || ''}
                   />
@@ -54,13 +51,15 @@ const UserPage = ({
   );
 };
 
-const watchActions = [ActionTypes.AUTH_USER, ActionTypes.FETCH_USER];
-const loadingSelector = createLoadingSelector(watchActions);
+const watchActions = [ActionTypes.AUTH_USER];
+const userLoadingSelector = createLoadingSelector([...watchActions, ActionTypes.FETCH_USER]);
+const resultsLoadingSelector = createLoadingSelector([...watchActions, ActionTypes.POST_SEARCH]);
 
 const mapStateToProps = (state, ownProps) => ({
   user: state.auth.users?.[ownProps.match.params?.id || ''],
   userPosts: state.post.results?.reduce((accum, id) => [...accum, state.post.posts?.[id]], []) || [],
-  isLoading: loadingSelector(state),
+  userIsLoading: userLoadingSelector(state),
+  postsAreLoading: resultsLoadingSelector(state),
 });
 
 export default connect(mapStateToProps, { fetchUserPosts, fetchUserById })(UserPage);

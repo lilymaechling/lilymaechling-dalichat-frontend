@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import SidebarIcon from '../../components/SidebarIcon';
 import SidebarLogo from '../../../public/icons/dali_logo.svg';
@@ -18,7 +18,9 @@ import './Sidebar.scss';
 const Sidebar = ({ match, location, history }) => {
   return (
     <div id="sidebar-container">
-      <div id="sidebar-logo"><SidebarLogo /></div>
+      <Link to="/" id="sidebar-logo">
+        <SidebarLogo />
+      </Link>
 
       <nav>
         <SidebarIcon
