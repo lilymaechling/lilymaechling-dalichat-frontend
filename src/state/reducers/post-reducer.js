@@ -38,7 +38,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         posts: {
           ...state.posts,
-          [action.payload.data._id]: action.payload.data,
+          [action.payload.data.post._id]: action.payload.data.post,
         },
       };
 
@@ -48,7 +48,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         posts: {
           ...state.posts,
-          ...action.payload.data.reduce((accum, e) => ({ ...accum, [e._id]: e }), {}),
+          ...action.payload.data.posts.reduce((accum, e) => ({ ...accum, [e._id]: e }), {}),
         },
       };
 
@@ -57,6 +57,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         posts: omit(state.posts, action.payload.id),
+        results: state.results.filter((rid) => rid !== action.payload.id),
       };
 
     case getCaseSelector(ActionTypes.DEAUTH_USER):

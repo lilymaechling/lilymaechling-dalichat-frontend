@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import ActionTypes from '../../../state/actions';
-import { fetchUserPosts, createPost } from '../../../state/actions/postActions';
+import { fetchUserPosts, createPost, deletePostById } from '../../../state/actions/postActions';
 import { postSearch } from '../../../state/actions/searchActions';
 import { createLoadingSelector, createErrorSelector } from '../../../state/actions/requestActions';
 
@@ -13,17 +13,19 @@ import ProfileCard from '../../../components/ProfileCard';
 import LoadingIcon from '../../../components/LoadingIcon';
 import Post from '../../Post';
 
+import FileDelete from '../../../../public/icons/file-delete.svg';
+
 import './Home.scss';
 
 const Home = ({
   userId, user, postResults,
   isLoading, errorMessage, ...props
 }) => {
-  const [activeTab, setActiveTab] = React.useState('Your Feed');
+  const [activeTab, setActiveTab] = React.useState('Your Posts');
   const [content, setContent] = React.useState('');
 
   React.useEffect(() => {
-    if (activeTab === 'Your Feed') {
+    if (activeTab === 'Your Posts') {
       if (userId) { props.fetchUserPosts(userId); }
     } else {
       props.postSearch();
@@ -72,14 +74,24 @@ const Home = ({
               activeTab={activeTab}
               setActiveTab={setActiveTab}
             >
-              <div label="Your Feed">
+              <div label="Your Posts">
                 {postResults.map((post) => (
-                  <Post
-                    postContent={post}
-                    onProfileClick={() => {}}
-                    className="home-post"
-                    key={post._id}
-                  />
+                  <div className="home-post-container">
+                    <Post
+                      postContent={post}
+                      onProfileClick={() => {}}
+                      className="home-post"
+                      key={post?._id || ''}
+                    />
+                    <button
+                      type="button"
+                      className="home-post-delete"
+                      onClick={() => props.deletePostById(post._id || '')}
+                    >
+                      <FileDelete />
+                      <p>Delete Post</p>
+                    </button>
+                  </div>
                 ))}
               </div>
 
@@ -91,7 +103,7 @@ const Home = ({
                       postContent={post}
                       onProfileClick={() => {}}
                       className="home-post"
-                      key={post._id}
+                      key={post?._id || ''}
                     />
                   ))}
               </div>
@@ -118,5 +130,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  fetchUserPosts, createPost, postSearch,
+  fetchUserPosts, createPost, postSearch, deletePostById,
 })(Home);

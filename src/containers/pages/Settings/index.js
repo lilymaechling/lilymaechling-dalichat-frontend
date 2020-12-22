@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import ActionTypes from '../../../state/actions';
 import { createLoadingSelector, createErrorSelector, setError } from '../../../state/actions/requestActions';
-import { updateUserByID } from '../../../state/actions/userActions';
+import { updateUserById } from '../../../state/actions/userActions';
 
 import Button from '../../../components/Button';
 import TabContainer from '../../TabContainer';
@@ -47,7 +47,7 @@ const Settings = ({
 
     switch (activeTab) {
       case tabs.personalization:
-        props.updateUserByID(user._id, {
+        props.updateUserById(user._id, {
           firstName, lastName, profileUrl, backgroundUrl, portfolioUrl, blurb,
         },
         { successCallback: () => { window.location.reload(); } });
@@ -58,7 +58,7 @@ const Settings = ({
         } else if (!passwordsMatch) {
           props.setError(ActionTypes.FETCH_USER, 'Passwords don\'t match');
         } else {
-          props.updateUserByID(user._id, {
+          props.updateUserById(user._id, {
             username, authPassword: oldPassword, password: newPassword,
           }, { successCallback: () => window.location.reload() });
         }
@@ -239,4 +239,4 @@ const mapStateToProps = (state) => ({
   errorMessage: errorSelector(state),
 });
 
-export default connect(mapStateToProps, { setError, updateUserByID })(Settings);
+export default connect(mapStateToProps, { setError, updateUserById })(Settings);

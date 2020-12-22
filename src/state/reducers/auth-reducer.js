@@ -23,6 +23,19 @@ const reducer = (state = initialState, action) => {
         },
       };
 
+    // Receives updated "owner" object along with post data
+    case getCaseSelector(ActionTypes.FETCH_POST):
+    case getCaseSelector(ActionTypes.DELETE_POST):
+      return action.payload.data.owner
+        ? {
+          ...state,
+          users: {
+            ...state.users,
+            [action.payload.data.owner._id]: action.payload.data.owner,
+          },
+        }
+        : state;
+
     // Load user into { id: element } mapping
     case getCaseSelector(ActionTypes.FETCH_USER):
       return {

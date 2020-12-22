@@ -18,7 +18,36 @@
   }
 }
 
-.home-post {
-  margin-bottom: $post-margin;
+.home-post-container {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: calc(#{$post-margin} - 9px);
   &:last-child { margin-bottom: 0px; }
+
+  .home-post-delete {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 9px 18px;
+    margin: 0px 0px 0px auto;
+    width: auto;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      margin: auto 0px;
+    }
+    
+    p {
+      margin: 0px 0px 0px 6px;
+      color: $mid-gray;
+
+      font-family: $open-sans;
+      font-weight: 400;
+      font-size: 12px;
+    }
+  }
 }

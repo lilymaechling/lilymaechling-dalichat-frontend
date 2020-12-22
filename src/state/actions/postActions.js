@@ -46,7 +46,7 @@ export function createPost(content, uid, additionalConfig = {}) {
 // :id
 
 // Get
-export function fetchPostByID(id, additionalConfig = {}) {
+export function fetchPostById(id, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_POST,
     {
@@ -58,7 +58,7 @@ export function fetchPostByID(id, additionalConfig = {}) {
 }
 
 // Update (AUTH)
-export function updatePostByID(id, update, additionalConfig = {}) {
+export function updatePostById(id, update, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_POST,
     {
@@ -72,7 +72,7 @@ export function updatePostByID(id, update, additionalConfig = {}) {
 }
 
 // Delete (AUTH)
-export function deletePostByID(id, additionalConfig = {}) {
+export function deletePostById(id, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.DELETE_POST,
     {

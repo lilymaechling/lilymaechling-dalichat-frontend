@@ -18,7 +18,7 @@ const Search = ({
   userId, users, posts, postResults, userResults,
   isLoading, errorMessage, ...props
 }) => {
-  const [activeTab, setActiveTab] = React.useState('Recent Posts');
+  const [activeTab, setActiveTab] = React.useState('Featured Posts');
 
   let query = '';
   React.useEffect(() => {
@@ -41,7 +41,7 @@ const Search = ({
                   setActiveTab={setActiveTab}
                   key={user._id}
                 >
-                  <div label="Recent Posts">
+                  <div label="Featured Posts">
                     {user.posts.map((postId) => {
                       return (
                         <Post

@@ -37,6 +37,7 @@ import './App.scss';
  * TODO: Add post deletion
  * TODO: Add change email functionality
  * TODO: Add error messages to all action creator instances
+ * TODO: Add header profile, post and card profile, username, and icon links
  */
 
 const Welcome = () => {

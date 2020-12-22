@@ -8,10 +8,10 @@ import { generateFrontendErrorMessage } from '../../constants';
 import ActionTypes from '../../state/actions';
 import { createErrorSelector, createLoadingSelector } from '../../state/actions/requestActions';
 import {
-  fetchPosts, createPost, fetchPostByID, updatePostByID, deletePostByID,
+  fetchPosts, createPost, fetchPostById, updatePostById, deletePostById,
 } from '../../state/actions/postActions';
 import {
-  fetchUsers, createUser, fetchUserByID, updateUserByID, deleteUserByID,
+  fetchUsers, createUser, fetchUserById, updateUserById, deleteUserById,
 } from '../../state/actions/userActions';
 
 import Post from '../Post';
@@ -78,21 +78,21 @@ class AdminPanel extends React.Component {
     e.preventDefault();
     e.stopPropagation();
 
-    if (id) { this.props.fetchUserByID(id); }
+    if (id) { this.props.fetchUserById(id); }
   }
 
   updateUser(e, id, update) {
     e.preventDefault();
     e.stopPropagation();
 
-    if (id) { this.props.updateUserByID(id, update); }
+    if (id) { this.props.updateUserById(id, update); }
   }
 
   deleteUser(e, id) {
     e.preventDefault();
     e.stopPropagation();
 
-    if (id) { this.props.deleteUserByID(id); }
+    if (id) { this.props.deleteUserById(id); }
   }
 
   // Post handler functions
@@ -108,14 +108,14 @@ class AdminPanel extends React.Component {
     e.preventDefault();
     e.stopPropagation();
 
-    if (id) { this.props.fetchPostByID(id); }
+    if (id) { this.props.fetchPostById(id); }
   }
 
   updatePost(e, id, update) {
     e.preventDefault();
     e.stopPropagation();
 
-    if (id) { this.props.updatePostByID(id, update); }
+    if (id) { this.props.updatePostById(id, update); }
   }
 
   createPost(e, title, description, value) {
@@ -129,7 +129,7 @@ class AdminPanel extends React.Component {
     e.preventDefault();
     e.stopPropagation();
 
-    if (id) { this.props.deletePostByID(id); }
+    if (id) { this.props.deletePostById(id); }
   }
 
   // NOTE: Form inputs not validated in frontend
@@ -290,5 +290,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  fetchPosts, createPost, fetchPostByID, updatePostByID, deletePostByID, fetchUsers, createUser, fetchUserByID, updateUserByID, deleteUserByID,
+  fetchPosts, createPost, fetchPostById, updatePostById, deletePostById, fetchUsers, createUser, fetchUserById, updateUserById, deleteUserById,
 })(AdminPanel);

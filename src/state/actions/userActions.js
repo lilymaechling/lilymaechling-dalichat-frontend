@@ -42,7 +42,7 @@ export function createUser(firstName, lastName, email, password, additionalConfi
 // }
 
 // Get user by id (AUTH)
-export function fetchUserByID(id, additionalConfig = {}) {
+export function fetchUserById(id, additionalConfig = {}) {
   return (dispatch) => {
     if (!id) {
       return dispatch({ type: `${ActionTypes.FETCH_USER}_SUCCESS`, payload: {} });
@@ -61,7 +61,7 @@ export function fetchUserByID(id, additionalConfig = {}) {
 }
 
 // Update by id (AUTH)
-export function updateUserByID(id, update = {}, additionalConfig = {}) {
+export function updateUserById(id, update = {}, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_USER,
     {
@@ -75,7 +75,7 @@ export function updateUserByID(id, update = {}, additionalConfig = {}) {
 }
 
 // Delete by id (AUTH)
-export function deleteUserByID(id, additionalConfig = {}) {
+export function deleteUserById(id, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.DELETE_USER,
     {
