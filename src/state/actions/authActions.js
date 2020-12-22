@@ -72,6 +72,7 @@ export function validateUserToken() {
       headers: getBearerTokenHeader(),
     }, {
       responseSubfield: 'user',
+      failureCallback: () => dispatch(signOutUser()),
     },
   );
 }
