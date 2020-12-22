@@ -16,6 +16,7 @@ import Home from '../containers/pages/Home';
 import Search from '../containers/pages/Search';
 import Explore from '../containers/pages/Explore';
 import Settings from '../containers/pages/Settings';
+import UserPage from '../containers/pages/UserPage';
 
 // import AdminPanel from '../containers/adminPanel';
 
@@ -34,10 +35,19 @@ import './App.scss';
  * Need to complete:
  * TODO: Add meta information to each page
  * TODO: Add favicon to site
- * TODO: Add post deletion
  * TODO: Add change email functionality
  * TODO: Add error messages to all action creator instances
+ * TODO: Make header image scroll with content
+ * TODO: Sign user out if authentication fails
+ * TODO: Design 404 page
+ * TODO: Add default user profile image
+ * TODO: Update loading component
+ *
  * TODO: Add header profile, post and card profile, username, and icon links
+ *
+ * TODO: Standardize code style and terminology
+ * TODO: Standardize loading and error implementation in components
+ * TODO: Comment codebase
  */
 
 const Welcome = () => {
@@ -73,6 +83,8 @@ const App = ({
                   <Route exact path="/search" component={Search} />
                   <Route exact path="/explore" component={Explore} />
                   <Route exact path={['/settings', '/settings/:tab']} component={Settings} />
+
+                  <Route exact path="/user/:id" component={UserPage} />
 
                   <Route exact path="/signin" component={SignInPanel} />
                   <Route exact path="/signup" component={SignUpPanel} />
