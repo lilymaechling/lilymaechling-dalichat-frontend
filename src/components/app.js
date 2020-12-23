@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  BrowserRouter as Router, Route, NavLink, Switch, Redirect,
+  BrowserRouter as Router, Route, NavLink, Switch,
 } from 'react-router-dom';
 
 import ActionTypes from '../state/actions';
@@ -11,6 +11,7 @@ import { postSearch } from '../state/actions/searchActions';
 import { createErrorSelector, createLoadingSelector } from '../state/actions/requestActions';
 
 import MainContent from './MainContent';
+import Landing from './Landing';
 
 // import AdminPanel from '../containers/adminPanel';
 import SignUpPanel from '../containers/authentication/signUpPanel';
@@ -70,7 +71,7 @@ const App = ({
                 location={location}
                 history={history}
               />
-            ) : <Redirect to="/signin" />
+            ) : <Landing />
           )}
         />
 
