@@ -10,7 +10,7 @@ import { requestTimeout, ROOT_URL } from '../../constants';
  * @param {*} firstName
  * @param {*} lastName
  */
-export function signUpUser(email, username, password, firstName, lastName) {
+export function signUpUser(email, username, password, firstName, lastName, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.AUTH_USER,
     {
@@ -23,6 +23,7 @@ export function signUpUser(email, username, password, firstName, lastName) {
     {
       successCallback: (response) => { if (response.data.token) { setBearerToken(response.data.token); } },
       responseSubfield: 'user',
+      ...additionalConfig,
     },
   );
 }
@@ -33,7 +34,7 @@ export function signUpUser(email, username, password, firstName, lastName) {
  * @param {*} identifier - Email OR username, either will be accepted by the server
  * @param {*} password
  */
-export function signInUser(username, password) {
+export function signInUser(username, password, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.AUTH_USER,
     {
@@ -45,6 +46,7 @@ export function signInUser(username, password) {
     {
       successCallback: (response) => { if (response.data.token) { setBearerToken(response.data.token); } },
       responseSubfield: 'user',
+      ...additionalConfig,
     },
   );
 }
@@ -61,7 +63,7 @@ export function signOutUser() {
   };
 }
 
-export function validateUserToken() {
+export function validateUserToken(additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.AUTH_USER,
     {
@@ -73,6 +75,7 @@ export function validateUserToken() {
     }, {
       responseSubfield: 'user',
       failureCallback: () => dispatch(signOutUser()),
+      ...additionalConfig,
     },
   );
 }

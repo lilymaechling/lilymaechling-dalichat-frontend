@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  BrowserRouter as Router, Route, NavLink, Switch,
+  BrowserRouter as Router, Route, NavLink, Switch, Redirect,
 } from 'react-router-dom';
 
 import ActionTypes from '../state/actions';
@@ -10,24 +10,12 @@ import { fetchUserPosts } from '../state/actions/postActions';
 import { postSearch } from '../state/actions/searchActions';
 import { createErrorSelector, createLoadingSelector } from '../state/actions/requestActions';
 
-// import requireAuth from '../hocs/requireAuth';
-
-import Home from '../containers/pages/Home';
-import Search from '../containers/pages/Search';
-import Explore from '../containers/pages/Explore';
-import Settings from '../containers/pages/Settings';
-import UserPage from '../containers/pages/UserPage';
+import MainContent from './MainContent';
 
 // import AdminPanel from '../containers/adminPanel';
-
 import SignUpPanel from '../containers/authentication/signUpPanel';
 import SignInPanel from '../containers/authentication/signInPanel';
 import SignOutPanel from '../containers/authentication/signOutPanel';
-
-import HeaderBar from '../containers/HeaderBar';
-import Sidebar from '../containers/Sidebar';
-
-import LoadingIcon from './LoadingIcon';
 
 import './App.scss';
 
@@ -38,13 +26,14 @@ import './App.scss';
  * TODO: Add change email functionality
  * TODO: Add error messages to all action creator instances
  * TODO: Make header image scroll with content
- * TODO: Sign user out if authentication fails
  * TODO: Design 404 page
- * TODO: Add default user profile image
  * TODO: Update loading component
+ * TODO: Make standard input component
  *
- * TODO: Add header profile, post and card profile, username, and icon links
+ * TODO: Implement signout
+ * TODO: Implement landing page
  *
+ * TODO: Reconfigure app authentication UX (page reload, maybe skeleton loading) https://medium.com/javascript-in-plain-english/skeleton-loading-state-as-a-system-286e828ddf75
  * TODO: Standardize code style and terminology
  * TODO: Standardize loading and error implementation in components
  * TODO: Comment codebase
@@ -64,38 +53,33 @@ const FallBack = () => {
 };
 
 const App = ({
-  userId, isLoading, errorMessage, ...props
+  userId, authenticated, isLoading, errorMessage, ...props
 }) => {
   return (
     <Router>
-      <div id="app-container">
-        <Sidebar />
-        {isLoading
-          ? <LoadingIcon />
-          : (
-            <div id="app-right-container">
-              <HeaderBar />
-              <div id="app-content-container">
-                <Switch>
-                  <Route exact path="/welcome" component={Welcome} />
+      <Switch>
+        <Route exact path="/welcome" component={Welcome} />
 
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/search" component={Search} />
-                  <Route exact path="/explore" component={Explore} />
-                  <Route exact path={['/settings', '/settings/:tab']} component={Settings} />
-
-                  <Route exact path="/user/:id" component={UserPage} />
-
-                  <Route exact path="/signin" component={SignInPanel} />
-                  <Route exact path="/signup" component={SignUpPanel} />
-                  <Route exact path="/signout" component={SignOutPanel} />
-
-                  <Route component={FallBack} />
-                </Switch>
-              </div>
-            </div>
+        <Route
+          exact
+          path={['/', '/search', '/explore', '/settings', '/settings/:tab', '/user/:id']}
+          render={({ match, location, history }) => (
+            authenticated ? (
+              <MainContent
+                match={match}
+                location={location}
+                history={history}
+              />
+            ) : <Redirect to="/signin" />
           )}
-      </div>
+        />
+
+        <Route exact path="/signin" render={({ history }) => <SignInPanel history={history} />} />
+        <Route exact path="/signup" component={SignUpPanel} />
+        <Route exact path="/signout" component={SignOutPanel} />
+
+        <Route component={FallBack} />
+      </Switch>
     </Router>
   );
 };
@@ -105,6 +89,7 @@ const loadingSelector = createLoadingSelector(watchActions);
 const errorSelector = createErrorSelector(watchActions);
 
 const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
   userId: state.auth.userId,
   isLoading: loadingSelector(state),
   errorMessage: errorSelector(state),

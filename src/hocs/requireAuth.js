@@ -8,8 +8,8 @@ import { connect } from 'react-redux';
  * <FailureComp /> if the user is not authenticated
  */
 export default (SuccessComp, FailureComp) => {
-  const RequireAuthHOC = (props) => {
-    return props.authenticated
+  const RequireAuthHOC = ({ authenticated, ...props }) => {
+    return authenticated
       ? <SuccessComp {...props} />
       : <FailureComp {...props} />;
   };

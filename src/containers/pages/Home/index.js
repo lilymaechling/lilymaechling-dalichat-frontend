@@ -80,7 +80,7 @@ const Home = ({
                   <div className="home-post-container">
                     <Post
                       postContent={post}
-                      className="home-post"
+                      className="home-post delete"
                       key={post?._id || ''}
                     />
                     <button
@@ -99,11 +99,13 @@ const Home = ({
                 {isLoading
                   ? <LoadingIcon />
                   : postResults.map((post) => (
-                    <Post
-                      postContent={post}
-                      className="home-post"
-                      key={post?._id || ''}
-                    />
+                    <div className="home-post-container">
+                      <Post
+                        postContent={post}
+                        className="home-post"
+                        key={post?._id || ''}
+                      />
+                    </div>
                   ))}
               </div>
             </TabContainer>

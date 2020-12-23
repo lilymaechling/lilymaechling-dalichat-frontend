@@ -6,14 +6,13 @@ import { createStore, applyMiddleware, compose } from 'redux';
 
 import ActionTypes from './state/actions';
 import reducers from './state/reducers';
-import { authTokenName } from './constants';
 import { validateUserToken } from './state/actions/authActions';
+import { authTokenName } from './constants';
 
 import App from './components/App';
 import './style.scss';
 
-// this creates the store with the reducers, and does some other stuff to initialize devtools
-// boilerplate to copy, don't have to know
+// Initialize Redux DevTools support
 const store = createStore(reducers, {}, compose(
   applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f,
@@ -30,14 +29,20 @@ getTokenFromLocalStorage().then(async (authToken) => {
   } else { // No authorization
     store.dispatch({ type: `${ActionTypes.DEAUTH_USER}_SUCCESS` });
   }
+
+  // Only render app after authentication has been initiated
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('main'),
+  );
 }).catch((error) => {
   console.error(error);
-});
 
-// we now wrap App in a Provider
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('main'),
-);
+  // Render error message to end user
+  ReactDOM.render(
+    <div>Page load error, please contact system administrator<br />{JSON.stringify(error)}</div>,
+    document.getElementById('main'),
+  );
+});

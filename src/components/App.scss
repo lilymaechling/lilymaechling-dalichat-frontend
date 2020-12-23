@@ -1,17 +1,17 @@
 @import '../constants/variables.scss';
 
-#app-container {
+#app-main-container {
   display: flex;
   flex-direction: row;
 }
 
-#app-right-container {
+#app-main-right-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100vh;
 }
 
-#app-content-container {
+#app-main-content-container {
   overflow: auto;
 }

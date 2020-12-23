@@ -1,79 +1,79 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import ActionTypes from '../../../state/actions';
 import { signInUser } from '../../../state/actions/authActions';
 import {
-  createErrorSelector, setError, clearError, createLoadingSelector,
+  createLoadingSelector, createErrorSelector, setError, clearError,
 } from '../../../state/actions/requestActions';
 
-class SignInPanel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: '',
-      password: '',
-    };
+import Button from '../../../components/Button';
+import LoadingIcon from '../../../components/loadingIcon';
 
-    this.handleUsernameUpdate = this.handleUsernameUpdate.bind(this);
-    this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+import BannerImage from '../../../../public/images/auth_sidebar.png';
+import './SignInPanel.scss';
 
-  // If the user is already authenticated, auto-redirect
-  componentDidMount() {
-    if (this.props.authenticated) {
-      this.props.history.push('/admin');
-    }
-  }
+const SignInPanel = ({
+  authenticated, isLoading, errorMessage, history, ...props
+}) => {
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  React.useEffect(() => { if (authenticated) { history.push('/'); } }, [authenticated]);
 
-  handleUsernameUpdate(e) {
-    this.setState({ username: e.target.value });
-  }
-
-  handlePasswordUpdate(e) {
-    this.setState({ password: e.target.value });
-  }
-
-  async handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!this.state.username) {
-      this.props.setError([ActionTypes.AUTH_USER], 'Please enter a username!');
-    } else if (!this.state.password) {
-      this.props.setError([ActionTypes.AUTH_USER], 'Please enter a password!');
+    if (!username) {
+      props.setError([ActionTypes.AUTH_USER], 'Please enter a username!');
+    } else if (!password) {
+      props.setError([ActionTypes.AUTH_USER], 'Please enter a password!');
     } else {
       // Send only if all fields filled in
-      await this.props.signInUser(this.state.username, this.state.password).then((response) => {
-        this.props.history.push('/');
-      }).catch((error) => {
-        // Add error-handling logic here
-      });
+      props.signInUser(username, password);
     }
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsernameUpdate} required />
-          <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordUpdate} required />
-          <input type="submit" value="Sign In" />
-        </form>
-        {this.props.isLoading ? <div>Authenticating...</div> : this.props.errorMessage}
+  return (
+    <div id="signin-container">
+      <div id="signin-banner-container">
+        <img id="signin-banner" src={BannerImage} alt="sign in banner" />
       </div>
-    );
-  }
-}
+      <form id="signin-content" onSubmit={handleSubmit}>
+        <h1>Sign In</h1>
+        <h2>Welcome Back!</h2>
+
+        <div className="signin-input-container">
+          <label htmlFor="signin-username">Username</label>
+          <input id="signin-username" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+        </div>
+
+        <div className="signin-input-container">
+          <label htmlFor="signin-password">Password</label>
+          <input id="signin-password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        </div>
+
+        <Button label="Sign In" isSubmit className="signin-submit-button" />
+
+        <p>Don&apos;t have an account? <Link to="/signup">Sign Up</Link></p>
+        <p>Forgot your password? <a href="mailto:contact@dali.dartmouth.edu">Click Here</a></p>
+      </form>
+      {isLoading ? <LoadingIcon /> : <p>{errorMessage}</p>}
+    </div>
+  );
+};
 
 // Import loading state and error messages of specified actions from redux state
 const loadActions = [ActionTypes.AUTH_USER];
+const loadingSelector = createLoadingSelector(loadActions);
+const errorSelector = createErrorSelector(loadActions);
 
 const mapStateToProps = (state) => ({
   authenticated: state.auth.authenticated,
-  isLoading: createLoadingSelector(loadActions)(state),
-  errorMessage: createErrorSelector(loadActions)(state),
+  isLoading: loadingSelector(state),
+  errorMessage: errorSelector(state),
 });
 
 export default connect(mapStateToProps, { signInUser, setError, clearError })(SignInPanel);

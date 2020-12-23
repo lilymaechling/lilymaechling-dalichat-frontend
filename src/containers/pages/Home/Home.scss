@@ -22,8 +22,13 @@
   display: flex;
   flex-direction: column;
 
-  margin-bottom: calc(#{$post-margin} - 9px);
+  margin-bottom: 30px;
   &:last-child { margin-bottom: 0px; }
+
+  &.delete {
+    margin-bottom: calc(#{$post-margin} - 9px);
+    &:last-child { margin-bottom: 0px; }
+  }
 
   .home-post-delete {
     display: flex;

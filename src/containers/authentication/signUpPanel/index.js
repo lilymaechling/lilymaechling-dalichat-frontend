@@ -1,5 +1,8 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import LoadingIcon from '../../../components/loadingIcon';
 
 import ActionTypes from '../../../state/actions';
 import { signUpUser } from '../../../state/actions/authActions';
@@ -7,92 +10,116 @@ import {
   createErrorSelector, setError, clearError, createLoadingSelector,
 } from '../../../state/actions/requestActions';
 
-class SignUpPanel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      username: '',
-      password: '',
-    };
+import Button from '../../../components/Button';
+import BannerImage from '../../../../public/images/auth_sidebar.png';
 
-    this.handleFirstNameUpdate = this.handleFirstNameUpdate.bind(this);
-    this.handleLastNameUpdate = this.handleLastNameUpdate.bind(this);
-    this.handleEmailUpdate = this.handleEmailUpdate.bind(this);
-    this.handleUsernameUpdate = this.handleUsernameUpdate.bind(this);
-    this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+import '../SignInPanel/SignInPanel.scss';
 
-  // If the user is already authenticated, auto-redirect
-  componentDidMount() {
-    if (this.props.authenticated) {
-      this.props.history.push('/admin');
-    }
-  }
+const SignUpPanel = ({
+  authenticated, isLoading, errorMessage, history, ...props
+}) => {
+  const [firstName, setFirstName] = React.useState('');
+  const [lastName, setLastName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [username, setUsername] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  React.useEffect(() => { if (authenticated) { history.push('/'); } }, [authenticated]);
 
-  handleFirstNameUpdate(e) {
-    this.setState({ firstName: e.target.value });
-  }
-
-  handleLastNameUpdate(e) {
-    this.setState({ lastName: e.target.value });
-  }
-
-  handleEmailUpdate(e) {
-    this.setState({ email: e.target.value });
-  }
-
-  handleUsernameUpdate(e) {
-    this.setState({ username: e.target.value });
-  }
-
-  handlePasswordUpdate(e) {
-    this.setState({ password: e.target.value });
-  }
-
-  handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (!this.state.firstName) {
-      this.props.setError([ActionTypes.AUTH_USER], 'Please enter your first name!');
-    } else if (!this.state.lastName) {
-      this.props.setError([ActionTypes.AUTH_USER], 'Please enter your last name!');
-    } else if (!this.state.email) {
-      this.props.setError([ActionTypes.AUTH_USER], 'Please enter an email address!');
-    } else if (!this.state.username) {
-      this.props.setError([ActionTypes.AUTH_USER], 'Please enter a username!');
-    } else if (!this.state.password) {
-      this.props.setError([ActionTypes.AUTH_USER], 'Please enter a password!');
+    if (!firstName) {
+      props.setError([ActionTypes.AUTH_USER], 'Please enter your first name!');
+    } else if (!lastName) {
+      props.setError([ActionTypes.AUTH_USER], 'Please enter your last name!');
+    } else if (!email) {
+      props.setError([ActionTypes.AUTH_USER], 'Please enter an email address!');
+    } else if (!username) {
+      props.setError([ActionTypes.AUTH_USER], 'Please enter a username!');
+    } else if (!password) {
+      props.setError([ActionTypes.AUTH_USER], 'Please enter a password!');
     } else {
       // Send only if all fields filled in
-      this.props.signUpUser(this.state.email, this.state.username, this.state.password, this.state.firstName, this.state.lastName).then((response) => {
-        this.props.history.push('/');
-      }).catch((error) => {
-        // Add error-handling logic here
-      });
+      props.signUpUser(email, username, password, firstName, lastName);
     }
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" placeholder="First Name" value={this.state.firstName} onChange={this.handleFirstNameUpdate} required />
-          <input type="text" placeholder="Last Name" value={this.state.lastName} onChange={this.handleLastNameUpdate} required />
-          <input type="email" placeholder="Email" value={this.state.email} onChange={this.handleEmailUpdate} required />
-          <input type="text" placeholder="Username" value={this.state.username} onChange={this.handleUsernameUpdate} required />
-          <input type="password" placeholder="Password" value={this.state.password} onChange={this.handlePasswordUpdate} required />
-          <input type="submit" value="Sign Up" />
-        </form>
-        {this.props.isLoading ? <div>Authenticating...</div> : this.props.errorMessage}
-      </div>
-    );
-  }
-}
+  return (
+    <div id="signin-container">
+      <div id="signin-banner-container"><img id="signin-banner" src={BannerImage} alt="sign in banner" /></div>
+      <form id="signin-content" onSubmit={handleSubmit}>
+        <h1>Sign Up</h1>
+        <h2>Welcome to DALIChat!</h2>
+
+        <div className="signin-input-container">
+          <label htmlFor="signup-firstname">First Name</label>
+          <input
+            id="signup-firstname"
+            type="text"
+            placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="signin-input-container">
+          <label htmlFor="signup-lastname">Last Name</label>
+          <input
+            id="signup-lastname"
+            type="text"
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="signin-input-container">
+          <label htmlFor="signup-email">Email</label>
+          <input
+            id="signup-email"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="signin-input-container">
+          <label htmlFor="signup-username">Username</label>
+          <input
+            id="signup-username"
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="signin-input-container">
+          <label htmlFor="signup-password">Password</label>
+          <input
+            id="signup-password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <Button label="Sign Up" isSubmit className="signin-submit-button" />
+
+        <p>Already have an account? <Link to="/signin">Sign In</Link></p>
+      </form>
+      {isLoading ? <LoadingIcon /> : <p>{errorMessage}</p>}
+    </div>
+  );
+};
 
 // Import loading state and error messages of specified actions from redux state
 const loadActions = [ActionTypes.AUTH_USER];

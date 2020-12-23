@@ -8,5 +8,6 @@
 }
 
 .user-page-post {
-  margin-bottom: 30px;
+  margin-bottom: $post-margin;
+  &:last-child { margin-bottom: 0px; }
 }
