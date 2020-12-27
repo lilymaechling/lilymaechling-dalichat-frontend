@@ -1,5 +1,9 @@
+/* -------- Imports -------- */
+
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600;700&display=swap'); // Dosis
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap'); // Open Sans
+
+/* -------- Variables -------- */
 
 $dosis: 'Dosis', sans-serif;
 $open-sans: 'Open Sans', sans-serif;
@@ -15,6 +19,26 @@ $background: #F4F6F8;
 
 $page-width: 960px;
 $post-margin: 30px;
+
+/* -------- Standard Styling -------- */
+
+h1 {
+  margin: 0px;
+  color: $dark-gray;
+  font-family: $dosis;
+  font-weight: 700;
+  font-size: 72px;
+}
+
+h2 {
+  margin: 0px 0px 60px;
+  color: $dark-gray;
+  font-family: $dosis;
+  font-weight: 600;
+  font-size: 60px;
+}
+
+/* -------- Mixins -------- */
 
 @mixin header-image {
   margin-bottom: -62px;

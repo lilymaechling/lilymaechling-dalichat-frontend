@@ -18,18 +18,13 @@ import SignUpPanel from '../containers/authentication/signUpPanel';
 import SignInPanel from '../containers/authentication/signInPanel';
 import SignOutPanel from '../containers/authentication/signOutPanel';
 
-import Fallback from './Fallback';
-
 import './App.scss';
 
 /**
  * * Development
- * TODO: Make header image scroll with content
- * TODO: Add user page 404
  * TODO: Add "No results" to search page
  *
  * * Design
- * TODO: Design 404 page
  * TODO: Add error messages to all action creator instances
  * TODO: Design loading component
  * TODO: Design signout
@@ -49,9 +44,12 @@ const App = ({
   return (
     <Router>
       <Switch>
+        <Route exact path="/signin" render={({ history }) => <SignInPanel history={history} />} />
+        <Route exact path="/signup" component={SignUpPanel} />
+        <Route exact path="/signout" component={SignOutPanel} />
+
         <Route
           exact
-          path={['/', '/search', '/explore', '/settings', '/settings/:tab', '/user/:id']}
           render={({ match, location, history }) => (
             authenticated ? (
               <MainContent
@@ -62,12 +60,6 @@ const App = ({
             ) : <Landing />
           )}
         />
-
-        <Route exact path="/signin" render={({ history }) => <SignInPanel history={history} />} />
-        <Route exact path="/signup" component={SignUpPanel} />
-        <Route exact path="/signout" component={SignOutPanel} />
-
-        <Route component={Fallback} />
       </Switch>
     </Router>
   );

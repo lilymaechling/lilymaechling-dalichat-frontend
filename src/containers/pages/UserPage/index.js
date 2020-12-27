@@ -7,6 +7,7 @@ import { createLoadingSelector } from '../../../state/actionCreators/requestActi
 import { fetchUserPosts } from '../../../state/actionCreators/postActionCreators';
 import { fetchUserById } from '../../../state/actionCreators/userActionCreators';
 
+import Fallback from '../Fallback';
 import Post from '../../Post';
 import TabGroup from '../../TabGroup';
 
@@ -34,34 +35,44 @@ const UserPage = ({
         <title>{generateMetaTitleFromPage(user?.fullName || 'User Not Found')}</title>
       </Helmet>
 
-      <HeaderImage
-        backgroundUrl={user?.backgroundUrl}
-        className="user-page-header-image"
-      />
+      {userIsLoading || user ? (
+        <>
+          <HeaderImage
+            backgroundUrl={user?.backgroundUrl}
+            className="user-page-header-image"
+          />
 
-      <main id="user-page-content-container">
-        {userIsLoading
-          ? <LoadingIcon />
-          : (
-            <TabGroup
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-              user={user || {}}
-            >
-              <div label="Featured Posts">
-                {postsAreLoading
-                  ? <LoadingIcon />
-                  : userPosts.map((post) => (
-                    <Post
-                      postContent={post}
-                      className="user-page-post"
-                      key={post?._id || ''}
-                    />
-                  ))}
-              </div>
-            </TabGroup>
-          )}
-      </main>
+          <main id="user-page-content-container">
+            {userIsLoading
+              ? <LoadingIcon />
+              : (
+                <TabGroup
+                  activeTab={activeTab}
+                  setActiveTab={setActiveTab}
+                  user={user || {}}
+                >
+                  <div label="Featured Posts">
+                    {postsAreLoading
+                      ? <LoadingIcon />
+                      : userPosts.map((post) => (
+                        <Post
+                          postContent={post}
+                          className="user-page-post"
+                          key={post?._id || ''}
+                        />
+                      ))}
+                  </div>
+                </TabGroup>
+              )}
+          </main>
+        </>
+      ) : (
+        <Fallback
+          history={history}
+          match={match}
+          location={location}
+        />
+      )}
     </div>
   );
 };

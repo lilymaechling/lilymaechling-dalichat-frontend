@@ -6,6 +6,7 @@ import Search from '../containers/pages/Search';
 import Explore from '../containers/pages/Explore';
 import Settings from '../containers/pages/Settings';
 import UserPage from '../containers/pages/UserPage';
+import Fallback from '../containers/pages/Fallback';
 
 import HeaderBar from '../containers/HeaderBar';
 import Sidebar from '../containers/Sidebar';
@@ -32,6 +33,8 @@ const MainContent = ({
               <Route exact path="/explore" component={Explore} />
               <Route exact path={['/settings', '/settings/:tab']} component={Settings} />
               <Route exact path="/user/:id" component={UserPage} />
+
+              <Route component={Fallback} />
             </Switch>
           </div>
         </div>

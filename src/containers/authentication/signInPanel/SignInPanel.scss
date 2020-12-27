@@ -29,22 +29,6 @@
     max-height: 100vh;
     overflow: auto;
 
-    h1 {
-      margin: 0px;
-      color: $dark-gray;
-      font-family: $dosis;
-      font-weight: 700;
-      font-size: 72px;
-    }
-    
-    h2 {
-      margin: 0px 0px 60px;
-      color: $dark-gray;
-      font-family: $dosis;
-      font-weight: 600;
-      font-size: 60px;
-    }
-
     .signin-input-container {
       display: flex;
       flex-direction: column;

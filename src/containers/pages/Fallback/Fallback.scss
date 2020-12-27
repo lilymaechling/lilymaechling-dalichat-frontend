@@ -1,0 +1,33 @@
+@import '../../../constants/variables.scss';
+
+#fallback-container {
+  display: flex;
+  flex-direction: column;
+  
+  .fallback-header-image {
+    @include header-image;
+  }
+  
+  #fallback-content-container {
+    @include page-layout;
+    
+    h1 {
+      text-align: center;
+    }
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px 48px;
+    box-sizing: border-box;
+    
+    background: $white;
+    box-shadow: 0px 4px 10px rgba(94, 99, 102, 0.125);
+    border-radius: 8px;
+  }
+}
