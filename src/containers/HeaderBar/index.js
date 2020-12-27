@@ -7,7 +7,6 @@ import { postSearch, userSearch } from '../../state/actionCreators/searchActionC
 
 import ProfileIcon from '../../components/ProfileIcon';
 import SearchDark from '../../../public/icons/search_dark.svg';
-import DefaultBackground from '../../../public/images/default_background.png';
 
 import './HeaderBar.scss';
 
@@ -42,12 +41,6 @@ const HeaderBar = ({
           />
         </div>
       </header>
-
-      <img
-        id="header-bar-banner"
-        src={user?.backgroundUrl || DefaultBackground}
-        alt="profile background"
-      />
     </div>
   );
 };

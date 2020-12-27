@@ -2,18 +2,28 @@
 
 #home-container {
   display: flex;
-  flex-direction: row;
-  max-width: $page-width;
-  margin: auto auto 48px;
+  flex-direction: column;
+  position: relative;
 
-  #home-left-container {
+  .home-header-image {
+    @include header-image;
+  }
+  
+  #home-content-container {
+    @include page-layout;
+    
     display: flex;
-    flex-direction: column;
-    margin-bottom: auto;
-    padding-right: 24px;
+    flex-direction: row;
 
-    .home-profile-container {
-      margin-bottom: 24px;
+    #home-left-container {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: auto;
+      padding-right: 24px;
+  
+      .home-profile-container {
+        margin-bottom: 24px;
+      }
     }
   }
 }

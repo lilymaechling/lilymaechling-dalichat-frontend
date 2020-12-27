@@ -2,9 +2,18 @@
 
 #user-page-container {
   display: flex;
-  flex-direction: row;
-  max-width: $page-width;
-  margin: auto auto 48px;
+  flex-direction: column;
+  
+  .user-page-header-image {
+    @include header-image;
+  }
+  
+  #user-page-content-container {
+    @include page-layout;
+    
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 .user-page-post {

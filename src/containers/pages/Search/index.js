@@ -6,17 +6,18 @@ import queryString from 'querystring';
 import ActionTypes from '../../../state/actionCreators';
 import { postSearch, userSearch } from '../../../state/actionCreators/searchActionCreators';
 import { createErrorSelector, createLoadingSelector } from '../../../state/actionCreators/requestActionCreators';
-// import withLoading from '../../../hocs/withLoading';
 
 import TabGroup from '../../TabGroup';
-import LoadingIcon from '../../../components/LoadingIcon';
 import Post from '../../Post';
+
+import LoadingIcon from '../../../components/LoadingIcon';
+import HeaderImage from '../../../components/HeaderImage';
 
 import { generateMetaTitleFromPage } from '../../../constants';
 import './Search.scss';
 
 const Search = ({
-  userId, users, posts, postResults, userResults,
+  userId, user, users, posts, postResults, userResults,
   isLoading, errorMessage, ...props
 }) => {
   const [activeTab, setActiveTab] = React.useState('Featured Posts');
@@ -34,55 +35,50 @@ const Search = ({
         <title>{generateMetaTitleFromPage('Search')}</title>
       </Helmet>
 
-      {isLoading
-        ? <LoadingIcon />
-        : (
-          <div className="search-tabgroup-container">
-            {userResults.map((user) => {
-              return (
-                <TabGroup
-                  user={user}
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                  key={user._id}
-                >
-                  <div label="Featured Posts">
-                    {user.posts.map((postId) => {
-                      return (
-                        <Post
-                          postContent={posts?.[postId] || {}}
-                          key={postId}
-                          className="search-post"
-                        />
-                      );
-                    })}
-                  </div>
+      <HeaderImage
+        backgroundUrl={user?.backgroundUrl}
+        className="search-header-image"
+      />
 
-                  {/* <div label="Popular Posts">
-                      {isLoading
-                        ? <LoadingIcon />
-                        : userResults.map((post) => (
+      <main id="search-content-container">
+        {isLoading
+          ? <LoadingIcon />
+          : (
+            <div className="search-tabgroup-container">
+              {userResults.map((userResult) => {
+                return (
+                  <TabGroup
+                    user={userResult}
+                    activeTab={activeTab}
+                    setActiveTab={setActiveTab}
+                    key={userResult._id}
+                  >
+                    <div label="Featured Posts">
+                      {userResult.posts.map((postId) => {
+                        return (
                           <Post
-                            postContent={post}
+                            postContent={posts?.[postId] || {}}
+                            key={postId}
                             className="search-post"
-                            key={post._id}
                           />
-                        ))}
-                    </div> */}
-                </TabGroup>
-              );
-            })}
-            <div>
-              {postResults.map((post) => (
-                <Post
-                  postContent={post}
-                  className="search-post"
-                  key={post._id}
-                />
-              ))}
+                        );
+                      })}
+                    </div>
+                  </TabGroup>
+                );
+              })}
+              <div>
+                {postResults.map((post) => (
+                  <Post
+                    postContent={post}
+                    className="search-post"
+                    key={post._id}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+      </main>
     </div>
   );
 };
@@ -93,13 +89,15 @@ const errorSelector = createErrorSelector(loadActions);
 
 const mapStateToProps = (state) => ({
   userId: state.auth.userId,
+  user: state.auth.users?.[state.auth.userId] || {},
+
   posts: state.post.posts,
   users: state.auth.users,
 
   postResults: state.post.results?.reduce((accum, id) => [...accum, state.post.posts?.[id]], []) || [],
   userResults: state.auth.results?.reduce((accum, id) => [...accum, state.auth.users?.[id]], []) || [],
-
   numResults: state.post.numResults,
+
   isLoading: loadingSelector(state),
   errorMessage: errorSelector(state),
 });

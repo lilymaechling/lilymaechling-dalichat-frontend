@@ -1,6 +1,9 @@
 @import '../../constants/variables.scss';
 
 #sidebar-container {
+  position: relative;
+  z-index: 10;
+  
   padding-top: 99px;
   box-sizing: border-box;
   width: 216px;
@@ -13,11 +16,5 @@
     position: absolute;
     left: 30px;
     top: 24px;
-  }
-
-  nav {
-    a {
-
-    }
   }
 }

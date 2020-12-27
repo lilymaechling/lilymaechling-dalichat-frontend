@@ -24,7 +24,6 @@ import './App.scss';
 
 /**
  * * Development
- * TODO: Add change email functionality
  * TODO: Make header image scroll with content
  * TODO: Add user page 404
  * TODO: Add "No results" to search page

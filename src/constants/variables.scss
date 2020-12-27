@@ -16,6 +16,15 @@ $background: #F4F6F8;
 $page-width: 960px;
 $post-margin: 30px;
 
+@mixin header-image {
+  margin-bottom: -62px;
+}
+
+@mixin page-layout {
+  width: $page-width;
+  margin: auto auto 48px;
+}
+
 @mixin label-styling {
   margin: 0px 0px 9px;
   color: $dark-gray;

@@ -9,6 +9,8 @@ import { fetchUserById } from '../../../state/actionCreators/userActionCreators'
 
 import Post from '../../Post';
 import TabGroup from '../../TabGroup';
+
+import HeaderImage from '../../../components/HeaderImage';
 import LoadingIcon from '../../../components/LoadingIcon';
 
 import { generateMetaTitleFromPage } from '../../../constants';
@@ -32,27 +34,34 @@ const UserPage = ({
         <title>{generateMetaTitleFromPage(user?.fullName || 'User Not Found')}</title>
       </Helmet>
 
-      { userIsLoading
-        ? <LoadingIcon />
-        : (
-          <TabGroup
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            user={user || {}}
-          >
-            <div label="Featured Posts">
-              {postsAreLoading
-                ? <LoadingIcon />
-                : userPosts.map((post) => (
-                  <Post
-                    postContent={post}
-                    className="user-page-post"
-                    key={post?._id || ''}
-                  />
-                ))}
-            </div>
-          </TabGroup>
-        )}
+      <HeaderImage
+        backgroundUrl={user?.backgroundUrl}
+        className="user-page-header-image"
+      />
+
+      <main id="user-page-content-container">
+        {userIsLoading
+          ? <LoadingIcon />
+          : (
+            <TabGroup
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              user={user || {}}
+            >
+              <div label="Featured Posts">
+                {postsAreLoading
+                  ? <LoadingIcon />
+                  : userPosts.map((post) => (
+                    <Post
+                      postContent={post}
+                      className="user-page-post"
+                      key={post?._id || ''}
+                    />
+                  ))}
+              </div>
+            </TabGroup>
+          )}
+      </main>
     </div>
   );
 };
@@ -64,6 +73,7 @@ const resultsLoadingSelector = createLoadingSelector([...watchActions, ActionTyp
 const mapStateToProps = (state, ownProps) => ({
   user: state.auth.users?.[ownProps.match.params?.id || ''],
   userPosts: state.post.results?.reduce((accum, id) => [...accum, state.post.posts?.[id]], []) || [],
+
   userIsLoading: userLoadingSelector(state),
   postsAreLoading: resultsLoadingSelector(state),
 });

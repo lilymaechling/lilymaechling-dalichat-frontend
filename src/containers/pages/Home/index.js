@@ -7,12 +7,13 @@ import { fetchUserPosts, createPost, deletePostById } from '../../../state/actio
 import { postSearch } from '../../../state/actionCreators/searchActionCreators';
 import { createLoadingSelector, createErrorSelector } from '../../../state/actionCreators/requestActionCreators';
 
-import TabContainer from '../../TabContainer';
-
 import PostCreate from '../../../components/PostCreate';
 import ProfileCard from '../../../components/ProfileCard';
 import LoadingIcon from '../../../components/LoadingIcon';
+import HeaderImage from '../../../components/HeaderImage';
+
 import Post from '../../Post';
+import TabContainer from '../../TabContainer';
 
 import { generateMetaTitleFromPage } from '../../../constants';
 import FileDelete from '../../../../public/icons/file-delete.svg';
@@ -35,7 +36,7 @@ const Home = ({
   }, [activeTab]);
 
   const {
-    fullName, profileUrl, username, blurb, portfolioUrl, numPosts,
+    fullName, profileUrl, username, blurb, portfolioUrl, numPosts, backgroundUrl,
   } = user;
 
   const onPostSubmit = (e) => {
@@ -52,10 +53,15 @@ const Home = ({
         <title>{generateMetaTitleFromPage('Home')}</title>
       </Helmet>
 
+      <HeaderImage
+        backgroundUrl={backgroundUrl}
+        className="home-header-image"
+      />
+
       {isLoading
         ? <LoadingIcon />
         : (
-          <>
+          <main id="home-content-container">
             <div id="home-left-container">
               <ProfileCard
                 fullName={fullName}
@@ -115,7 +121,7 @@ const Home = ({
                   ))}
               </div>
             </TabContainer>
-          </>
+          </main>
         )}
     </div>
   );
@@ -129,7 +135,6 @@ const mapStateToProps = (state) => ({
   userId: state.auth.userId,
   user: state.auth.users?.[state.auth.userId] || {},
 
-  // TODO: Make this id population into a helper function
   postResults: state.post.results?.reduce((accum, id) => [...accum, state.post.posts?.[id]], []) || [],
 
   isLoading: loadingSelector(state),
