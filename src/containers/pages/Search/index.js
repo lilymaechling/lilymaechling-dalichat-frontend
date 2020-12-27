@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import queryString from 'query-string';
+import { Helmet } from 'react-helmet';
 import queryString from 'querystring';
 
 import ActionTypes from '../../../state/actionCreators';
@@ -12,6 +12,7 @@ import TabGroup from '../../TabGroup';
 import LoadingIcon from '../../../components/LoadingIcon';
 import Post from '../../Post';
 
+import { generateMetaTitleFromPage } from '../../../constants';
 import './Search.scss';
 
 const Search = ({
@@ -29,6 +30,10 @@ const Search = ({
 
   return (
     <div id="search-container">
+      <Helmet>
+        <title>{generateMetaTitleFromPage('Search')}</title>
+      </Helmet>
+
       {isLoading
         ? <LoadingIcon />
         : (

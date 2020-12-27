@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import ActionTypes from '../../../state/actionCreators';
 import { fetchUserPosts, createPost, deletePostById } from '../../../state/actionCreators/postActionCreators';
@@ -13,6 +14,7 @@ import ProfileCard from '../../../components/ProfileCard';
 import LoadingIcon from '../../../components/LoadingIcon';
 import Post from '../../Post';
 
+import { generateMetaTitleFromPage } from '../../../constants';
 import FileDelete from '../../../../public/icons/file-delete.svg';
 
 import './Home.scss';
@@ -46,6 +48,10 @@ const Home = ({
 
   return (
     <div id="home-container">
+      <Helmet>
+        <title>{generateMetaTitleFromPage('Home')}</title>
+      </Helmet>
+
       {isLoading
         ? <LoadingIcon />
         : (

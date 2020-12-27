@@ -21,10 +21,9 @@ const Landing = () => {
         <h1>Welcome to DALIChat</h1>
         <h2>Dartmouth&apos;s own social media app</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-          enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          nisi ut aliquip ex ea commodo consequat.
+          Dartmouth’s own social media app, made by the DALI Lab.
+          A close-knit community of like-minded individuals
+          dedicated to inclusivity and continued learning.
         </p>
 
         <Link to="/signup" className="landing-link large">Sign Up Now</Link>

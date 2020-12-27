@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import ActionTypes from '../../../state/actionCreators';
 import { createLoadingSelector } from '../../../state/actionCreators/requestActionCreators';
@@ -10,6 +11,7 @@ import Post from '../../Post';
 import TabGroup from '../../TabGroup';
 import LoadingIcon from '../../../components/LoadingIcon';
 
+import { generateMetaTitleFromPage } from '../../../constants';
 import './UserPage.scss';
 
 const UserPage = ({
@@ -26,6 +28,10 @@ const UserPage = ({
 
   return (
     <div id="user-page-container">
+      <Helmet>
+        <title>{generateMetaTitleFromPage(user?.fullName || 'User Not Found')}</title>
+      </Helmet>
+
       { userIsLoading
         ? <LoadingIcon />
         : (

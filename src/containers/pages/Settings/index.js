@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
 
 import ActionTypes from '../../../state/actionCreators';
 import { createLoadingSelector, createErrorSelector, setError } from '../../../state/actionCreators/requestActionCreators';
@@ -9,6 +10,7 @@ import { updateUserById } from '../../../state/actionCreators/userActionCreators
 import Button from '../../../components/Button';
 import TabContainer from '../../TabContainer';
 
+import { generateMetaTitleFromPage } from '../../../constants';
 import './Settings.scss';
 
 const tabs = {
@@ -70,6 +72,10 @@ const Settings = ({
 
   return (
     <div id="settings-container">
+      <Helmet>
+        <title>{generateMetaTitleFromPage('Settings')}</title>
+      </Helmet>
+
       <TabContainer
         activeTab={activeTab}
         setActiveTab={setActiveTab}

@@ -16,3 +16,14 @@ export const requestTimeout = 5000;
 export function generateFrontendErrorMessage(message) {
   return message ? `Error: "${message}"` : '';
 }
+
+// Base of site meta title
+export const baseSiteTitle = 'DALIChat, Dartmouth\'s Social Media App';
+
+/**
+ * A helper function for generating standard site meta titles
+ * @param {*} pageName - site title to append to standard meta title
+ */
+export function generateMetaTitleFromPage(pageName) {
+  return `${pageName} — ${baseSiteTitle}`;
+}

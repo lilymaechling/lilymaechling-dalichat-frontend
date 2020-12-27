@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import queryString from 'querystring';
 
 import { postSearch, userSearch } from '../../state/actionCreators/searchActionCreators';
 
@@ -13,11 +14,11 @@ import './HeaderBar.scss';
 const HeaderBar = ({
   user, match, location, history, ...props
 }) => {
-  const [query, setQuery] = React.useState('');
+  const [query, setQuery] = React.useState(queryString.parse(location.search.slice(1))?.query || '');
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    history.push(`/search?query=${query}`);
+    history.push(`/search?query=${query || ''}`);
   };
 
   return (

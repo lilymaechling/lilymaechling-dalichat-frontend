@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {
-  BrowserRouter as Router, Route, NavLink, Switch,
+  BrowserRouter as Router, Route, Switch,
 } from 'react-router-dom';
 
 import ActionTypes from '../state/actionCreators';
@@ -18,13 +18,16 @@ import SignUpPanel from '../containers/authentication/signUpPanel';
 import SignInPanel from '../containers/authentication/signInPanel';
 import SignOutPanel from '../containers/authentication/signOutPanel';
 
+import Fallback from './Fallback';
+
 import './App.scss';
 
 /**
  * * Development
- * TODO: Add meta information to each page
  * TODO: Add change email functionality
  * TODO: Make header image scroll with content
+ * TODO: Add user page 404
+ * TODO: Add "No results" to search page
  *
  * * Design
  * TODO: Design 404 page
@@ -41,27 +44,12 @@ import './App.scss';
  * TODO: Comment codebase
  */
 
-const Welcome = () => {
-  return (
-    <div>
-      <NavLink to="/signin">Sign In</NavLink><br />
-      <NavLink to="/signup">Sign Up</NavLink><br />
-    </div>
-  );
-};
-
-const FallBack = () => {
-  return <div>Uh oh... URL Not Found! Please contact the system administrator.</div>;
-};
-
 const App = ({
   userId, authenticated, isLoading, errorMessage, ...props
 }) => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/welcome" component={Welcome} />
-
         <Route
           exact
           path={['/', '/search', '/explore', '/settings', '/settings/:tab', '/user/:id']}
@@ -80,7 +68,7 @@ const App = ({
         <Route exact path="/signup" component={SignUpPanel} />
         <Route exact path="/signout" component={SignOutPanel} />
 
-        <Route component={FallBack} />
+        <Route component={Fallback} />
       </Switch>
     </Router>
   );
