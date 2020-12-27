@@ -1,59 +1,58 @@
-import createAxiosRequest from '.';
+import { createBackendAxiosRequest } from '.';
 import { getBearerTokenHeader } from '../helpers';
-import { ROOT_URL } from '../../constants';
 
 export const fetchPostsRequest = () => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'get',
-    url: `${ROOT_URL}/posts`,
+    url: '/posts',
   });
 };
 
 export const createPostRequest = (content, uid) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'post',
-    url: `${ROOT_URL}/posts`,
+    url: '/posts',
     data: { content, uid },
     headers: getBearerTokenHeader(),
   });
 };
 
 export const fetchPostByIdRequest = (id) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'get',
-    url: `${ROOT_URL}/posts/${id}`,
+    url: `/posts/${id}`,
   });
 };
 
 export const updatePostByIdRequest = (id, update) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'put',
-    url: `${ROOT_URL}/posts/${id}`,
+    url: `/posts/${id}`,
     data: update,
     headers: getBearerTokenHeader(),
   });
 };
 
 export const deletePostByIdRequest = (id) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'delete',
-    url: `${ROOT_URL}/posts/${id}`,
+    url: `/posts/${id}`,
     headers: getBearerTokenHeader(),
   });
 };
 
 export const fetchUserPostsRequest = (uid) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'get',
-    url: `${ROOT_URL}/posts/user/${uid}`,
+    url: `/posts/user/${uid}`,
     headers: getBearerTokenHeader(),
   });
 };
 
 export const likePostRequest = (postId, uid) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'post',
-    url: `${ROOT_URL}/posts/like/${postId}`,
+    url: `/posts/like/${postId}`,
     data: { uid },
     headers: getBearerTokenHeader(),
   });

@@ -1,11 +1,10 @@
-import createAxiosRequest from '.';
+import { createBackendAxiosRequest } from '.';
 import { getBearerTokenHeader } from '../helpers';
-import { ROOT_URL } from '../../constants';
 
 export const signUpUserRequest = (email, username, password, firstName, lastName) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'post',
-    url: `${ROOT_URL}/auth/signup`,
+    url: '/auth/signup',
     data: {
       email, username, password, firstName, lastName,
     },
@@ -13,17 +12,17 @@ export const signUpUserRequest = (email, username, password, firstName, lastName
 };
 
 export const signInUserRequest = (username, password) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'post',
-    url: `${ROOT_URL}/auth/signin`,
+    url: '/auth/signin',
     data: { username, password },
   });
 };
 
 export const validateUserTokenRequest = () => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'post',
-    url: `${ROOT_URL}/auth/validate`,
+    url: '/auth/validate',
     data: {},
     headers: getBearerTokenHeader(),
   });

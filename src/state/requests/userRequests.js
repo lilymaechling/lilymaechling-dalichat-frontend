@@ -1,20 +1,19 @@
-import createAxiosRequest from '.';
+import { createBackendAxiosRequest } from '.';
 import { getBearerTokenHeader } from '../helpers';
-import { ROOT_URL } from '../../constants';
 
 export const fetchUsersRequest = () => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'get',
-    url: `${ROOT_URL}/users`,
+    url: '/users',
     headers: getBearerTokenHeader(),
   });
 };
 
 // * This route is currently not supported by the backend
 export const createUserRequest = (firstName, lastName, email, password) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'post',
-    url: `${ROOT_URL}/users`,
+    url: '/users',
     data: {
       first_name: firstName, last_name: lastName, email, password,
     },
@@ -23,26 +22,26 @@ export const createUserRequest = (firstName, lastName, email, password) => {
 };
 
 export const fetchUserByIdRequest = (uid) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'get',
-    url: `${ROOT_URL}/users/${uid}`,
+    url: `/users/${uid}`,
     headers: getBearerTokenHeader(),
   });
 };
 
 export const updateUserByIdRequest = (uid, update) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'put',
-    url: `${ROOT_URL}/users/${uid}`,
+    url: `/users/${uid}`,
     data: update,
     headers: getBearerTokenHeader(),
   });
 };
 
 export const deleteUserByIdRequest = (uid) => {
-  return () => createAxiosRequest({
+  return () => createBackendAxiosRequest({
     method: 'delete',
-    url: `${ROOT_URL}/users/${uid}`,
+    url: `/users/${uid}`,
     headers: getBearerTokenHeader(),
   });
 };
