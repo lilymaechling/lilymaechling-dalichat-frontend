@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoadingIcon from '../../../components/loadingIcon';
 
-import ActionTypes from '../../../state/actions';
-import { signUpUser } from '../../../state/actions/authActions';
+import ActionTypes from '../../../state/actionCreators';
+import { signUpUser } from '../../../state/actionCreators/authActionCreators';
 import {
   createErrorSelector, setError, clearError, createLoadingSelector,
-} from '../../../state/actions/requestActions';
+} from '../../../state/actionCreators/requestActionCreators';
 
 import Button from '../../../components/Button';
 import BannerImage from '../../../../public/images/auth_sidebar.png';

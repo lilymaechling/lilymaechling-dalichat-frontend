@@ -3,11 +3,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../state/actions';
-import { signInUser } from '../../../state/actions/authActions';
+import ActionTypes from '../../../state/actionCreators';
+import { signInUser } from '../../../state/actionCreators/authActionCreators';
 import {
   createLoadingSelector, createErrorSelector, setError, clearError,
-} from '../../../state/actions/requestActions';
+} from '../../../state/actionCreators/requestActionCreators';
 
 import Button from '../../../components/Button';
 import LoadingIcon from '../../../components/loadingIcon';

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { postSearch, userSearch } from '../../state/actions/searchActions';
+import { postSearch, userSearch } from '../../state/actionCreators/searchActionCreators';
 
 import ProfileIcon from '../../components/ProfileIcon';
 import SearchDark from '../../../public/icons/search_dark.svg';

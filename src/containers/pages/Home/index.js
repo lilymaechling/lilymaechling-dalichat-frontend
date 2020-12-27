@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../state/actions';
-import { fetchUserPosts, createPost, deletePostById } from '../../../state/actions/postActions';
-import { postSearch } from '../../../state/actions/searchActions';
-import { createLoadingSelector, createErrorSelector } from '../../../state/actions/requestActions';
+import ActionTypes from '../../../state/actionCreators';
+import { fetchUserPosts, createPost, deletePostById } from '../../../state/actionCreators/postActionCreators';
+import { postSearch } from '../../../state/actionCreators/searchActionCreators';
+import { createLoadingSelector, createErrorSelector } from '../../../state/actionCreators/requestActionCreators';
 
 import TabContainer from '../../TabContainer';
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../state/actions';
-import { createLoadingSelector } from '../../../state/actions/requestActions';
-import { fetchUserPosts } from '../../../state/actions/postActions';
-import { fetchUserById } from '../../../state/actions/userActions';
+import ActionTypes from '../../../state/actionCreators';
+import { createLoadingSelector } from '../../../state/actionCreators/requestActionCreators';
+import { fetchUserPosts } from '../../../state/actionCreators/postActionCreators';
+import { fetchUserById } from '../../../state/actionCreators/userActionCreators';
 
 import Post from '../../Post';
 import TabGroup from '../../TabGroup';

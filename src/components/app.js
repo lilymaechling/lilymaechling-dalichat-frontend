@@ -4,11 +4,11 @@ import {
   BrowserRouter as Router, Route, NavLink, Switch,
 } from 'react-router-dom';
 
-import ActionTypes from '../state/actions';
-import { signInUser, signOutUser } from '../state/actions/authActions';
-import { fetchUserPosts } from '../state/actions/postActions';
-import { postSearch } from '../state/actions/searchActions';
-import { createErrorSelector, createLoadingSelector } from '../state/actions/requestActions';
+import ActionTypes from '../state/actionCreators';
+import { signInUser, signOutUser } from '../state/actionCreators/authActionCreators';
+import { fetchUserPosts } from '../state/actionCreators/postActionCreators';
+import { postSearch } from '../state/actionCreators/searchActionCreators';
+import { createErrorSelector, createLoadingSelector } from '../state/actionCreators/requestActionCreators';
 
 import MainContent from './MainContent';
 import Landing from './Landing';
@@ -21,19 +21,22 @@ import SignOutPanel from '../containers/authentication/signOutPanel';
 import './App.scss';
 
 /**
- * Need to complete:
+ * * Development
  * TODO: Add meta information to each page
- * TODO: Add favicon to site
  * TODO: Add change email functionality
- * TODO: Add error messages to all action creator instances
  * TODO: Make header image scroll with content
- * TODO: Design 404 page
- * TODO: Update loading component
  * TODO: Make standard input component
+ * TODO: Search bar not pushing to .../search?query=QUERY
  *
- * TODO: Implement signout
- * TODO: Implement landing page
+ * * Design
+ * TODO: Design 404 page
+ * TODO: Add error messages to all action creator instances
+ * TODO: Design loading component
+ * TODO: Design signout
  *
+ * * In Progress
+ *
+ * * Final Cleanup
  * TODO: Reconfigure app authentication UX (page reload, maybe skeleton loading) https://medium.com/javascript-in-plain-english/skeleton-loading-state-as-a-system-286e828ddf75
  * TODO: Standardize code style and terminology
  * TODO: Standardize loading and error implementation in components

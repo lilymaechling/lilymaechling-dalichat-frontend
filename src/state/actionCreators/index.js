@@ -78,6 +78,7 @@ export function generateFailurePayload(error, customParams = {}) {
 export async function createAsyncActionCreator(dispatch, actionName, axiosConfig, config = {}) {
   try {
     dispatch({ type: `${actionName}_${requestStates.REQUEST}` });
+    // TODO: Make this an async function param
     const response = await axios({ ...axiosConfig, timeout: requestTimeout });
     dispatch({ type: `${actionName}_${requestStates.SUCCESS}`, payload: generateSuccessPayload(response, config?.additionalPayloadFields || {}, config?.responseSubfield || '') });
     if (config.successCallback) { config.successCallback(response); }

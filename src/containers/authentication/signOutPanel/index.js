@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import { signOutUser } from '../../../state/actions/authActions';
+import { signOutUser } from '../../../state/actionCreators/authActionCreators';
 
 class SearchPane extends React.Component {
   constructor(props) {

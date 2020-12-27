@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../state/actions';
-import { createLoadingSelector, createErrorSelector } from '../../../state/actions/requestActions';
-import { postSearch } from '../../../state/actions/searchActions';
+import ActionTypes from '../../../state/actionCreators';
+import { createLoadingSelector, createErrorSelector } from '../../../state/actionCreators/requestActionCreators';
+import { postSearch } from '../../../state/actionCreators/searchActionCreators';
 
 import TabContainer from '../../TabContainer';
 import LoadingIcon from '../../../components/LoadingIcon';

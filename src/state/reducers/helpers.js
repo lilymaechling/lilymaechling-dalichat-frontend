@@ -1,4 +1,4 @@
-import { requestStates } from '../actions';
+import { requestStates } from '../actionCreators';
 
 // eslint-disable-next-line import/prefer-default-export
 export function getCaseSelector(actionType) {

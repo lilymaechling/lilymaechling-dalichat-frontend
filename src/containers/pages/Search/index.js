@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 // import queryString from 'query-string';
 import queryString from 'querystring';
 
-import ActionTypes from '../../../state/actions';
-import { postSearch, userSearch } from '../../../state/actions/searchActions';
-import { createErrorSelector, createLoadingSelector } from '../../../state/actions/requestActions';
+import ActionTypes from '../../../state/actionCreators';
+import { postSearch, userSearch } from '../../../state/actionCreators/searchActionCreators';
+import { createErrorSelector, createLoadingSelector } from '../../../state/actionCreators/requestActionCreators';
 // import withLoading from '../../../hocs/withLoading';
 
 import TabGroup from '../../TabGroup';

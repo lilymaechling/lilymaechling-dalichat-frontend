@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../state/actions';
-import { likePost } from '../../state/actions/postActions';
-import { createLoadingSelector } from '../../state/actions/requestActions';
+import ActionTypes from '../../state/actionCreators';
+import { likePost } from '../../state/actionCreators/postActionCreators';
+import { createLoadingSelector } from '../../state/actionCreators/requestActionCreators';
 
 import PostContent from '../../components/PostContent';
 import ProfileIcon from '../../components/ProfileIcon';

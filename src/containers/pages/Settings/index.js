@@ -2,9 +2,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../state/actions';
-import { createLoadingSelector, createErrorSelector, setError } from '../../../state/actions/requestActions';
-import { updateUserById } from '../../../state/actions/userActions';
+import ActionTypes from '../../../state/actionCreators';
+import { createLoadingSelector, createErrorSelector, setError } from '../../../state/actionCreators/requestActionCreators';
+import { updateUserById } from '../../../state/actionCreators/userActionCreators';
 
 import Button from '../../../components/Button';
 import TabContainer from '../../TabContainer';

@@ -1,5 +1,5 @@
 import omit from 'lodash.omit';
-import ActionTypes from '../actions';
+import ActionTypes from '../actionCreators';
 import { getCaseSelector } from './helpers';
 
 const initialState = {
