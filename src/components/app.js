@@ -25,7 +25,6 @@ import './App.scss';
  * TODO: Add meta information to each page
  * TODO: Add change email functionality
  * TODO: Make header image scroll with content
- * TODO: Make standard input component
  * TODO: Search bar not pushing to .../search?query=QUERY
  *
  * * Design

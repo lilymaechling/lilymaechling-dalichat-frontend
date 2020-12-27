@@ -34,24 +34,11 @@
         font-size: 12px;
         
         label {
-          margin-bottom: 9px;
+          @include label-styling;
         }
       
         input, textarea {
-          padding: 12px 18px;
-          background: $light-gray;
-          border-radius: 8px;
-          border: none;
-          
-          font-family: $open-sans;
-          color: $dark-gray;
-          font-size: 12px;
-          font-weight: 400;
-          
-          &::placeholder {
-            font-family: $open-sans;
-            color: $mid-gray;
-          }
+          @include input-styling;
         }
       }
     }

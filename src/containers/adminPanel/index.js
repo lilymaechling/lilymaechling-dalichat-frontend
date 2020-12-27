@@ -132,7 +132,7 @@ class AdminPanel extends React.Component {
     if (id) { this.props.deletePostById(id); }
   }
 
-  // NOTE: Form inputs not validated in frontend
+  // * NOTE: Form inputs not validated in frontend
   render() {
     return (
       <div>
