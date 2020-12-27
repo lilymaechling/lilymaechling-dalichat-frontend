@@ -17,9 +17,7 @@ const HeaderBar = ({
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    await props.postSearch({ query });
-    await props.userSearch({ query });
-    history.push('/search');
+    history.push(`/search?query=${query}`);
   };
 
   return (

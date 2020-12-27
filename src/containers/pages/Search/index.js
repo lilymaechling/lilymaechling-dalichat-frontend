@@ -25,7 +25,7 @@ const Search = ({
     query = queryString.parse(props.history.location.search.slice(1))?.query || '';
     props.postSearch({ query });
     props.userSearch({ query });
-  }, []);
+  }, [props.history.location.search]);
 
   return (
     <div id="search-container">
