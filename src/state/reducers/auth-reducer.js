@@ -1,5 +1,5 @@
 import omit from 'lodash.omit';
-import ActionTypes from '../actionCreators';
+import ActionTypes from '../helpers';
 import { getCaseSelector } from './helpers';
 
 const initialState = {
@@ -60,7 +60,7 @@ const reducer = (state = initialState, action) => {
     case getCaseSelector(ActionTypes.DELETE_USER):
       return {
         ...state,
-        users: omit(state.users, action.payload.id),
+        users: omit(state.users, action.payload.uid),
       };
 
     // Update users if action provides user data

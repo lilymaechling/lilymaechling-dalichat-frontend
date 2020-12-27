@@ -1,17 +1,12 @@
-import ActionTypes, {
-  getBearerTokenHeader, createAsyncActionCreator,
-} from '.';
-import { ROOT_URL } from '../../constants';
+import ActionTypes from '../helpers';
+import createAsyncActionCreator from '.';
+import * as userRequests from '../requests/userRequests';
 
 // Get all users (AUTH)
 export function fetchUsers(additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_USERS,
-    {
-      method: 'get',
-      url: `${ROOT_URL}/users`,
-      headers: getBearerTokenHeader(),
-    },
+    userRequests.fetchUsersRequest(),
     { ...additionalConfig },
   );
 }
@@ -20,40 +15,20 @@ export function fetchUsers(additionalConfig = {}) {
 export function createUser(firstName, lastName, email, password, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_USER,
-    {
-      method: 'post',
-      url: `${ROOT_URL}/users`,
-      data: {
-        first_name: firstName, last_name: lastName, email, password,
-      },
-      headers: getBearerTokenHeader(),
-    },
+    userRequests.createUserRequest(firstName, lastName, email, password),
     { ...additionalConfig },
   );
 }
 
-// // TODO: Add additional auth to call this
-// // Delete all users (AUTH)
-// // TODO: UPDATE THIS ACTION
-// export function deleteAllUsers() {
-//   return async (dispatch) => {
-//     await axios.delete(`${ROOT_URL}/users`, { headers: getBearerTokenHeader() });
-//   };
-// }
-
 // Get user by id (AUTH)
-export function fetchUserById(id, additionalConfig = {}) {
+export function fetchUserById(uid, additionalConfig = {}) {
   return (dispatch) => {
-    if (!id) {
+    if (!uid) {
       return dispatch({ type: `${ActionTypes.FETCH_USER}_SUCCESS`, payload: {} });
     } else {
       return createAsyncActionCreator(
         dispatch, ActionTypes.FETCH_USER,
-        {
-          method: 'get',
-          url: `${ROOT_URL}/users/${id}`,
-          headers: getBearerTokenHeader(),
-        },
+        userRequests.fetchUserByIdRequest(uid),
         { ...additionalConfig },
       );
     }
@@ -61,30 +36,21 @@ export function fetchUserById(id, additionalConfig = {}) {
 }
 
 // Update by id (AUTH)
-export function updateUserById(id, update = {}, additionalConfig = {}) {
+export function updateUserById(uid, update = {}, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_USER,
-    {
-      method: 'put',
-      url: `${ROOT_URL}/users/${id}`,
-      data: update,
-      headers: getBearerTokenHeader(),
-    },
+    userRequests.updateUserByIdRequest(uid, update),
     { ...additionalConfig },
   );
 }
 
 // Delete by id (AUTH)
-export function deleteUserById(id, additionalConfig = {}) {
+export function deleteUserById(uid, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.DELETE_USER,
+    userRequests.deleteUserByIdRequest(uid),
     {
-      method: 'delete',
-      url: `${ROOT_URL}/users/${id}`,
-      headers: getBearerTokenHeader(),
-    },
-    {
-      additionalPayloadFields: { id },
+      additionalPayloadFields: { uid },
       ...additionalConfig,
     },
   );

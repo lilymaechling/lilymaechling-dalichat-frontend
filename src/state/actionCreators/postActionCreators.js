@@ -1,7 +1,7 @@
-import ActionTypes, {
-  getBearerTokenHeader, createAsyncActionCreator,
-} from '.';
-import { ROOT_URL } from '../../constants';
+import ActionTypes from '../helpers';
+import createAsyncActionCreator from '.';
+
+import * as postRequests from '../requests/postRequests';
 
 /**
  * A function for fetching all posts loaded into backend (or a given number based on backend parameters)
@@ -9,77 +9,39 @@ import { ROOT_URL } from '../../constants';
 export function fetchPosts(additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_POSTS,
-    {
-      method: 'get',
-      url: `${ROOT_URL}/posts`,
-    },
+    postRequests.fetchPostsRequest(),
     { ...additionalConfig },
   );
 }
 
-// New post (AUTH)
 export function createPost(content, uid, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_POST,
-    {
-      method: 'post',
-      url: `${ROOT_URL}/posts`,
-      data: { content, uid },
-      headers: getBearerTokenHeader(),
-    },
+    postRequests.createPostRequest(content, uid),
     { ...additionalConfig },
   );
 }
 
-// // TODO: Add additional auth to call this
-// // Delete all posts (AUTH)
-// export function deleteAllPosts() {
-//   return dispatch => new Promise((resolve, reject) => {
-//     axios.delete(`${ROOT_URL}/posts`, { timeout: requestTimeout }).then((response) => {
-//       resolve();
-//     }).catch((error) => {
-//       reject();
-//     });
-//   });
-// }
-
-// :id
-
-// Get
 export function fetchPostById(id, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_POST,
-    {
-      method: 'get',
-      url: `${ROOT_URL}/posts/${id}`,
-    },
+    postRequests.fetchPostByIdRequest(id),
     { ...additionalConfig },
   );
 }
 
-// Update (AUTH)
 export function updatePostById(id, update, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_POST,
-    {
-      method: 'put',
-      url: `${ROOT_URL}/posts/${id}`,
-      data: update,
-      headers: getBearerTokenHeader(),
-    },
+    postRequests.updatePostByIdRequest(id, update),
     { ...additionalConfig },
   );
 }
 
-// Delete (AUTH)
 export function deletePostById(id, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.DELETE_POST,
-    {
-      method: 'delete',
-      url: `${ROOT_URL}/posts/${id}`,
-      headers: getBearerTokenHeader(),
-    },
+    postRequests.deletePostByIdRequest(id),
     {
       additionalPayloadFields: { id },
       ...additionalConfig,
@@ -90,24 +52,15 @@ export function deletePostById(id, additionalConfig = {}) {
 export function fetchUserPosts(uid, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.POST_SEARCH,
-    {
-      method: 'get',
-      url: `${ROOT_URL}/posts/user/${uid}`,
-      headers: getBearerTokenHeader(),
-    },
+    postRequests.fetchUserPostsRequest(uid),
     { ...additionalConfig },
   );
 }
 
-export function likePost(postId, uid = '', additionalConfig = {}) {
+export function likePost(postId, uid, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.FETCH_POST,
-    {
-      method: 'post',
-      url: `${ROOT_URL}/posts/like/${postId}`,
-      data: { uid },
-      headers: getBearerTokenHeader(),
-    },
+    postRequests.likePostRequest(postId, uid),
     { ...additionalConfig },
   );
 }

@@ -1,7 +1,7 @@
-import ActionTypes, {
-  requestStates, createAsyncActionCreator, getBearerTokenHeader, setBearerToken,
-} from '.';
-import { requestTimeout, ROOT_URL } from '../../constants';
+import ActionTypes, { requestStates, setBearerToken } from '../helpers';
+import createAsyncActionCreator from '.';
+
+import * as authRequests from '../requests/authRequests';
 
 /**
  * Sign up a user and return a user object and a bearer token
@@ -13,13 +13,7 @@ import { requestTimeout, ROOT_URL } from '../../constants';
 export function signUpUser(email, username, password, firstName, lastName, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.AUTH_USER,
-    {
-      method: 'post',
-      url: `${ROOT_URL}/auth/signup`,
-      data: {
-        email, username, password, firstName, lastName,
-      },
-    },
+    authRequests.signUpUserRequest(email, username, password, firstName, lastName),
     {
       successCallback: (response) => { if (response.data.token) { setBearerToken(response.data.token); } },
       responseSubfield: 'user',
@@ -37,12 +31,7 @@ export function signUpUser(email, username, password, firstName, lastName, addit
 export function signInUser(username, password, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.AUTH_USER,
-    {
-      method: 'post',
-      url: `${ROOT_URL}/auth/signin`,
-      data: { username, password },
-      timeout: requestTimeout,
-    },
+    authRequests.signInUserRequest(username, password),
     {
       successCallback: (response) => { if (response.data.token) { setBearerToken(response.data.token); } },
       responseSubfield: 'user',
@@ -66,13 +55,8 @@ export function signOutUser() {
 export function validateUserToken(additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.AUTH_USER,
+    authRequests.validateUserTokenRequest(),
     {
-      method: 'post',
-      url: `${ROOT_URL}/auth/validate`,
-      data: {},
-      timeout: requestTimeout,
-      headers: getBearerTokenHeader(),
-    }, {
       responseSubfield: 'user',
       failureCallback: () => dispatch(signOutUser()),
       ...additionalConfig,

@@ -1,3 +1,5 @@
+import { requestStates } from '../helpers';
+
 /**
  * Returns a function that can be added directly to a mapStateToProps object
  * that will determine if any of the passed actions are loading
@@ -17,7 +19,7 @@ export const createLoadingSelector = (actions) => (state) => {
  */
 export function setError(action, errorMessage) {
   return (dispatch) => {
-    return dispatch({ type: `${action}_FAILURE`, payload: { message: errorMessage } });
+    return dispatch({ type: `${action}_${requestStates.FAILURE}`, payload: { message: errorMessage } });
   };
 }
 
@@ -27,7 +29,7 @@ export function setError(action, errorMessage) {
  */
 export function clearError(action) {
   return (dispatch) => {
-    return dispatch({ type: `${action}_CLEAR_ERR`, payload: { message: '' } });
+    return dispatch({ type: `${action}_${requestStates.CLEAR_ERR}`, payload: { message: '' } });
   };
 }
 

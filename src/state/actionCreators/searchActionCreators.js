@@ -1,5 +1,6 @@
-import ActionTypes, { createAsyncActionCreator } from '.';
-import { ROOT_URL } from '../../constants';
+import ActionTypes from '../helpers';
+import createAsyncActionCreator from '.';
+import * as searchRequests from '../requests/searchRequests';
 
 /**
  * A function that searches for posts based on the following parameters:
@@ -11,14 +12,13 @@ import { ROOT_URL } from '../../constants';
  */
 export function postSearch({
   query = '', field = '', filters = '', sort = 'a', page = 1, numPerPage = 5,
-} = {}) {
+} = {}, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.POST_SEARCH,
-    {
-      method: 'get',
-      url: `${ROOT_URL}/search/posts?query=${query && query.split(' ').length > 0
-        ? query.split(' ').join('+') : query}&field=${field}&filters=${filters}&sort=${sort}&page=${page}&numperpage=${numPerPage}`,
-    },
+    searchRequests.postSearchRequest({
+      query, field, filters, sort, page, numPerPage,
+    }),
+    { ...additionalConfig },
   );
 }
 
@@ -32,13 +32,12 @@ export function postSearch({
  */
 export function userSearch({
   query = '', field = '', filters = '', sort = 'a', page = 1, numPerPage = 100,
-} = {}) {
+} = {}, additionalConfig = {}) {
   return (dispatch) => createAsyncActionCreator(
     dispatch, ActionTypes.USER_SEARCH,
-    {
-      method: 'get',
-      url: `${ROOT_URL}/search/users?query=${query && query.split(' ').length > 0
-        ? query.split(' ').join('+') : query}&field=${field}&filters=${filters}&sort=${sort}&page=${page}&numperpage=${numPerPage}`,
-    },
+    searchRequests.userSearchQuery({
+      query, field, filters, sort, page, numPerPage,
+    }),
+    { ...additionalConfig },
   );
 }
