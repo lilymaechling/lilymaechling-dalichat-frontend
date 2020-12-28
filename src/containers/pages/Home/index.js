@@ -89,16 +89,15 @@ const Home = ({
             >
               <div label="Your Posts">
                 {postResults.map((post) => (
-                  <div className="home-post-container">
+                  <div key={post._id} className="home-post-container">
                     <Post
                       postContent={post}
                       className="home-post delete"
-                      key={post?._id || ''}
                     />
                     <button
                       type="button"
                       className="home-post-delete"
-                      onClick={() => props.deletePostById(post._id || '')}
+                      onClick={() => props.deletePostById(post._id)}
                     >
                       <FileDelete />
                       <p>Delete Post</p>
@@ -111,11 +110,10 @@ const Home = ({
                 {isLoading
                   ? <LoadingIcon />
                   : postResults.map((post) => (
-                    <div className="home-post-container">
+                    <div key={post._id} className="home-post-container">
                       <Post
                         postContent={post}
                         className="home-post"
-                        key={post?._id || ''}
                       />
                     </div>
                   ))}

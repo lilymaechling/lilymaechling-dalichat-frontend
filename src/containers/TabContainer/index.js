@@ -18,9 +18,9 @@ const TabContainer = ({
           const { label } = child.props;
           return (
             <Tab
-              key={label}
               isActive={activeTab === label}
               label={label}
+              key={label}
               onClick={() => {
                 if (updateUrls) { history.push(`${urlBase}/${label.toLowerCase()}`); }
                 setActiveTab(label);

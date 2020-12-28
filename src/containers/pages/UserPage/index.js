@@ -58,7 +58,7 @@ const UserPage = ({
                         <Post
                           postContent={post}
                           className="user-page-post"
-                          key={post?._id || ''}
+                          key={post._id}
                         />
                       ))}
                   </div>

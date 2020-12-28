@@ -68,7 +68,8 @@ const Settings = ({
         }
         break;
       default:
-        console.warn('No registered tab selected');
+        // eslint-disable-next-line no-console
+        console.error('No registered tab selected');
     }
   };
 

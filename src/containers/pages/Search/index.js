@@ -57,8 +57,8 @@ const Search = ({
                         return (
                           <Post
                             postContent={posts?.[postId] || {}}
-                            key={postId}
                             className="search-post"
+                            key={postId}
                           />
                         );
                       })}

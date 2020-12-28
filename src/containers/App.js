@@ -23,12 +23,12 @@ import './App.scss';
 
 /**
  * * Final Cleanup
- * TODO: Reconfigure app authentication UX (page reload, maybe skeleton loading) https://medium.com/javascript-in-plain-english/skeleton-loading-state-as-a-system-286e828ddf75
  * TODO: Standardize code style and terminology
  * TODO: Standardize loading and error implementation in components
  * TODO: Comment codebase
  *
  * Reach Features
+ * ?: Reconfigure app authentication UX (page reload, maybe skeleton loading) https://medium.com/javascript-in-plain-english/skeleton-loading-state-as-a-system-286e828ddf75
  * ? Design loading component
  */
 
