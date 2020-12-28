@@ -21,10 +21,9 @@ const Search = ({
   isLoading, errorMessage, ...props
 }) => {
   const [activeTab, setActiveTab] = React.useState('Featured Posts');
+  const query = queryString.parse(props.history.location.search.slice(1))?.query || '';
 
-  let query = '';
   React.useEffect(() => {
-    query = queryString.parse(props.history.location.search.slice(1))?.query || '';
     props.postSearch({ query });
     props.userSearch({ query });
   }, [props.history.location.search]);
@@ -45,7 +44,7 @@ const Search = ({
           ? <LoadingIcon />
           : (
             <div className="search-tabgroup-container">
-              {userResults.map((userResult) => {
+              {userResults.length ? userResults.map((userResult) => {
                 return (
                   <TabGroup
                     user={userResult}
@@ -66,15 +65,23 @@ const Search = ({
                     </div>
                   </TabGroup>
                 );
-              })}
+              }) : (
+                <p className="search-noresults-container">
+                  No user results found for query &quot;{query}&quot;
+                </p>
+              )}
               <div>
-                {postResults.map((post) => (
+                {postResults.length ? postResults.map((post) => (
                   <Post
                     postContent={post}
                     className="search-post"
                     key={post._id}
                   />
-                ))}
+                )) : (
+                  <p className="search-noresults-container">
+                    No post results found for query &quot;{query}&quot;
+                  </p>
+                )}
               </div>
             </div>
           )}

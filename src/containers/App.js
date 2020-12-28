@@ -22,11 +22,6 @@ import SignOutPanel from './authentication/signOutPanel';
 import './App.scss';
 
 /**
- * * Development
- *
- * * Design
- * TODO: Add "No results" to search page
- *
  * * Final Cleanup
  * TODO: Reconfigure app authentication UX (page reload, maybe skeleton loading) https://medium.com/javascript-in-plain-english/skeleton-loading-state-as-a-system-286e828ddf75
  * TODO: Standardize code style and terminology
