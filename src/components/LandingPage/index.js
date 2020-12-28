@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import HeaderLogo from '../../../public/icons/dali_logo.svg';
 import FooterGraphic from '../../../public/images/landing_footer.png';
 
-import './Landing.scss';
+import './LandingPage.scss';
 
 const Landing = () => {
   return (

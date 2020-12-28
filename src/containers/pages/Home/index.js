@@ -13,7 +13,7 @@ import LoadingIcon from '../../../components/LoadingIcon';
 import HeaderImage from '../../../components/HeaderImage';
 
 import Post from '../../Post';
-import TabContainer from '../../TabContainer';
+import TabContainer from '../../Tabs/TabContainer';
 
 import { generateMetaTitleFromPage } from '../../../constants';
 import FileDelete from '../../../../public/icons/file-delete.svg';

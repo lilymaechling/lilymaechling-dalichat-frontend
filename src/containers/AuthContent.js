@@ -10,7 +10,6 @@ import Fallback from './pages/Fallback';
 
 import HeaderBar from './HeaderBar';
 import Sidebar from './Sidebar';
-
 import LoadingIcon from '../components/LoadingIcon';
 
 import './App.scss';

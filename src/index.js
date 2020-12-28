@@ -4,9 +4,9 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 
-import ActionTypes from './state/helpers';
 import reducers from './state/reducers';
 import { validateUserToken } from './state/actionCreators/authActionCreators';
+import ActionTypes, { requestStates } from './state/helpers';
 import { authTokenName } from './constants';
 
 import App from './containers/App';
@@ -27,7 +27,7 @@ getTokenFromLocalStorage().then(async (authToken) => {
   if (authToken) { // User has previous authentication token
     store.dispatch(validateUserToken());
   } else { // No authorization
-    store.dispatch({ type: `${ActionTypes.DEAUTH_USER}_SUCCESS` });
+    store.dispatch({ type: `${ActionTypes.DEAUTH_USER}_${requestStates.SUCCESS}` });
   }
 
   // Only render app after authentication has been initiated

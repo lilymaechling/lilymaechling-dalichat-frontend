@@ -12,9 +12,8 @@ import { createErrorSelector, createLoadingSelector } from '../state/actionCreat
 
 import AuthContent from './AuthContent';
 import ErrorPopover from './ErrorPopover';
-import Landing from '../components/Landing';
+import LandingPage from '../components/LandingPage';
 
-// import AdminPanel from '../containers/adminPanel';
 import SignUpPanel from './authentication/signUpPanel';
 import SignInPanel from './authentication/signInPanel';
 import SignOutPanel from './authentication/signOutPanel';
@@ -40,12 +39,11 @@ const App = ({
       <ErrorPopover />
 
       <Switch>
-        <Route exact path="/signin" render={({ history }) => <SignInPanel history={history} />} />
+        <Route exact path="/signin" render={SignInPanel} />
         <Route exact path="/signup" component={SignUpPanel} />
         <Route exact path="/signout" component={SignOutPanel} />
 
         <Route
-          exact
           render={({ match, location, history }) => (
             authenticated ? (
               <AuthContent
@@ -53,7 +51,7 @@ const App = ({
                 location={location}
                 history={history}
               />
-            ) : <Landing />
+            ) : <LandingPage />
           )}
         />
       </Switch>

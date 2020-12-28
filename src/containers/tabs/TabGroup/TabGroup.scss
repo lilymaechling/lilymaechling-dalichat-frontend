@@ -1,4 +1,4 @@
-@import '../../constants/variables.scss';
+@import '../../../constants/variables.scss';
 
 .tabgroup-container {
   display: flex;
@@ -13,8 +13,4 @@
     position: sticky;
     margin: 0px 24px auto 0px;
   }
-
-  // .tabgroup-tab-container {
-  //   // UNUSED
-  // }
 }

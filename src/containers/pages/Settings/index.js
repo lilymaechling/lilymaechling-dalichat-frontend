@@ -7,7 +7,7 @@ import ActionTypes from '../../../state/actionCreators';
 import { createLoadingSelector, createErrorSelector, setError } from '../../../state/actionCreators/requestActionCreators';
 import { updateUserById } from '../../../state/actionCreators/userActionCreators';
 
-import TabContainer from '../../TabContainer';
+import TabContainer from '../../Tabs/TabContainer';
 
 import Button from '../../../components/Button';
 import HeaderImage from '../../../components/HeaderImage';

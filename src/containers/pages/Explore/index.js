@@ -6,7 +6,7 @@ import ActionTypes from '../../../state/actionCreators';
 import { createLoadingSelector, createErrorSelector } from '../../../state/actionCreators/requestActionCreators';
 import { postSearch } from '../../../state/actionCreators/searchActionCreators';
 
-import TabContainer from '../../TabContainer';
+import TabContainer from '../../Tabs/TabContainer';
 import Post from '../../Post';
 
 import LoadingIcon from '../../../components/LoadingIcon';

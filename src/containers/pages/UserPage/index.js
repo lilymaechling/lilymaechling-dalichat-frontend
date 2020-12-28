@@ -9,7 +9,7 @@ import { fetchUserById } from '../../../state/actionCreators/userActionCreators'
 
 import Fallback from '../Fallback';
 import Post from '../../Post';
-import TabGroup from '../../TabGroup';
+import TabGroup from '../../Tabs/TabGroup';
 
 import HeaderImage from '../../../components/HeaderImage';
 import LoadingIcon from '../../../components/LoadingIcon';

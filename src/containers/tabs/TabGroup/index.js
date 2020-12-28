@@ -1,6 +1,6 @@
 import React from 'react';
 import TabContainer from '../TabContainer';
-import ProfileCard from '../../components/ProfileCard';
+import ProfileCard from '../../../components/ProfileCard';
 import './TabGroup.scss';
 
 const TabGroup = ({
