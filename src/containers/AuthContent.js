@@ -1,32 +1,32 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Home from '../containers/pages/Home';
-import Search from '../containers/pages/Search';
-import Explore from '../containers/pages/Explore';
-import Settings from '../containers/pages/Settings';
-import UserPage from '../containers/pages/UserPage';
-import Fallback from '../containers/pages/Fallback';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import Explore from './pages/Explore';
+import Settings from './pages/Settings';
+import UserPage from './pages/UserPage';
+import Fallback from './pages/Fallback';
 
-import HeaderBar from '../containers/HeaderBar';
-import Sidebar from '../containers/Sidebar';
+import HeaderBar from './HeaderBar';
+import Sidebar from './Sidebar';
 
-import LoadingIcon from './LoadingIcon';
+import LoadingIcon from '../components/LoadingIcon';
 
 import './App.scss';
 
-const MainContent = ({
+const AuthContent = ({
   match, location, history,
   isLoading, ...props
 }) => (
-  <div id="app-main-container">
+  <div id="app-auth-container">
     <Sidebar />
     {isLoading
       ? <LoadingIcon />
       : (
-        <div id="app-main-right-container">
+        <div id="app-auth-right-container">
           <HeaderBar />
-          <div id="app-main-content-container">
+          <div id="app-auth-content-container">
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/search" component={Search} />
@@ -42,4 +42,4 @@ const MainContent = ({
   </div>
 );
 
-export default MainContent;
+export default AuthContent;

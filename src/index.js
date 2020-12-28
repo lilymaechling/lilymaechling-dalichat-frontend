@@ -9,7 +9,7 @@ import reducers from './state/reducers';
 import { validateUserToken } from './state/actionCreators/authActionCreators';
 import { authTokenName } from './constants';
 
-import App from './components/App';
+import App from './containers/App';
 import './style.scss';
 
 // Initialize Redux DevTools support

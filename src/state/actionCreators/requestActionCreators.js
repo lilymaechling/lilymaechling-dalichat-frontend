@@ -1,4 +1,4 @@
-import { requestStates } from '../helpers';
+import ActionTypes, { requestStates } from '../helpers';
 
 /**
  * Returns a function that can be added directly to a mapStateToProps object
@@ -10,6 +10,22 @@ export const createLoadingSelector = (actions) => (state) => {
 
   // Returns true only if all passed actions aren't loading
   return actions.some((action) => state.request?.[action]?.loading === true);
+};
+
+/**
+ * Returns a function that can be added directly to a mapStateToProps object
+ * that will return the first error message associated with the array of actions (if any)
+ */
+export const createErrorSelector = (actions) => (state) => {
+  // actions not passed as an array
+  if (!Array.isArray(actions)) { return () => ''; }
+
+  // Returns the first found error message
+  return actions.reduce((accum, action) => {
+    const message = state.request?.[action]?.message;
+    if (message) return [...accum, message];
+    else return accum;
+  }, [])[0] || '';
 };
 
 /**
@@ -34,17 +50,10 @@ export function clearError(action) {
 }
 
 /**
- * Returns a function that can be added directly to a mapStateToProps object
- * that will return the first error message associated with the array of actions (if any)
+ * Clears current error message held in redux state
  */
-export const createErrorSelector = (actions) => (state) => {
-  // actions not passed as an array
-  if (!Array.isArray(actions)) { return () => ''; }
-
-  // Returns the first found error message
-  return actions.reduce((accum, action) => {
-    const message = state.request?.[action]?.message;
-    if (message) return [...accum, message];
-    else return accum;
-  }, [])[0] || '';
-};
+export function clearCurrent() {
+  return (dispatch) => {
+    return dispatch({ type: ActionTypes.CLEAR_CURRENT });
+  };
+}

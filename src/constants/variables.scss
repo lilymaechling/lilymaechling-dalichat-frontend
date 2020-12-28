@@ -10,7 +10,8 @@ $open-sans: 'Open Sans', sans-serif;
 
 $blue: #1E5779;
 $white: #FFFFFF;
-$error: #FF8B81;
+$error-light: #FF8B81;
+$error-dark: #E71D0C;
 
 $dark-gray: #404040;
 $mid-gray: #8A8E90;
@@ -71,7 +72,7 @@ h2 {
   border: none;
 
   &:-moz-ui-invalid {
-      border: 2px solid $error;
+      border: 2px solid $error-dark;
       box-shadow: none;
   }
   

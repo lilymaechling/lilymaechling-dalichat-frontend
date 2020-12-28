@@ -4,9 +4,20 @@
 import ActionTypes, { requestStates } from '../helpers';
 
 // Initialize state to hold all successes (so state doesn't need to be "seeded" to reference request key type)
-const initialState = Object.values(ActionTypes).reduce((accum, type) => ({ ...accum, [type]: { loading: false, message: '', code: 200 } }), {});
+const initialState = {
+  current: '',
+  ...Object.values(ActionTypes)
+    .reduce((accum, type) => ({
+      ...accum, [type]: { loading: false, message: '', code: 200 },
+    }), {}),
+};
 
 const reducer = (state = initialState, action) => {
+  // Clear current error message
+  if (action.type === ActionTypes.CLEAR_CURRENT) {
+    return { ...state, current: '' };
+  }
+
   /**
    * Check if the action name ends in "REQUEST", "SUCCESS", "FAILURE", or "CLEAR_ERR"
    */
@@ -34,6 +45,10 @@ const reducer = (state = initialState, action) => {
   updatedState[requestName].loading = requestState === requestStates.REQUEST && requestState !== requestStates.CLEAR_ERR;
   updatedState[requestName].message = requestState === requestStates.REQUEST ? '' : action?.payload?.message || '';
   updatedState[requestName].code = action?.payload?.code || null;
+
+  // Pushes error notification to current
+  if (requestState === requestStates.FAILURE) { updatedState.current = action?.payload?.message || ''; }
+
   return updatedState;
 };
 

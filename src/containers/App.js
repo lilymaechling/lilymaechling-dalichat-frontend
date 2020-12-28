@@ -10,13 +10,14 @@ import { fetchUserPosts } from '../state/actionCreators/postActionCreators';
 import { postSearch } from '../state/actionCreators/searchActionCreators';
 import { createErrorSelector, createLoadingSelector } from '../state/actionCreators/requestActionCreators';
 
-import MainContent from './MainContent';
-import Landing from './Landing';
+import AuthContent from './AuthContent';
+import ErrorPopover from './ErrorPopover';
+import Landing from '../components/Landing';
 
 // import AdminPanel from '../containers/adminPanel';
-import SignUpPanel from '../containers/authentication/signUpPanel';
-import SignInPanel from '../containers/authentication/signInPanel';
-import SignOutPanel from '../containers/authentication/signOutPanel';
+import SignUpPanel from './authentication/signUpPanel';
+import SignInPanel from './authentication/signInPanel';
+import SignOutPanel from './authentication/signOutPanel';
 
 import './App.scss';
 
@@ -43,6 +44,8 @@ const App = ({
 }) => {
   return (
     <Router>
+      <ErrorPopover />
+
       <Switch>
         <Route exact path="/signin" render={({ history }) => <SignInPanel history={history} />} />
         <Route exact path="/signup" component={SignUpPanel} />
@@ -52,7 +55,7 @@ const App = ({
           exact
           render={({ match, location, history }) => (
             authenticated ? (
-              <MainContent
+              <AuthContent
                 match={match}
                 location={location}
                 history={history}
@@ -72,6 +75,7 @@ const errorSelector = createErrorSelector(watchActions);
 const mapStateToProps = (state) => ({
   authenticated: state.auth.authenticated,
   userId: state.auth.userId,
+
   isLoading: loadingSelector(state),
   errorMessage: errorSelector(state),
 });
