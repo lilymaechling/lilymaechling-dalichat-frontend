@@ -180,6 +180,15 @@ const Settings = ({
           <div label="Authentication">
             <form onSubmit={handleSettingsUpdate}>
               <fieldset>
+                <legend>Sign Out</legend>
+                <Button
+                  label="Sign Out"
+                  onClick={() => history.push('/signout')}
+                  className="settings-signout-button"
+                />
+              </fieldset>
+
+              <fieldset>
                 <legend>Change Username</legend>
 
                 <div className="settings-input-container">
