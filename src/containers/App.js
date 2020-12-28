@@ -39,7 +39,7 @@ const App = ({
       <ErrorPopover />
 
       <Switch>
-        <Route exact path="/signin" render={SignInPanel} />
+        <Route exact path="/signin" component={SignInPanel} />
         <Route exact path="/signup" component={SignUpPanel} />
         <Route exact path="/signout" component={SignOutPanel} />
 
