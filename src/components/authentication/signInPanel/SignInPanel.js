@@ -2,16 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import ActionTypes from '../../../state/actionCreators';
-
+import ActionTypes from '../../../state/helpers';
 import Button from '../../generic/Button';
-import LoadingIcon from '../../generic/loadingIcon';
 
 import BannerImage from '../../../../public/images/auth_sidebar.png';
 import './SignInPanel.scss';
 
 const SignInPanel = ({
-  authenticated, isLoading, errorMessage,
+  authenticated, isLoading,
   history, setError, signInUser,
 }) => {
   const [username, setUsername] = React.useState('');
@@ -56,7 +54,6 @@ const SignInPanel = ({
         <p>Don&apos;t have an account? <Link to="/signup">Sign Up</Link></p>
         <p>Forgot your password? <a href="mailto:contact@dali.dartmouth.edu">Click Here</a></p>
       </form>
-      {isLoading ? <LoadingIcon /> : <p>{errorMessage}</p>}
     </div>
   );
 };

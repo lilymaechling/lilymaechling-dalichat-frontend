@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../state/actionCreators';
+import ActionTypes from '../../../state/helpers';
 import { createLoadingSelector, createErrorSelector, setError } from '../../../state/actionCreators/requestActionCreators';
 import { updateUserById } from '../../../state/actionCreators/userActionCreators';
 

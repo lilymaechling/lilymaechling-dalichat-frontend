@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../state/actionCreators';
+import ActionTypes from '../../../state/helpers';
 import { fetchUserPosts, createPost, deletePostById } from '../../../state/actionCreators/postActionCreators';
 import { postSearch } from '../../../state/actionCreators/searchActionCreators';
 import { createLoadingSelector, createErrorSelector } from '../../../state/actionCreators/requestActionCreators';

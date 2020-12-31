@@ -2,10 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import LoadingIcon from '../../generic/loadingIcon';
+import LoadingIcon from '../../generic/LoadingIcon';
 import Button from '../../generic/Button';
 
-import ActionTypes from '../../../state/actionCreators';
+import ActionTypes from '../../../state/helpers';
 import BannerImage from '../../../../public/images/auth_sidebar.png';
 
 import '../SignInPanel/SignInPanel.scss';

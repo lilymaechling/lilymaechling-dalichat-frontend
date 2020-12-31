@@ -4,12 +4,20 @@
 import ActionTypes, { requestStates } from '../helpers';
 
 // Initialize state to hold all successes (so state doesn't need to be "seeded" to reference request key type)
+const startLoading = [ActionTypes.AUTH_USER];
+
 const initialState = {
   current: '',
   ...Object.values(ActionTypes)
     .reduce((accum, type) => ({
-      ...accum, [type]: { loading: false, message: '', code: 200 },
+      ...accum,
+      [type]: { loading: false, message: '', code: 200 },
     }), {}),
+  ...startLoading
+    .reduce((accum, type) => ({
+      ...accum,
+      [type]: { loading: true, message: '', code: null },
+    }), []),
 };
 
 const reducer = (state = initialState, action) => {

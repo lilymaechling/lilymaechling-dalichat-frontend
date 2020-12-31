@@ -5,11 +5,12 @@ import {
 
 import AuthContent from './AuthContent';
 import ErrorPopover from '../generic/ErrorPopover';
+import LoadingIcon from '../generic/LoadingIcon';
 import LandingPage from '../pages/LandingPage';
 
-import SignUpPanel from '../authentication/signUpPanel';
-import SignInPanel from '../authentication/signInPanel';
-import SignOutPanel from '../authentication/signOutPanel';
+import SignUpPanel from '../authentication/SignUpPanel';
+import SignInPanel from '../authentication/SignInPanel';
+import SignOutPanel from '../authentication/SignOutPanel';
 
 import './App.scss';
 
@@ -25,29 +26,26 @@ import './App.scss';
  */
 
 const App = ({
-  authenticated, isLoading, errorMessage,
+  authenticated, isLoading,
 }) => {
   return (
     <Router>
       <ErrorPopover />
+      {isLoading ? <LoadingIcon /> : (
+        <Switch>
+          <Route exact path="/signin" component={SignInPanel} />
+          <Route exact path="/signup" component={SignUpPanel} />
+          <Route exact path="/signout" component={SignOutPanel} />
 
-      <Switch>
-        <Route exact path="/signin" component={SignInPanel} />
-        <Route exact path="/signup" component={SignUpPanel} />
-        <Route exact path="/signout" component={SignOutPanel} />
-
-        <Route
-          render={({ match, location, history }) => (
-            authenticated ? (
-              <AuthContent
-                match={match}
-                location={location}
-                history={history}
-              />
-            ) : <LandingPage />
-          )}
-        />
-      </Switch>
+          <Route
+            render={() => (
+              authenticated
+                ? <AuthContent />
+                : <LandingPage />
+            )}
+          />
+        </Switch>
+      )}
     </Router>
   );
 };

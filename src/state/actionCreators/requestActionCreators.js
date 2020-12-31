@@ -6,7 +6,7 @@ import ActionTypes, { requestStates } from '../helpers';
  */
 export const createLoadingSelector = (actions) => (state) => {
   // actions not passed as an array
-  if (!Array.isArray(actions)) { return () => false; }
+  if (!Array.isArray(actions)) { return false; }
 
   // Returns true only if all passed actions aren't loading
   return actions.some((action) => state.request?.[action]?.loading === true);

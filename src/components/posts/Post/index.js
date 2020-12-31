@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../state/actionCreators';
+import ActionTypes from '../../../state/helpers';
 import { likePost } from '../../../state/actionCreators/postActionCreators';
 import { createLoadingSelector } from '../../../state/actionCreators/requestActionCreators';
 

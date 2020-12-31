@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
 
-import reducers from './state/reducers';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+
 import { validateUserToken } from './state/actionCreators/authActionCreators';
 import ActionTypes, { requestStates } from './state/helpers';
-import { authTokenName } from './constants';
+import reducers from './state/reducers';
 
+import { authTokenName } from './constants';
 import App from './components/App';
+
 import './style.scss';
 
 // Initialize Redux DevTools support
