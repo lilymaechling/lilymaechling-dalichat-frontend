@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../state/helpers';
-import { createLoadingSelector } from '../../../state/actionCreators/requestActionCreators';
-import { postSearch } from '../../../state/actionCreators/searchActionCreators';
+import ActionTypes from '../../../store/helpers';
+import { createLoadingSelector } from '../../../store/actionCreators/requestActionCreators';
+import { postSearch } from '../../../store/actionCreators/searchActionCreators';
 
 import Explore from './Explore';
 

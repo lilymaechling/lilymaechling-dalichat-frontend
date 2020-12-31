@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../state/helpers';
-import { createLoadingSelector } from '../../state/actionCreators/requestActionCreators';
+import ActionTypes from '../../store/helpers';
+import { createLoadingSelector } from '../../store/actionCreators/requestActionCreators';
 
 import App from './App';
 

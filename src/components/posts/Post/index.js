@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { likePost } from '../../../state/actionCreators/postActionCreators';
+import { likePost } from '../../../store/actionCreators/postActionCreators';
 import Post from './Post';
 
 const mapStateToProps = (state) => ({

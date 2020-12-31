@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { signInUser } from '../../../state/actionCreators/authActionCreators';
-import { setError, clearError } from '../../../state/actionCreators/requestActionCreators';
+import { signInUser } from '../../../store/actionCreators/authActionCreators';
+import { setError, clearError } from '../../../store/actionCreators/requestActionCreators';
 
 import SignInPanel from './SignInPanel';
 

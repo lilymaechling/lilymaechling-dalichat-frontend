@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { clearCurrent } from '../../../state/actionCreators/requestActionCreators';
+import { clearCurrent } from '../../../store/actionCreators/requestActionCreators';
 import ErrorPopover from './ErrorPopover';
 
 const mapStateToProps = (state) => ({

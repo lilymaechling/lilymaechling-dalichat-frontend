@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
-import ActionTypes from '../../../state/helpers';
-import { fetchUserPosts, createPost, deletePostById } from '../../../state/actionCreators/postActionCreators';
-import { postSearch } from '../../../state/actionCreators/searchActionCreators';
-import { createLoadingSelector } from '../../../state/actionCreators/requestActionCreators';
+import ActionTypes from '../../../store/helpers';
+import { fetchUserPosts, createPost, deletePostById } from '../../../store/actionCreators/postActionCreators';
+import { postSearch } from '../../../store/actionCreators/searchActionCreators';
+import { createLoadingSelector } from '../../../store/actionCreators/requestActionCreators';
 
 import Home from './Home';
 

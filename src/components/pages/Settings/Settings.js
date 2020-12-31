@@ -2,7 +2,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-import ActionTypes from '../../../state/helpers';
+import ActionTypes from '../../../store/helpers';
 
 import HeaderImage from '../../layout/HeaderImage';
 import Button from '../../generic/Button';

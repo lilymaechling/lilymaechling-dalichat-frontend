@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { setError, clearError } from '../../../state/actionCreators/requestActionCreators';
-import { updateUserById } from '../../../state/actionCreators/userActionCreators';
+import { setError, clearError } from '../../../store/actionCreators/requestActionCreators';
+import { updateUserById } from '../../../store/actionCreators/userActionCreators';
 
 import Settings from './Settings';
 

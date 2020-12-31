@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from '../../generic/Button';
-import ActionTypes from '../../../state/helpers';
+import ActionTypes from '../../../store/helpers';
 import BannerImage from '../../../../public/images/auth_sidebar.png';
 
 import '../SignInPanel/SignInPanel.scss';

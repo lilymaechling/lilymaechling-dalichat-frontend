@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { signUpUser } from '../../../state/actionCreators/authActionCreators';
-import { setError, clearError } from '../../../state/actionCreators/requestActionCreators';
+import { signUpUser } from '../../../store/actionCreators/authActionCreators';
+import { setError, clearError } from '../../../store/actionCreators/requestActionCreators';
 
 import SignUpPanel from './SignUpPanel';
 

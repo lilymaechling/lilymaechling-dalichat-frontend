@@ -5,9 +5,9 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import { validateUserToken } from './state/actionCreators/authActionCreators';
-import ActionTypes, { requestStates } from './state/helpers';
-import reducers from './state/reducers';
+import { validateUserToken } from './store/actionCreators/authActionCreators';
+import ActionTypes, { requestStates } from './store/helpers';
+import reducers from './store/reducers';
 
 import { authTokenName } from './constants';
 import App from './components/App';

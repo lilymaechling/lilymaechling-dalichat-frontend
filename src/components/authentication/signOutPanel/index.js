@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { signOutUser } from '../../../state/actionCreators/authActionCreators';
+import { signOutUser } from '../../../store/actionCreators/authActionCreators';
 
 import SignOutPanel from './SignOutPanel';
 
