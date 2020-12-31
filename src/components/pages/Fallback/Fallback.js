@@ -7,9 +7,7 @@ import HeaderImage from '../../layout/HeaderImage';
 import { generateMetaTitleFromPage } from '../../../constants';
 import './Fallback.scss';
 
-const Fallback = ({
-  user, history, location, match,
-}) => (
+const Fallback = ({ user, history }) => (
   <div id="fallback-container">
     <Helmet>
       <title>{generateMetaTitleFromPage('Page Not Found')}</title>
@@ -28,7 +26,6 @@ const Fallback = ({
         onClick={() => history.push('/')}
       />
     </main>
-    {/* <div>Uh oh... URL Not Found! Please contact the system administrator.</div> */}
   </div>
 );
 

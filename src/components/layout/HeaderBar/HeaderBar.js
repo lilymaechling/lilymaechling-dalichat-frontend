@@ -6,9 +6,7 @@ import SearchDark from '../../../../public/icons/search_dark.svg';
 
 import './HeaderBar.scss';
 
-const HeaderBar = ({
-  user, match, location, history,
-}) => {
+const HeaderBar = ({ user, location, history }) => {
   const [query, setQuery] = React.useState(queryString.parse(location.search.slice(1))?.query || '');
 
   const onSubmit = async (e) => {

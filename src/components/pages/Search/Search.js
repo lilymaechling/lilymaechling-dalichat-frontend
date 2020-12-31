@@ -12,8 +12,8 @@ import { generateMetaTitleFromPage } from '../../../constants';
 import './Search.scss';
 
 const Search = ({
-  userId, user, users, posts, postResults, userResults, history,
-  isLoading, errorMessage, postSearch, userSearch,
+  user, posts, postResults, userResults, history,
+  postsLoading, usersLoading, postSearch, userSearch,
 }) => {
   const [activeTab, setActiveTab] = React.useState('Featured Posts');
   const query = queryString.parse(history.location.search.slice(1))?.query || '';
@@ -35,47 +35,48 @@ const Search = ({
       />
 
       <main id="search-content-container">
-        {isLoading
-          ? <LoadingIcon />
-          : (
-            <div className="search-tabgroup-container">
-              {userResults.length ? userResults.map((userResult) => (
-                <TabGroup
-                  user={userResult}
-                  activeTab={activeTab}
-                  setActiveTab={setActiveTab}
-                  key={userResult._id}
-                >
-                  <div label="Featured Posts">
-                    {userResult.posts.map((postId) => (
-                      <Post
-                        postContent={posts?.[postId] || {}}
-                        className="search-post"
-                        key={postId}
-                      />
-                    ))}
-                  </div>
-                </TabGroup>
+        <div className="search-tabgroup-container">
+          {userResults.length ? userResults.map((userResult) => (
+            <TabGroup
+              user={userResult}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              key={userResult._id}
+            >
+              <div label="Featured Posts">
+                {usersLoading ? <LoadingIcon />
+                  : userResult.posts.map((postId) => (
+                    <Post
+                      postContent={posts?.[postId] || {}}
+                      className="search-post"
+                      key={postId}
+                    />
+                  ))}
+              </div>
+            </TabGroup>
+          )) : (
+            <p className="search-noresults-container">
+              No user results found for query &quot;{query}&quot;
+            </p>
+          )}
+
+          <div>
+            {/* eslint-disable-next-line no-nested-ternary */}
+            {postsLoading ? <LoadingIcon />
+              : (postResults.length ? postResults.map((post) => (
+                <Post
+                  postContent={post}
+                  className="search-post"
+                  key={post._id}
+                />
               )) : (
                 <p className="search-noresults-container">
-                  No user results found for query &quot;{query}&quot;
+                  No post results found for query &quot;{query}&quot;
                 </p>
+              )
               )}
-              <div>
-                {postResults.length ? postResults.map((post) => (
-                  <Post
-                    postContent={post}
-                    className="search-post"
-                    key={post._id}
-                  />
-                )) : (
-                  <p className="search-noresults-container">
-                    No post results found for query &quot;{query}&quot;
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
+          </div>
+        </div>
       </main>
     </div>
   );

@@ -15,7 +15,7 @@ import FileDelete from '../../../../public/icons/file-delete.svg';
 import './Home.scss';
 
 const Home = ({
-  userId, user, postResults, isLoading, errorMessage,
+  userId, user, postResults, postsLoading,
   fetchUserPosts, postSearch, createPost, deletePostById,
 }) => {
   const [activeTab, setActiveTab] = React.useState('Your Posts');
@@ -52,69 +52,65 @@ const Home = ({
         className="home-header-image"
       />
 
-      {isLoading
-        ? <LoadingIcon />
-        : (
-          <main id="home-content-container">
-            <div id="home-left-container">
-              <ProfileCard
-                fullName={fullName}
-                profileUrl={profileUrl}
-                username={username}
-                blurb={blurb}
-                portfolioUrl={portfolioUrl}
-                numPosts={numPosts}
-                uid={userId}
-                className="home-profile-container"
-              />
+      <main id="home-content-container">
+        <div id="home-left-container">
+          <ProfileCard
+            fullName={fullName}
+            profileUrl={profileUrl}
+            username={username}
+            blurb={blurb}
+            portfolioUrl={portfolioUrl}
+            numPosts={numPosts}
+            uid={userId}
+            className="home-profile-container"
+          />
 
-              <PostCreate
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                onSubmit={onPostSubmit}
-                className="home-post-create"
-              />
-            </div>
+          <PostCreate
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            onSubmit={onPostSubmit}
+            className="home-post-create"
+          />
+        </div>
 
-            <TabContainer
-              user={user}
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            >
-              <div label="Your Posts">
-                {postResults.map((post) => (
-                  <div key={post._id} className="home-post-container">
-                    <Post
-                      postContent={post}
-                      className="home-post delete"
-                    />
-                    <button
-                      type="button"
-                      className="home-post-delete"
-                      onClick={() => deletePostById(post._id)}
-                    >
-                      <FileDelete />
-                      <p>Delete Post</p>
-                    </button>
-                  </div>
-                ))}
-              </div>
+        <TabContainer
+          user={user}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        >
+          <div label="Your Posts">
+            {postsLoading ? <LoadingIcon />
+              : postResults.map((post) => (
+                <div key={post._id} className="home-post-container">
+                  <Post
+                    postContent={post}
+                    className="home-post delete"
+                  />
+                  <button
+                    type="button"
+                    className="home-post-delete"
+                    onClick={() => deletePostById(post._id)}
+                  >
+                    <FileDelete />
+                    <p>Delete Post</p>
+                  </button>
+                </div>
+              ))}
+          </div>
 
-              <div label="New Posts">
-                {isLoading
-                  ? <LoadingIcon />
-                  : postResults.map((post) => (
-                    <div key={post._id} className="home-post-container">
-                      <Post
-                        postContent={post}
-                        className="home-post"
-                      />
-                    </div>
-                  ))}
-              </div>
-            </TabContainer>
-          </main>
-        )}
+          <div label="New Posts">
+            {postsLoading ? <LoadingIcon />
+              : postResults.map((post) => (
+                <div key={post._id} className="home-post-container">
+                  <Post
+                    postContent={post}
+                    className="home-post"
+                  />
+                </div>
+              ))}
+          </div>
+        </TabContainer>
+      </main>
     </div>
   );
 };

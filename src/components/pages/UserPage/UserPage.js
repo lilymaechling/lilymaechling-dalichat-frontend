@@ -13,8 +13,7 @@ import { generateMetaTitleFromPage } from '../../../constants';
 import './UserPage.scss';
 
 const UserPage = ({
-  match, location, history,
-  user, userPosts, userIsLoading, postsAreLoading,
+  match, history, user, userPosts, userLoading, postsLoading,
   fetchUserById, fetchUserPosts,
 }) => {
   const { id } = match.params;
@@ -31,7 +30,7 @@ const UserPage = ({
         <title>{generateMetaTitleFromPage(user?.fullName || 'User Not Found')}</title>
       </Helmet>
 
-      {userIsLoading || user ? (
+      {userLoading || user ? (
         <>
           <HeaderImage
             backgroundUrl={user?.backgroundUrl}
@@ -39,7 +38,7 @@ const UserPage = ({
           />
 
           <main id="user-page-content-container">
-            {userIsLoading
+            {userLoading
               ? <LoadingIcon />
               : (
                 <TabGroup
@@ -48,7 +47,7 @@ const UserPage = ({
                   user={user || {}}
                 >
                   <div label="Featured Posts">
-                    {postsAreLoading
+                    {postsLoading
                       ? <LoadingIcon />
                       : userPosts.map((post) => (
                         <Post
@@ -62,13 +61,7 @@ const UserPage = ({
               )}
           </main>
         </>
-      ) : (
-        <Fallback
-          history={history}
-          match={match}
-          location={location}
-        />
-      )}
+      ) : <Fallback history={history} />}
     </div>
   );
 };

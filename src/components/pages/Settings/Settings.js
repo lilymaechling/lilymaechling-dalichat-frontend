@@ -17,8 +17,8 @@ const tabs = {
 };
 
 const Settings = ({
-  userId, user, match, location, history,
-  isLoading, errorMessage, updateUserById, setError,
+  user, match, history,
+  setError, clearError, updateUserById,
 }) => {
   // Sets default tab to 'Personalization' if match param 'tab' is invalid
   const [activeTab, setActiveTab] = React.useState(tabs?.[match?.params?.tab?.toLowerCase()] || tabs.personalization);
@@ -58,14 +58,14 @@ const Settings = ({
         } else if (!passwordsMatch) {
           setError(ActionTypes.FETCH_USER, 'Passwords don\'t match');
         } else {
+          clearError(ActionTypes.FETCH_USER);
           updateUserById(user._id, {
             username, authPassword: oldPassword, password: newPassword,
           }, { successCallback: () => window.location.reload() });
         }
         break;
       default:
-        // eslint-disable-next-line no-console
-        console.error('No registered tab selected');
+        throw new Error('Selected tab not caught');
     }
   };
 

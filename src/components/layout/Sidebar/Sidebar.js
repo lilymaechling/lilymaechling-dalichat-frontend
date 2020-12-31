@@ -15,7 +15,7 @@ import SettingsInactive from '../../../../public/icons/settings.svg';
 
 import './Sidebar.scss';
 
-const Sidebar = ({ match, location, history }) => (
+const Sidebar = ({ location }) => (
   <div id="sidebar-container">
     <Link to="/" id="sidebar-logo">
       <SidebarLogo />
@@ -27,7 +27,7 @@ const Sidebar = ({ match, location, history }) => (
         label="Home"
         key="home"
         active={location.pathname === '/'}
-        render={(className, active) => (active ? <HomeActive /> : <HomeInactive />
+        render={(_className, active) => (active ? <HomeActive /> : <HomeInactive />
         )}
       />
 
@@ -36,7 +36,7 @@ const Sidebar = ({ match, location, history }) => (
         label="Search"
         hey="search"
         active={location.pathname === '/search'}
-        render={(className, active) => (active ? <SearchActive /> : <SearchInactive />)}
+        render={(_className, active) => (active ? <SearchActive /> : <SearchInactive />)}
       />
 
       <SidebarIcon
@@ -44,7 +44,7 @@ const Sidebar = ({ match, location, history }) => (
         label="Explore"
         key="explore"
         active={location.pathname === '/explore'}
-        render={(className, active) => (active ? <ExploreActive /> : <ExploreInactive />
+        render={(_className, active) => (active ? <ExploreActive /> : <ExploreInactive />
         )}
       />
 
@@ -53,7 +53,7 @@ const Sidebar = ({ match, location, history }) => (
         label="Settings"
         key="settings"
         active={location.pathname === '/settings'}
-        render={(className, active) => (active ? <SettingsActive /> : <SettingsInactive />
+        render={(_className, active) => (active ? <SettingsActive /> : <SettingsInactive />
         )}
       />
     </nav>

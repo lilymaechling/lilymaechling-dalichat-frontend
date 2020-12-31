@@ -9,23 +9,24 @@ import BannerImage from '../../../../public/images/auth_sidebar.png';
 import './SignInPanel.scss';
 
 const SignInPanel = ({
-  authenticated, isLoading,
-  history, setError, signInUser,
+  authenticated, history,
+  setError, clearError, signInUser,
 }) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   React.useEffect(() => { if (authenticated) { history.push('/'); } }, [authenticated]);
 
+  // ?: This is being removed from DOM and reloaded to DOM on AUTH_USER request
   const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (!username) {
-      setError([ActionTypes.AUTH_USER], 'Please enter a username!');
+      setError(ActionTypes.AUTH_USER, 'Please enter a username!');
     } else if (!password) {
-      setError([ActionTypes.AUTH_USER], 'Please enter a password!');
+      setError(ActionTypes.AUTH_USER, 'Please enter a password!');
     } else {
-      // Send only if all fields filled in
+      clearError(ActionTypes.AUTH_USER);
       signInUser(username, password);
     }
   };
@@ -41,12 +42,12 @@ const SignInPanel = ({
 
         <div className="signin-input-container">
           <label htmlFor="signin-username">Username</label>
-          <input id="signin-username" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+          <input id="signin-username" type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
         </div>
 
         <div className="signin-input-container">
           <label htmlFor="signin-password">Password</label>
-          <input id="signin-password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <input id="signin-password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
 
         <Button label="Sign In" isSubmit className="signin-submit-button" />

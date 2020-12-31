@@ -2,41 +2,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import LoadingIcon from '../../generic/LoadingIcon';
 import Button from '../../generic/Button';
-
 import ActionTypes from '../../../state/helpers';
 import BannerImage from '../../../../public/images/auth_sidebar.png';
 
 import '../SignInPanel/SignInPanel.scss';
 
 const SignUpPanel = ({
-  authenticated, isLoading, errorMessage,
-  history, setError, signUpUser,
+  authenticated, history, setError, clearError, signUpUser,
 }) => {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
+
   React.useEffect(() => { if (authenticated) { history.push('/'); } }, [authenticated]);
 
+  // ?: This is being removed from DOM and reloaded to DOM on AUTH_USER request
   const handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     if (!firstName) {
-      setError([ActionTypes.AUTH_USER], 'Please enter your first name!');
+      setError(ActionTypes.AUTH_USER, 'Please enter your first name!');
     } else if (!lastName) {
-      setError([ActionTypes.AUTH_USER], 'Please enter your last name!');
+      setError(ActionTypes.AUTH_USER, 'Please enter your last name!');
     } else if (!email) {
-      setError([ActionTypes.AUTH_USER], 'Please enter an email address!');
+      setError(ActionTypes.AUTH_USER, 'Please enter an email address!');
     } else if (!username) {
-      setError([ActionTypes.AUTH_USER], 'Please enter a username!');
+      setError(ActionTypes.AUTH_USER, 'Please enter a username!');
     } else if (!password) {
-      setError([ActionTypes.AUTH_USER], 'Please enter a password!');
+      setError(ActionTypes.AUTH_USER, 'Please enter a password!');
     } else {
-      // Send only if all fields filled in
+      clearError(ActionTypes.AUTH_USER);
       signUpUser(email, username, password, firstName, lastName);
     }
   };
@@ -56,7 +55,6 @@ const SignUpPanel = ({
             placeholder="First Name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            required
           />
         </div>
 
@@ -68,7 +66,6 @@ const SignUpPanel = ({
             placeholder="Last Name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            required
           />
         </div>
 
@@ -80,7 +77,6 @@ const SignUpPanel = ({
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
         </div>
 
@@ -92,7 +88,6 @@ const SignUpPanel = ({
             placeholder="Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
           />
         </div>
 
@@ -104,7 +99,6 @@ const SignUpPanel = ({
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
         </div>
 
@@ -112,7 +106,6 @@ const SignUpPanel = ({
 
         <p>Already have an account? <Link to="/signin">Sign In</Link></p>
       </form>
-      {isLoading ? <LoadingIcon /> : <p>{errorMessage}</p>}
     </div>
   );
 };

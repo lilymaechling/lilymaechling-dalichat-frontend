@@ -3,7 +3,7 @@ import ErrorOutline from '../../../../public/icons/error_outline.svg';
 import './ErrorPopover.scss';
 
 const ErrorPopover = ({
-  errorMessage, errorType = '', clearCurrent,
+  errorMessage, errorTitle = '', clearCurrent,
 }) => {
   React.useEffect(() => {
     if (errorMessage) {
@@ -19,7 +19,7 @@ const ErrorPopover = ({
     <div id="error-popover-container" className={errorMessage ? ' active' : ''}>
       <div id="error-title-container">
         <ErrorOutline />
-        <p id="error-title">{errorType ? `${errorType} Error` : 'Error'}</p>
+        <p id="error-title">{errorTitle || 'Error'}</p>
       </div>
 
       <p id="error-content">{errorMessage}</p>

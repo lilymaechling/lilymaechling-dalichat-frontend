@@ -11,8 +11,7 @@ import { generateMetaTitleFromPage } from '../../../constants';
 import './Explore.scss';
 
 const Explore = ({
-  userId, user, postResults,
-  isLoading, errorMessage, postSearch,
+  user, postResults, postsLoading, postSearch,
 }) => {
   const [activeTab, setActiveTab] = React.useState('New Posts');
   React.useEffect(() => {
@@ -35,34 +34,32 @@ const Explore = ({
       />
 
       <main id="explore-content-container">
-        {isLoading
-          ? <LoadingIcon />
-          : (
-            <TabContainer
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            >
-              <div label="New Posts">
-                {postResults.map((post) => (
-                  <Post
-                    postContent={post}
-                    className="explore-post"
-                    key={post._id}
-                  />
-                ))}
-              </div>
+        <TabContainer
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        >
+          <div label="New Posts">
+            {postsLoading ? <LoadingIcon />
+              : postResults.map((post) => (
+                <Post
+                  postContent={post}
+                  className="explore-post"
+                  key={post._id}
+                />
+              ))}
+          </div>
 
-              <div label="Popular Posts">
-                {postResults.map((post) => (
-                  <Post
-                    postContent={post}
-                    className="explore-post"
-                    key={post._id}
-                  />
-                ))}
-              </div>
-            </TabContainer>
-          )}
+          <div label="Popular Posts">
+            {postsLoading ? <LoadingIcon />
+              : postResults.map((post) => (
+                <Post
+                  postContent={post}
+                  className="explore-post"
+                  key={post._id}
+                />
+              ))}
+          </div>
+        </TabContainer>
       </main>
     </div>
   );
