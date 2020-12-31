@@ -1,8 +1,9 @@
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const env = process.env.NODE_ENV || 'development';
+// set to 'production' or 'development' in your env
+
 const finalCSSLoader = (env === 'production') ? MiniCssExtractPlugin.loader : { loader: 'style-loader' };
 const autoprefixer = require('autoprefixer');
 
@@ -81,7 +82,6 @@ module.exports = {
       favicon: './public/favicon.png',
       filename: './200.html',
     }),
-    new webpack.HotModuleReplacementPlugin({}), // * Not fully implemented
     autoprefixer,
   ],
 
