@@ -1,4 +1,4 @@
-import { authTokenName } from '../constants';
+import { authTokenName } from '../utils';
 
 /**
  * All necessary action types for updating redux state with CRUD actions

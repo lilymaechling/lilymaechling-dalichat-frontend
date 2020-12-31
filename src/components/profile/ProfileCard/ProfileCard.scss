@@ -1,4 +1,4 @@
-@import '../../../constants/variables.scss';
+@import "../../../utils/variables.scss";
 
 .profile-card-container {
   display: flex;
@@ -27,7 +27,7 @@
   .portfolio-card-name {
     margin: 0px 0px 3px;
     text-decoration: none;
-    
+
     color: $dark-gray;
     text-align: center;
     font-weight: 600;
@@ -44,7 +44,8 @@
     font-size: 12px;
   }
 
-  p, a {
+  p,
+  a {
     margin: 9px 0px 0px;
     text-align: center;
     color: $dark-gray;

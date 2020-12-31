@@ -9,7 +9,7 @@ import HeaderImage from '../../layout/HeaderImage';
 import Post from '../../posts/Post';
 import TabGroup from '../../tabs/TabGroup';
 
-import { generateMetaTitleFromPage } from '../../../constants';
+import { generateMetaTitleFromPage } from '../../../utils';
 import './UserPage.scss';
 
 const UserPage = ({

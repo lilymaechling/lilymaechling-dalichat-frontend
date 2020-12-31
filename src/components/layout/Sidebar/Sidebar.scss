@@ -1,9 +1,9 @@
-@import '../../../constants/variables.scss';
+@import "../../../utils/variables.scss";
 
 #sidebar-container {
   position: relative;
   z-index: 10;
-  
+
   padding-top: 99px;
   box-sizing: border-box;
   width: 216px;

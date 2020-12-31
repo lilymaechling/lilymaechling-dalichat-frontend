@@ -1,8 +1,8 @@
-@import '../../../constants/variables.scss';
+@import "../../../utils/variables.scss";
 
 .header-image-container {
   width: 100%;
-  
+
   .header-image {
     width: 100%;
     object-fit: cover;

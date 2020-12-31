@@ -1,4 +1,4 @@
-@import '../../../constants/variables.scss';
+@import "../../../utils/variables.scss";
 
 #settings-container {
   display: flex;
@@ -10,42 +10,45 @@
 
   #settings-content-container {
     @include page-layout;
-    
+
     display: flex;
     flex-direction: column;
 
     form {
       font-family: $open-sans;
-  
+
       fieldset {
         margin-bottom: 12px;
-        &:last-child { margin-bottom: 0px; }
+        &:last-child {
+          margin-bottom: 0px;
+        }
         padding: 0px;
         border: none;
-  
+
         legend {
           margin-bottom: 18px;
           color: $dark-gray;
           font-weight: 400;
           font-size: 15px;
-  
+
           padding: 0px;
         }
-  
+
         .settings-input-container {
           display: flex;
           flex-direction: column;
           margin-bottom: 18px;
-          
+
           color: $dark-gray;
           font-weight: 400;
           font-size: 12px;
-          
+
           label {
             @include label-styling;
           }
-        
-          input, textarea {
+
+          input,
+          textarea {
             @include input-styling;
           }
         }

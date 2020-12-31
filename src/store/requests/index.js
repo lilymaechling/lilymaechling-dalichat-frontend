@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { requestTimeout, BACKEND_URL } from '../../constants';
+import { requestTimeout, BACKEND_URL } from '../../utils';
 
 // See here: https://github.com/axios/axios#creating-an-instance
 const backendAxiosInstance = axios.create({

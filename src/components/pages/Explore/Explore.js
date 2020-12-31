@@ -7,7 +7,7 @@ import Post from '../../posts/Post';
 import LoadingIcon from '../../generic/LoadingIcon';
 import HeaderImage from '../../layout/HeaderImage';
 
-import { generateMetaTitleFromPage } from '../../../constants';
+import { generateMetaTitleFromPage } from '../../../utils';
 import './Explore.scss';
 
 const Explore = ({

@@ -9,7 +9,7 @@ import { validateUserToken } from './store/actionCreators/authActionCreators';
 import ActionTypes, { requestStates } from './store/helpers';
 import reducers from './store/reducers';
 
-import { authTokenName } from './constants';
+import { authTokenName } from './utils';
 import App from './components/App';
 
 import './style.scss';

@@ -8,7 +8,7 @@ import HeaderImage from '../../layout/HeaderImage';
 import Button from '../../generic/Button';
 import TabContainer from '../../tabs/TabContainer';
 
-import { generateMetaTitleFromPage } from '../../../constants';
+import { generateMetaTitleFromPage } from '../../../utils';
 import './Settings.scss';
 
 const tabs = {

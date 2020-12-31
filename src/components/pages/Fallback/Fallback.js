@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 import Button from '../../generic/Button';
 import HeaderImage from '../../layout/HeaderImage';
 
-import { generateMetaTitleFromPage } from '../../../constants';
+import { generateMetaTitleFromPage } from '../../../utils';
 import './Fallback.scss';
 
 const Fallback = ({ user, history }) => (

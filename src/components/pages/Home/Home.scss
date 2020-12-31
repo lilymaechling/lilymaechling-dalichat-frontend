@@ -1,4 +1,4 @@
-@import '../../../constants/variables.scss';
+@import "../../../utils/variables.scss";
 
 #home-container {
   display: flex;
@@ -8,10 +8,10 @@
   .home-header-image {
     @include header-image;
   }
-  
+
   #home-content-container {
     @include page-layout;
-    
+
     display: flex;
     flex-direction: row;
 
@@ -20,7 +20,7 @@
       flex-direction: column;
       margin-bottom: auto;
       padding-right: 24px;
-  
+
       .home-profile-container {
         margin-bottom: 24px;
       }
@@ -33,11 +33,15 @@
   flex-direction: column;
 
   margin-bottom: 30px;
-  &:last-child { margin-bottom: 0px; }
+  &:last-child {
+    margin-bottom: 0px;
+  }
 
   &.delete {
     margin-bottom: calc(#{$post-margin} - 9px);
-    &:last-child { margin-bottom: 0px; }
+    &:last-child {
+      margin-bottom: 0px;
+    }
   }
 
   .home-post-delete {
@@ -55,7 +59,7 @@
     svg {
       margin: auto 0px;
     }
-    
+
     p {
       margin: 0px 0px 0px 6px;
       color: $mid-gray;

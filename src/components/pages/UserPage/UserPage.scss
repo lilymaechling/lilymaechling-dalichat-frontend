@@ -1,16 +1,16 @@
-@import '../../../constants/variables.scss';
+@import "../../../utils/variables.scss";
 
 #user-page-container {
   display: flex;
   flex-direction: column;
-  
+
   .user-page-header-image {
     @include header-image;
   }
-  
+
   #user-page-content-container {
     @include page-layout;
-    
+
     display: flex;
     flex-direction: row;
   }
@@ -18,5 +18,7 @@
 
 .user-page-post {
   margin-bottom: $post-margin;
-  &:last-child { margin-bottom: 0px; }
+  &:last-child {
+    margin-bottom: 0px;
+  }
 }

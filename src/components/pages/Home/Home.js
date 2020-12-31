@@ -9,7 +9,7 @@ import PostCreate from '../../posts/PostCreate';
 import Post from '../../posts/Post';
 import TabContainer from '../../tabs/TabContainer';
 
-import { generateMetaTitleFromPage } from '../../../constants';
+import { generateMetaTitleFromPage } from '../../../utils';
 import FileDelete from '../../../../public/icons/file-delete.svg';
 
 import './Home.scss';

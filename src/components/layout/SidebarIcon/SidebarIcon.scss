@@ -1,4 +1,4 @@
-@import '../../../constants/variables.scss';
+@import "../../../utils/variables.scss";
 
 .sidebar-icon-container {
   display: flex;
@@ -15,9 +15,11 @@
 
   &.active {
     border-left: 2px solid $blue;
-    svg { margin-left: 28px; }
+    svg {
+      margin-left: 28px;
+    }
   }
-  
+
   svg {
     margin: 3px 0px 3px 30px;
   }
