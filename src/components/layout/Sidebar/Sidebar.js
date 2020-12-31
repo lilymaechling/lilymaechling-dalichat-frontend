@@ -15,51 +15,49 @@ import SettingsInactive from '../../../../public/icons/settings.svg';
 
 import './Sidebar.scss';
 
-const Sidebar = ({ match, location, history }) => {
-  return (
-    <div id="sidebar-container">
-      <Link to="/" id="sidebar-logo">
-        <SidebarLogo />
-      </Link>
+const Sidebar = ({ match, location, history }) => (
+  <div id="sidebar-container">
+    <Link to="/" id="sidebar-logo">
+      <SidebarLogo />
+    </Link>
 
-      <nav>
-        <SidebarIcon
-          to="/"
-          label="Home"
-          key="home"
-          active={location.pathname === '/'}
-          render={(className, active) => (active ? <HomeActive /> : <HomeInactive />
-          )}
-        />
+    <nav>
+      <SidebarIcon
+        to="/"
+        label="Home"
+        key="home"
+        active={location.pathname === '/'}
+        render={(className, active) => (active ? <HomeActive /> : <HomeInactive />
+        )}
+      />
 
-        <SidebarIcon
-          to="/search"
-          label="Search"
-          hey="search"
-          active={location.pathname === '/search'}
-          render={(className, active) => (active ? <SearchActive /> : <SearchInactive />)}
-        />
+      <SidebarIcon
+        to="/search"
+        label="Search"
+        hey="search"
+        active={location.pathname === '/search'}
+        render={(className, active) => (active ? <SearchActive /> : <SearchInactive />)}
+      />
 
-        <SidebarIcon
-          to="/explore"
-          label="Explore"
-          key="explore"
-          active={location.pathname === '/explore'}
-          render={(className, active) => (active ? <ExploreActive /> : <ExploreInactive />
-          )}
-        />
+      <SidebarIcon
+        to="/explore"
+        label="Explore"
+        key="explore"
+        active={location.pathname === '/explore'}
+        render={(className, active) => (active ? <ExploreActive /> : <ExploreInactive />
+        )}
+      />
 
-        <SidebarIcon
-          to="/settings"
-          label="Settings"
-          key="settings"
-          active={location.pathname === '/settings'}
-          render={(className, active) => (active ? <SettingsActive /> : <SettingsInactive />
-          )}
-        />
-      </nav>
-    </div>
-  );
-};
+      <SidebarIcon
+        to="/settings"
+        label="Settings"
+        key="settings"
+        active={location.pathname === '/settings'}
+        render={(className, active) => (active ? <SettingsActive /> : <SettingsInactive />
+        )}
+      />
+    </nav>
+  </div>
+);
 
 export default Sidebar;

@@ -39,28 +39,24 @@ const Search = ({
           ? <LoadingIcon />
           : (
             <div className="search-tabgroup-container">
-              {userResults.length ? userResults.map((userResult) => {
-                return (
-                  <TabGroup
-                    user={userResult}
-                    activeTab={activeTab}
-                    setActiveTab={setActiveTab}
-                    key={userResult._id}
-                  >
-                    <div label="Featured Posts">
-                      {userResult.posts.map((postId) => {
-                        return (
-                          <Post
-                            postContent={posts?.[postId] || {}}
-                            className="search-post"
-                            key={postId}
-                          />
-                        );
-                      })}
-                    </div>
-                  </TabGroup>
-                );
-              }) : (
+              {userResults.length ? userResults.map((userResult) => (
+                <TabGroup
+                  user={userResult}
+                  activeTab={activeTab}
+                  setActiveTab={setActiveTab}
+                  key={userResult._id}
+                >
+                  <div label="Featured Posts">
+                    {userResult.posts.map((postId) => (
+                      <Post
+                        postContent={posts?.[postId] || {}}
+                        className="search-post"
+                        key={postId}
+                      />
+                    ))}
+                  </div>
+                </TabGroup>
+              )) : (
                 <p className="search-noresults-container">
                   No user results found for query &quot;{query}&quot;
                 </p>

@@ -27,27 +27,25 @@ import './App.scss';
 
 const App = ({
   authenticated, isLoading,
-}) => {
-  return (
-    <Router>
-      <ErrorPopover />
-      {isLoading ? <LoadingIcon /> : (
-        <Switch>
-          <Route exact path="/signin" component={SignInPanel} />
-          <Route exact path="/signup" component={SignUpPanel} />
-          <Route exact path="/signout" component={SignOutPanel} />
+}) => (
+  <Router>
+    <ErrorPopover />
+    {isLoading ? <LoadingIcon /> : (
+      <Switch>
+        <Route exact path="/signin" component={SignInPanel} />
+        <Route exact path="/signup" component={SignUpPanel} />
+        <Route exact path="/signout" component={SignOutPanel} />
 
-          <Route
-            render={() => (
-              authenticated
-                ? <AuthContent />
-                : <LandingPage />
-            )}
-          />
-        </Switch>
-      )}
-    </Router>
-  );
-};
+        <Route
+          render={() => (
+            authenticated
+              ? <AuthContent />
+              : <LandingPage />
+          )}
+        />
+      </Switch>
+    )}
+  </Router>
+);
 
 export default App;

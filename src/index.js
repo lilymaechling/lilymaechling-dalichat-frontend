@@ -21,9 +21,7 @@ const store = createStore(reducers, {}, compose(
 ));
 
 // Check if auth token is present in browser
-const getTokenFromLocalStorage = async () => {
-  return localStorage.getItem(authTokenName);
-};
+const getTokenFromLocalStorage = async () => localStorage.getItem(authTokenName);
 
 getTokenFromLocalStorage().then(async (authToken) => {
   if (authToken) { // User has previous authentication token

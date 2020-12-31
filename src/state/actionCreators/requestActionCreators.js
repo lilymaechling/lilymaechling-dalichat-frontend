@@ -34,9 +34,7 @@ export const createErrorSelector = (actions) => (state) => {
  * @param {*} errorMessage
  */
 export function setError(action, errorMessage) {
-  return (dispatch) => {
-    return dispatch({ type: `${action}_${requestStates.FAILURE}`, payload: { message: errorMessage } });
-  };
+  return (dispatch) => dispatch({ type: `${action}_${requestStates.FAILURE}`, payload: { message: errorMessage } });
 }
 
 /**
@@ -44,16 +42,12 @@ export function setError(action, errorMessage) {
  * @param {*} action
  */
 export function clearError(action) {
-  return (dispatch) => {
-    return dispatch({ type: `${action}_${requestStates.CLEAR_ERR}`, payload: { message: '' } });
-  };
+  return (dispatch) => dispatch({ type: `${action}_${requestStates.CLEAR_ERR}`, payload: { message: '' } });
 }
 
 /**
  * Clears current error message held in redux state
  */
 export function clearCurrent() {
-  return (dispatch) => {
-    return dispatch({ type: ActionTypes.CLEAR_CURRENT });
-  };
+  return (dispatch) => dispatch({ type: ActionTypes.CLEAR_CURRENT });
 }
