@@ -1,0 +1,20 @@
+@import '../../../constants/variables.scss';
+
+#sidebar-container {
+  position: relative;
+  z-index: 10;
+  
+  padding-top: 99px;
+  box-sizing: border-box;
+  width: 216px;
+  height: 100vh;
+
+  box-shadow: 0px 4px 10px rgba(94, 99, 102, 0.125);
+  background: $white;
+
+  #sidebar-logo > svg {
+    position: absolute;
+    left: 30px;
+    top: 24px;
+  }
+}
