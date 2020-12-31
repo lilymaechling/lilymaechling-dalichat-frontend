@@ -1,76 +1,10 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 
 import ActionTypes from '../../../state/actionCreators';
 import { createLoadingSelector, createErrorSelector } from '../../../state/actionCreators/requestActionCreators';
 import { postSearch } from '../../../state/actionCreators/searchActionCreators';
 
-import TabContainer from '../../Tabs/TabContainer';
-import Post from '../../Post';
-
-import LoadingIcon from '../../../components/LoadingIcon';
-import HeaderImage from '../../../components/HeaderImage';
-
-import { generateMetaTitleFromPage } from '../../../constants';
-import './Explore.scss';
-
-const Explore = ({
-  userId, user, postResults, isLoading, errorMessage, ...props
-}) => {
-  const [activeTab, setActiveTab] = React.useState('New Posts');
-  React.useEffect(() => {
-    if (activeTab === 'New Posts') {
-      props.postSearch();
-    } else {
-      props.postSearch({ field: 'likes' });
-    }
-  }, [activeTab]);
-
-  return (
-    <div id="explore-container">
-      <Helmet>
-        <title>{generateMetaTitleFromPage('Explore')}</title>
-      </Helmet>
-
-      <HeaderImage
-        backgroundUrl={user?.backgroundUrl}
-        className="explore-header-image"
-      />
-
-      <main id="explore-content-container">
-        {isLoading
-          ? <LoadingIcon />
-          : (
-            <TabContainer
-              activeTab={activeTab}
-              setActiveTab={setActiveTab}
-            >
-              <div label="New Posts">
-                {postResults.map((post) => (
-                  <Post
-                    postContent={post}
-                    className="explore-post"
-                    key={post._id}
-                  />
-                ))}
-              </div>
-
-              <div label="Popular Posts">
-                {postResults.map((post) => (
-                  <Post
-                    postContent={post}
-                    className="explore-post"
-                    key={post._id}
-                  />
-                ))}
-              </div>
-            </TabContainer>
-          )}
-      </main>
-    </div>
-  );
-};
+import Explore from './Explore';
 
 const watchActions = [ActionTypes.POST_SEARCH];
 const loadingSelector = createLoadingSelector(watchActions);

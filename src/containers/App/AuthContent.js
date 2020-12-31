@@ -1,16 +1,16 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Home from './pages/Home';
-import Search from './pages/Search';
-import Explore from './pages/Explore';
-import Settings from './pages/Settings';
-import UserPage from './pages/UserPage';
-import Fallback from './pages/Fallback';
+import Home from '../pages/Home';
+import Search from '../pages/Search';
+import Explore from '../pages/Explore';
+import Settings from '../pages/Settings';
+import UserPage from '../pages/UserPage';
+import Fallback from '../pages/Fallback';
 
-import HeaderBar from './HeaderBar';
-import Sidebar from './Sidebar';
-import LoadingIcon from '../components/LoadingIcon';
+import HeaderBar from '../HeaderBar';
+import Sidebar from '../Sidebar';
+import LoadingIcon from '../../components/LoadingIcon';
 
 import './App.scss';
 
