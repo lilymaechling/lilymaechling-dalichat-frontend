@@ -54,73 +54,71 @@ Below are the tasks to complete before next class.
 
 ### Download Starter Code
 
-Throughout this course, you will be applying your skills to this project (we'll discuss this in-depth in a future course!), and today we're going to be setting up the repository you will be working with.
+Throughout this course, you will be applying your skills to a guided project (we'll discuss this in-depth in a future course!), and today we're going to be setting up the repository you will be working with.
 
-To start, open your `Documents/GitHub` directory in a terminal window. You will need to download the starter files for this project to your computer. To do this, sign in to GitHub, navigate to [this link](https://github.com/dali-lab/dalichat-frontend), and click the green "Code" button in the upper right of your screen. Select the "HTTPS" option and copy the displayed link. Then, run the following commands:
-
-```shell
-git clone -b starter --single-branch COPIED_LINK_HERE
-git branch -m starter main
-```
-
-This will copy the starter code to your GitHub account and allow you to make changes to the code, a process known as "cloning" the repository. After you have cloned the repository, navigate to the created folder with the following commands:
-
-```shell
-cd dalichat-frontend
-```
-
-This directory contains all of the starter code for the `DALIChat` project you will be building throughout the course. To view this starter code, make sure you have [Visual Studio Code](https://code.visualstudio.com/) installed. Then, run the following command:
-
-```shell
-code .
-```
-
-This opens the working directory in a new VSCode window. We will not be working directly with the code today, but feel free to look over the code to get familiar with the starter pack.
-
-### Initialize GitHub Repository
-
-Back in your terminal window, we will now configure your code to connect with your personal GitHub account. Make sure you are still within the `GitHub/dalichat-frontend` directory (you can see your current directory by running the `pwd` command in a bash shell or PowerShell terminal).
-
-Before we can save your code to a GitHub repsoitory, you need to create a new GitHub repository. To do this, open [GitHub](https://github.com/) in your browser and click the "plus" button in the upper right corner of your browser window. Select "New Repository", and you will be navigated to a configuration screen.
+To start, you need to create a new GitHub repository. To do this, sign in to [GitHub](https://github.com/) in your browser and click the "plus" button in the upper right corner of your browser window. Select "New Repository", and you will be navigated to a configuration screen.
 
 In this screen, give your repository a name in the format `USERNAME-dalichat-frontend`, where `USERNAME` is your GitHub username. Make sure your respository is public, and click "Create repository".
 
 Congratulations, you've just created (potentially) your first GitHub repository! If this isn't your first repository, congratulations on a new repo instead!
 
-You should be seeing the homepage for your new respository. Go to the "Code" and "HTTPS" and again copy the repository link. Now we're ready to link your local code (the code on your computer) and your remote repository (a place to host code not on your personal computer).
+You should be seeing the homepage for your new respository. To allow you to modify this repository, we need to `clone` (copy) the repository to your local computer. To do this, click the green "Code" button in the upper right of your respository. Select the "HTTPS" option and copy the displayed link.
 
-In your terminal window, run the following command:
+Next, open your `Documents/GitHub` directory in a terminal window. [See here](https://www.howtogeek.com/666127/how-to-use-the-cd-command-on-linux/) for documentation on the `cd` (change directory) command. Once you have this directory open, run the following commands in your terminal window, where `COPIED_LINK` is the link you copied in the previous step and `USERNAME` is your GitHub username:
 
-```shell
+```bash
+git clone COPIED_LINK
+cd USERNAME-dalichat-frontend
+```
+
+This will copy the contents of your repository (currently empty) to your local machine and allow you to make changes to the code, a process known as "cloning" the repository.
+
+We now need to initialize your repository with the starter files for the DALIChat application, which we provide [here](ttps://github.com/dali-lab/dalichat-frontend). To do this, navigate to [this link](https://github.com/dali-lab/dalichat-frontend), and again click the green "Code" button in the upper right of your screen. Select the "HTTPS" option and copy the displayed link. Then, run the following command where `NEW_COPIED_LINK` is the new link you copied:
+
+```bash
+git remote add template NEW_COPIED_LINK
+```
+
+To ensure this process worked, run the following command:
+
+```bash
 git remote -v
 ```
 
-This command should return a result similar to the following snippet:
+This command should return a result similar to the following snippet, where `USERNAME` is your GitHub username:
 
-```text
-origin  https://github.com/dali-lab/dalichat-frontend.git (fetch)
-origin  https://github.com/dali-lab/dalichat-frontend.git (push)
+```bash
+origin  https://github.com/dali-lab/USERNAME-dalichat-frontend.git (fetch)
+origin  https://github.com/dali-lab/USERNAME-dalichat-frontend.git (push)
+template  https://github.com/dali-lab/dalichat-frontend.git (fetch)
+template  https://github.com/dali-lab/dalichat-frontend.git (push)
 ```
 
-This command shows where you are currently hosting versions of this project. These locations are known as `remotes`, and are identified by a unique name. The snippet above shows that we have one remote attached to this project, a remote known as `origin`. We are able to download code from this repository ("fetch") as well as send code to this repository ("push"). As a note, fetch and push are listed separately, but are both part of the `origin` remote.
+This command shows where you are currently hosting versions of this project. These locations are known as `remotes`, and are identified by a unique name. The snippet above shows that we have two remotes attached to this project, a remote known as `origin` and a remote known as `template`. Remotes are online locations from which you can download code ("fetch") and upload code ("push") that will store versions of your project. Remotes contain both a fetch and a push location, and are identified by a unique string name (here `origin` and `template`).
 
-For context, `origin` is the default name git gives to remotes, and currently points towards the DALI repository containing the code.
+> For context, `origin` is the default name git gives to remotes, and currently points towards your online GitHub repository. To learn more about remotes, see [this link](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes).
 
-> If you want to learn more about remotes, see [this link](https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes).
+If you see both `template` and `origin` remotes in the results from the previous command, run the following command to copy the starter code to your local directory. If not, please reach out to us and we will be happy to help you sort this step out.
 
-To give you ownership of the code, we are going to change the repository url that the current `origin` remote points to so that `origin` will point to the new repository that you just created. To do this, run the following command, where `COPIED_URL` is the url you copied from the "HTTPS" tab in your browser:
-
-```shell
-git remote set-url origin COPIED_URL
+```bash
+git pull template starter --allow-unrelated-histories
 ```
 
-Congratulations again, you now own the starter code! To upload the current code to your new repository, run the following command:
+Your local directory should now contain all of the starter code for the `DALIChat` project you will be building throughout the course. To upload the current code to your new online repository, run the following command:
 
-```shell
+```bash
 git push origin main
 ```
 
 If you refresh your browser, you should now be able to see the starter code in your new repository!
+
+> To view this starter code locally, make sure you have [Visual Studio Code](https://code.visualstudio.com/) installed. Then, run the following command:
+>
+> ```bash
+> code .
+> ```
+>
+> This opens the working directory in a new VSCode window. We will not be working directly with the code today, but feel free to look over the code to get familiar with the starter pack.
 
 ### Initialize Deployments
 
