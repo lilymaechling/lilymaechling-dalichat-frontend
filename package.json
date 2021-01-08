@@ -1,0 +1,51 @@
+{
+  "name": "dalichat-frontend",
+  "version": "1.0.0",
+  "description": "A demo social media app based on the design style of the Dartmouth Applied Learning and Innovation lab.",
+  "main": "src/index.js",
+  "repository": "https://github.com/dali-lab/dalichat-frontend",
+  "author": "Adam McQuilkin <Adam.J.Mcquilkin.22@Dartmouth.edu>",
+  "contributors": [
+    "Adam McQuilkin <Adam.J.Mcquilkin.22@Dartmouth.edu>"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server --inline --hot",
+    "build": "NODE_ENV=production webpack --color",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@svgr/webpack": "^5.5.0",
+    "autoprefixer": "^10.1.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "css-loader": "^5.0.1",
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "mini-css-extract-plugin": "^1.3.3",
+    "node-sass": "^5.0.0",
+    "postcss": "^8.2.1",
+    "postcss-loader": "^4.1.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "surge": "^0.21.7",
+    "webpack": "4.44.2",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "^3.11.1"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
