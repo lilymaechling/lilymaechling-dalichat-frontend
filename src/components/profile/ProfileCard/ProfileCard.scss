@@ -1,0 +1,64 @@
+@import "../../../utils/variables.scss";
+
+.profile-card-container {
+  display: flex;
+  flex-direction: column;
+  width: 257px;
+  padding: 20px;
+  position: relative;
+
+  font-family: $open-sans;
+  background: $white;
+  box-shadow: 0px 4px 10px rgba(94, 99, 102, 0.125);
+  border-radius: 8px;
+
+  svg {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+  }
+
+  .profile-image {
+    width: 96px;
+    height: 96px;
+    margin: 0px auto 12px;
+  }
+
+  .portfolio-card-name {
+    margin: 0px 0px 3px;
+    text-decoration: none;
+
+    color: $dark-gray;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  .portfolio-card-username {
+    margin: 0px;
+    text-decoration: none;
+
+    color: $mid-gray;
+    text-align: center;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  p,
+  a {
+    margin: 9px 0px 0px;
+    text-align: center;
+    color: $dark-gray;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 155%;
+  }
+
+  .portfolio-card-portfolio-url {
+    color: $blue;
+  }
+
+  .portfolio-card-posts {
+    color: $mid-gray;
+  }
+}

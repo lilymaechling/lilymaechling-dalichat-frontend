@@ -1,0 +1,83 @@
+/* -------- Imports -------- */
+
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@600;700&display=swap"); // Dosis
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"); // Open Sans
+
+/* -------- Variables -------- */
+
+$dosis: "Dosis", sans-serif;
+$open-sans: "Open Sans", sans-serif;
+
+$blue: #1e5779;
+$white: #ffffff;
+$error-light: #ff8b81;
+$error-dark: #e71d0c;
+
+$dark-gray: #404040;
+$mid-gray: #8a8e90;
+$light-gray: #f0f0f0;
+$background: #f4f6f8;
+
+$page-width: 960px;
+$post-margin: 30px;
+
+/* -------- Standard Styling -------- */
+
+h1 {
+  margin: 0px;
+  color: $dark-gray;
+  font-family: $dosis;
+  font-weight: 700;
+  font-size: 72px;
+}
+
+h2 {
+  margin: 0px 0px 60px;
+  color: $dark-gray;
+  font-family: $dosis;
+  font-weight: 600;
+  font-size: 60px;
+}
+
+/* -------- Mixins -------- */
+
+@mixin header-image {
+  margin-bottom: -62px;
+}
+
+@mixin page-layout {
+  width: $page-width;
+  margin: auto auto 48px;
+}
+
+@mixin label-styling {
+  margin: 0px 0px 9px;
+  color: $dark-gray;
+
+  font-family: $open-sans;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+@mixin input-styling {
+  padding: 12px 18px;
+  color: $dark-gray;
+
+  font-family: $open-sans;
+  font-weight: 400;
+  font-size: 12px;
+
+  background: $light-gray;
+  border-radius: 8px;
+  border: none;
+
+  &:-moz-ui-invalid {
+    border: 2px solid $error-dark;
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    font-family: $open-sans;
+    color: $mid-gray;
+  }
+}

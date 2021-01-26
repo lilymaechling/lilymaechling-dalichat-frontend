@@ -1,0 +1,53 @@
+@import "../../../utils/variables.scss";
+
+#error-popover-container {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 30px 15px 21px;
+  box-sizing: border-box;
+  width: 250px;
+
+  position: fixed;
+  z-index: 999;
+  right: 0px;
+  top: 120px;
+
+  background: $white;
+  border-radius: 8px 0px 0px 8px;
+  box-shadow: 0px 4px 10px rgba(94, 99, 102, 0.125);
+  border: 1px solid $light-gray;
+
+  font-family: $open-sans;
+  transform: translateX(100%);
+  transition: 0.3s ease-in-out transform;
+
+  &.active {
+    transform: translateX(0%);
+  }
+
+  #error-title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+    margin: 0px auto 7px 0px;
+
+    svg {
+      margin: auto 7px auto 0px;
+    }
+
+    #error-title {
+      margin: auto 0px;
+      color: $error-dark;
+      font-weight: 600;
+      font-size: 15px;
+    }
+  }
+
+  #error-content {
+    margin: 0px auto 0px 0px;
+    color: $dark-gray;
+    font-weight: 400;
+    font-size: 12px;
+  }
+}

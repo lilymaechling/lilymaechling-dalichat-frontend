@@ -1,0 +1,16 @@
+@import "../../../utils/variables.scss";
+
+.tabgroup-container {
+  display: flex;
+  flex-direction: row;
+  margin: auto auto 48px;
+  width: 100%;
+
+  position: relative;
+  z-index: 2;
+
+  .tabgroup-profile-card {
+    position: sticky;
+    margin: 0px 24px auto 0px;
+  }
+}
